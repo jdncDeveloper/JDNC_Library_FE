@@ -1,6 +1,6 @@
 import Style from './App.style';
-import Greeting from './Greeting';
-import SignIn from './SignIn';
+// import Greeting from './Greeting';
+// import SignIn from './SignIn';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
