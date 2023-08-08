@@ -2,10 +2,9 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
-  width: 300px;
+  width: 100%;
   height: 120px;
   padding: 20px;
-  margin: 20px;
   border: 2px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
@@ -17,8 +16,8 @@ const ImageBox = styled.div`
   background-color: #ddd;
 `;
 const Image = styled.img`
-  object-fit: cover;
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
 `;
 const BookInfoBox = styled.div`
   position: relative;
@@ -28,7 +27,6 @@ const BookInfoBox = styled.div`
 const Title = styled.div`
   font-size: 14px;
   font-weight: bold;
-  margin-bottom: 10px;
 `;
 const Author = styled.div`
   font-size: 10px;
