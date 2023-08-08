@@ -1,12 +1,12 @@
 import React from 'react';
-import BookList from './BookList/BookList';
+import BorrowedList from '../pages/BorrowedList/BorrowedList';
 import Style from './App.style';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = () => {
   return (
     <Style.Container>
-      <BookList />
+      <BorrowedList />
       <BrowserRouter>
         <Routes></Routes>
       </BrowserRouter>
