@@ -1,16 +1,19 @@
 import React from 'react';
-import BorrowedList from '../pages/BorrowedList/BorrowedList';
-import Style from './App.style';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Layout from './Layout/Layout';
+import BorrowedList from '../pages/BorrowedList/BorrowedList';
 
 const App = () => {
   return (
-    <Style.Container>
-      <BorrowedList />
       <BrowserRouter>
-        <Routes></Routes>
+        <Layout>
+          <Routes>
+            <Route path='/' element={<></>} />
+            <Route path='/borrowedlist' element={<BorrowedList />} />
+            <Route path='/search' element={<></>} />
+          </Routes>
+        </Layout>
       </BrowserRouter>
-    </Style.Container>
   );
 };
 

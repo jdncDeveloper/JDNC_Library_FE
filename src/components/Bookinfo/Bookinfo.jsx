@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Styled from "./Bookinfo.style";
+import { getBookDetail } from "../../api/testAPI/get/getBookDetail";
 
 
 const Bookinfo = () => {
@@ -10,6 +11,10 @@ const Bookinfo = () => {
   const borrowBook = () => {
     alert("책빌리기");
   }
+  getBookDetail()
+    .then((res) => {
+      setBook(res);
+    })
   return (
     <>
       <Styled.Container>
