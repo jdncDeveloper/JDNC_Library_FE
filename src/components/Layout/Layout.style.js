@@ -1,7 +1,7 @@
 import { styled } from "styled-components";
 
 const Container = styled.div`
-    width: 100vw;
+    max-width: 1024px;
     height: 640px;
     margin: 0 auto;
 `;
@@ -26,7 +26,7 @@ const Header = styled.header`
     & button {
         border: none;
         color: white;
-        width: 65px;
+        width: 70px;
         height: 29px;
         background-color: #4AA7DE;
         border-radius: 6px;
@@ -37,7 +37,8 @@ const Header = styled.header`
     }
 `;
 const SearchContainer = styled.div`
-    width: 100vw;
+    margin: 0 auto;
+    width: 331px;
     height: 95px;
     padding: 23px 0;
     position: relative;
@@ -47,7 +48,7 @@ const SearchContainer = styled.div`
         height: 22px;
         position: absolute;
         top: 35px;
-        right: 45px;
+        right: 25px;
         cursor: pointer;
         border: none;
         background-color: white;
