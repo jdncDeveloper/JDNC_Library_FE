@@ -26,10 +26,11 @@ const Layout = ({ children }) => {
         const searchValue = $search.current.value;
         navigate(`/search?${searchValue}`);
     }
-    
+
     return (
         <Style.Container>
             <Style.Header>
+                
                 <img src={logo} alt="더큰내일도서관 로고" />
                 <div>
                     <span>{`${username} 님`}</span>
