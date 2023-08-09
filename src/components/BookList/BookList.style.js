@@ -8,16 +8,17 @@ const Container = styled.div`
   border: 2px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
 `;
 const ImageBox = styled.div`
   width: 90px;
+  height: 100%;
   border-radius: 10px;
   background-color: #ddd;
 `;
 const Image = styled.img`
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 `;
 const BookInfoBox = styled.div`
   position: relative;
@@ -41,9 +42,9 @@ const ReturnButton = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  font-size: 10px;
+  font-size: 12px;
   fontweight: bold;
-  padding: 5px 10px;
+  padding: 6px 14px;
   border: none;
   border-radius: 5px;
   background-color: ${(props) => (props.disabled ? '#888' : '#bf3030')};

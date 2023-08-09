@@ -1,11 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-const HeadInfo = styled.div`
-  display: flex;
-  align-items: center;
-  width: calc(100% - 80px);
-`;
 const Title = styled.h2`
   margin: 0;
   padding-left: 30px;
@@ -23,4 +18,4 @@ const Icon = styled(FontAwesomeIcon)`
   font-size: 26px;
 `;
 
-export default { Container, Booklists, Title, HeadInfo, Icon };
+export default { Container, Booklists, Title, Icon };
