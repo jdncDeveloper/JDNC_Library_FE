@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  width: 100%;
+  width: 700px;
   padding: 2.5rem;
   border: 1px solid #000;
   border-radius: 8px;
+  margin: 0 auto;
 `;
 
 const InfoTitle = styled.div`
@@ -25,8 +26,8 @@ const TitleContainer = styled.div`
 `;
 
 const BookStatus = styled.span`
-  display: inline-block;
-  padding: 0.5em;
+  display: ${(props) => (props.display == false ? 'inline-block' : 'none')};
+  padding: 0.7rem;
   background-color: ${(props) => (props.bookStatus == '대여가능' ? 'green' : 'red')};
   color: #fff;
   font-weight: 600;
@@ -36,7 +37,7 @@ const BookStatus = styled.span`
 
 const BorrowBtn = styled.button`
   display: ${(props) => (props.display == true ? 'inline-block' : 'none')};
-  padding: 1rem;
+  padding: 0.7rem;
   background-color: green;
   color: #fff;
   border: none;
