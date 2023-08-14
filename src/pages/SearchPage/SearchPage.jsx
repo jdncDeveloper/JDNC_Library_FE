@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import BookList from '../../components/BookList/BookList';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from '../../assets/commonStyles/BookListContanier.style';
-import BookList from '../../components/BookList/BookList';
-import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
-const BorrowedList = () => {
-  const [booklist, setBooklist] = useState([]);
+const SearchPage = () => {
+  const [searchBook, setSearchBook] = useState([]);
 
   useEffect(() => {
     getBookList()
-      .then((res) => setBooklist(res))
+      .then((res) => setSearchBook(res))
       .catch((err) => console.log(err));
   }, []);
 
   return (
     <Style.Container>
-      {booklist.map((book) => {
+      {searchBook.map((book) => {
         return (
           <Style.Booklists key={book.id}>
-            <BookList book={book} />
+            <BookList book={book} isMainPage />
           </Style.Booklists>
         );
       })}
@@ -26,4 +25,4 @@ const BorrowedList = () => {
   );
 };
 
-export default BorrowedList;
+export default SearchPage;
