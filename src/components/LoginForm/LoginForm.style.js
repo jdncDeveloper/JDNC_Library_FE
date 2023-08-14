@@ -24,6 +24,7 @@ const LoginContainer = styled.div`
         height: 45px;
         border: none;
         padding: 0 10px;
+        border-radius: 6px;
         margin: 0 auto 10px;
     }
     & > button{

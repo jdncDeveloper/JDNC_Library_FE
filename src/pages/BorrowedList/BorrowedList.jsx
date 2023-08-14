@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from './BorrowedList.style';
 import BookList from '../../components/BookList/BookList';
+import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
 const BorrowedList = () => {
   const [booklist, setBooklist] = useState([]);
@@ -15,8 +16,7 @@ const BorrowedList = () => {
   return (
     <>
       <Style.HeadInfo>
-        <Style.Icon icon="fas fa-arrow-left" />
-        <Style.Title>대여 현황</Style.Title>
+        <BackBtnWithTitle title={'북리스트'} />
       </Style.HeadInfo>
       <Style.Container>
         {booklist.map((book) => {
