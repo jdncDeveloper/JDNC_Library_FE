@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/testAPI/get/getBookList';
-import Style from '../BorrowedList/BorrowedList.style';
+import Style from '../../assets/commonStyles/BookListContanier.style';
 import BookList from '../../components/BookList/BookList';
 
 const ReturnBook = () => {

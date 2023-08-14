@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import BorrowedList from '../pages/BorrowedList/BorrowedList';
 import ReturnBookPage from '../pages/ReturnBookPage/ReturnBookPage';
+import BookListPage from '../pages/BookListPage/BookListPage';
 import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 
@@ -12,6 +13,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/main" element={<div>메인화면</div>} />
+        <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
         <Route path="/borrowedlist" element={<Layout children={<BorrowedList />} />} />
         <Route path="/returnpage" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/search:string" element={<></>} />

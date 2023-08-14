@@ -37,13 +37,14 @@ const BorrowedDate = styled.div`
   position: absolute;
   bottom: 0;
   font-size: 10px;
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 `;
 const ReturnButton = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
   font-size: 12px;
-  fontweight: bold;
+  font-weight: bold;
   padding: 6px 14px;
   border: none;
   border-radius: 5px;
@@ -51,10 +52,24 @@ const ReturnButton = styled.button`
   color: #fff;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   opacity: ${(props) => (props.disabled ? '0.6' : '1')};
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 
   &:hover {
     background-color: ${(props) => (props.disabled ? '#888' : '#982828')};
   }
+`;
+const Available = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 3px 8px;
+  border: 3px double #fff;
+  border-radius: 8px;
+  background-color: ${(props) => (props.notAvailable ? '#bf3030' : 'green')};
+  color: #fff;
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 `;
 
 export default {
@@ -66,4 +81,5 @@ export default {
   Author,
   BorrowedDate,
   ReturnButton,
+  Available,
 };
