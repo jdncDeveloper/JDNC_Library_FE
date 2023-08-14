@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/testAPI/get/getBookList';
-import Style from './BorrowedList.style';
+import Style from '../BorrowedList/BorrowedList.style';
 import BookList from '../../components/BookList/BookList';
-import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
-const BorrowedList = () => {
+const ReturnBook = () => {
   const [booklist, setBooklist] = useState([]);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const BorrowedList = () => {
       {booklist.map((book) => {
         return (
           <Style.Booklists key={book.id}>
-            <BookList book={book} />
+            <BookList book={book} isReturnPage={true} />
           </Style.Booklists>
         );
       })}
@@ -26,4 +25,4 @@ const BorrowedList = () => {
   );
 };
 
-export default BorrowedList;
+export default ReturnBook;
