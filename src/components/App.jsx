@@ -12,8 +12,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/main" element={<div>메인화면</div>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<div>메인화면</div>} />
         <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
         <Route path="/search" element={<Layout children={<SearchPage />} />} />
         <Route path="/borrowedlist" element={<Layout children={<BorrowedList />} />} />
