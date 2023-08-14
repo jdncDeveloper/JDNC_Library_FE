@@ -1,5 +1,5 @@
 import Style from './CreateQR.style';
-import { QRCodeCanvas } from 'qrcode.react';
+// import { QRCodeCanvas } from 'qrcode.react';
 import { useState } from 'react';
 
 const  CreateQR = () => {

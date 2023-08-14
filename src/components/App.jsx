@@ -5,13 +5,14 @@ import BorrowedList from '../pages/BorrowedList/BorrowedList';
 import ReturnBookPage from '../pages/ReturnBookPage/ReturnBookPage';
 import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
+import Main from '../pages/Main/Main';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/main" element={<div>메인화면</div>} />
+        <Route path="/main" element={<Layout children={<Main />}/>} />
         <Route path="/borrowedlist" element={<Layout children={<BorrowedList />} />} />
         <Route path="/returnpage" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/search:string" element={<></>} />
