@@ -21,7 +21,6 @@ const Modal = styled.div`
   padding: 30px 14px;
   margin: 0 auto;
   margin-top: calc((100vh - 500px) / 2);
-  overflow: scroll;
 `;
 
 const CloseBtn = styled.button`
