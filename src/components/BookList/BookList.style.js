@@ -25,13 +25,13 @@ const BookInfoBox = styled.div`
   width: 100%;
   margin-left: 20px;
 `;
-const Title = styled.div`
+const Title = styled.h2`
   font-size: 14px;
   font-weight: bold;
 `;
 const Author = styled.div`
   font-size: 10px;
-  margin-bottom: 10px;
+  margin: 6px 0;
 `;
 const BorrowedDate = styled.div`
   position: absolute;

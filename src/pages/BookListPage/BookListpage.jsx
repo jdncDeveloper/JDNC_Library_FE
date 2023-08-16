@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import BookList from '../../components/BookList/BookList';
-import { getBookList } from '../../api/testAPI/get/getBookList';
+import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContanier.style';
 
 const BookListPage = () => {
   const [allBookList, setAllBookList] = useState([]);
 
   useEffect(() => {
-    getBookList()
-      .then((res) => setAllBookList(res))
-      .catch((err) => console.log(err));
+    async function getAllBookList() {
+      try {
+        const response = await fetchGETQrPage();
+        setAllBookList(response);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getAllBookList();
   }, []);
 
   return (

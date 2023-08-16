@@ -10,14 +10,13 @@
 :after,
 :before {
   box-sizing: border-box;
-  flex-shrink: 0;
 }
 :root {
   -webkit-tap-highlight-color: transparent;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   cursor: default;
-  line-height: 1.5;
+  line-height: 1.1;
   overflow-wrap: break-word;
   word-break: break-word;
   tab-size: 4;
@@ -25,6 +24,7 @@
 html,
 body {
   height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
 }
 img,
 picture,
