@@ -1,31 +1,36 @@
 import { useState } from 'react';
 import Style from './LoginForm.style';
-import { useNavigate } from 'react-router-dom';
+import { isValidateLogin } from '../../utils/validation/loginValidation';
+import { fetchPOSTLogin } from '../../api/user/authAPI';
 const LoginForm = () => {
     const [ loginForm, setLoginForm ] = useState({
-        id: '',
-        pw: '',
+        username: '',
+        password: '',
     });
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    function loginFormHandler(e) {
-        const value = e.target.value;
-        const name = e.target.name;
+    function loginFormHandler(event) {
+        const value = event.target.value;
+        const name = event.target.name;
         setLoginForm({
             ...loginForm,
             [name]: value,
         })
     }
-    function submitLogin(e) {
+    function submitLogin() {
         // 유효성 검사
         // fetch login 함수
-        navigate('/main');
+        if(isValidateLogin(loginForm.username, loginForm.password)) {
+            fetchPOSTLogin(loginForm)
+            .then(response => console.log('응답'))
+            .catch((err) => console.log("에러",err))
+        }
     }
     return(
         <Style.LoginContainer>
             <h1>더큰내일도서관</h1>
-            <input type="text" name='id' placeholder='아이디' value={loginForm.id} onChange={loginFormHandler}/>
-            <input type="password" name='pw' placeholder='비밀번호' value={loginForm.pw} onChange={loginFormHandler}/>
+            <input type="text" name='username' placeholder='아이디' value={loginForm.username} onChange={loginFormHandler}/>
+            <input type="password" name='password' placeholder='비밀번호' value={loginForm.password} onChange={loginFormHandler}/>
             <button onClick={submitLogin}>Login</button>
         </Style.LoginContainer>
     )
