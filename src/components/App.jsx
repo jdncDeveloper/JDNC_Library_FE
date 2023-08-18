@@ -7,17 +7,17 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 import Main from '../pages/Main/Main';
-import BorrowedList from './BorrowedList/BorrowedList';
+import BorrowedListPage from '../pages/BorrowedListPage/BorrowedListPage';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout children={<Main />}/>} />
+        <Route path="/" element={<Layout children={<Main />} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
         <Route path="/search:string" element={<Layout children={<SearchPage />} />} />
-        <Route path="/borrowedlist" element={<Layout children={<BorrowedList />} />} />
+        <Route path="/borrowedlist" element={<Layout children={<BorrowedListPage />} />} />
         <Route path="/returnpage" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/qr/create" element={<Layout children={<CreateQR />} />} />
       </Routes>
