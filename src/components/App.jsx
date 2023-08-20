@@ -8,6 +8,7 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 import Main from '../pages/Main/Main';
+import BorrowBook from '../pages/BorrowBook/BorrowBook';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/returnpage" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/search:string" element={<></>} />
         <Route path="/qr/create" element={<Layout children={<CreateQR />} />} />
+        <Route path="/borrowbook/qr/:bookNumber" element={<Layout children={<BorrowBook />} />} />
       </Routes>
     </BrowserRouter>
   );
