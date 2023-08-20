@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import Style from './LoginForm.style';
 import { isValidateLogin } from '../../utils/validation/loginValidation';
-import { fetchPOSTLogin } from '../../api/user/authAPI';
+import { fetchPOSTLogin } from '../../api/user/LoginAPI';
+import { useNavigate } from 'react-router-dom';
 const LoginForm = () => {
     const [ loginForm, setLoginForm ] = useState({
         username: '',
         password: '',
     });
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     function loginFormHandler(event) {
         const value = event.target.value;
@@ -17,13 +18,13 @@ const LoginForm = () => {
             [name]: value,
         })
     }
-    function submitLogin() {
-        // 유효성 검사
-        // fetch login 함수
+    async function submitLogin() {
         if(isValidateLogin(loginForm.username, loginForm.password)) {
-            fetchPOSTLogin(loginForm)
-            .then(response => console.log('응답'))
-            .catch((err) => console.log("에러",err))
+            const response = await fetchPOSTLogin(loginForm);
+            if(response.status === 200) {
+                // 유저정보 전역상태관리 함수
+                navigate('/');
+            }
         }
     }
     return(

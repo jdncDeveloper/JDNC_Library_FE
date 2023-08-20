@@ -18,7 +18,10 @@ const App = () => {
         <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
         <Route path="/search:string" element={<Layout children={<SearchPage />} />} />
         <Route path="/borrowedlist" element={<Layout children={<BorrowedListPage />} />} />
-        <Route path="/returnpage" element={<Layout children={<ReturnBookPage />} />} />
+        {/* path= /bookDetail bookDetailPage */}
+        {/* path= /borrowbook/qr:number BorrowBookPage */}
+        <Route path="/search/:string" element={<Layout children={<SearchPage />} />} />
+        <Route path="/returnpage/qr" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/qr/create" element={<Layout children={<CreateQR />} />} />
       </Routes>
     </BrowserRouter>
