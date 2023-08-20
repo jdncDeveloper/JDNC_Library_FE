@@ -37,7 +37,7 @@ const BorrowedDate = styled.div`
   position: absolute;
   bottom: 0;
   font-size: 10px;
-  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 `;
 const ReturnButton = styled.button`
   position: absolute;
@@ -48,14 +48,14 @@ const ReturnButton = styled.button`
   padding: 6px 14px;
   border: none;
   border-radius: 5px;
-  background-color: ${({ disabled }) => (disabled ? '#888' : '#bf3030')};
+  background-color: ${(props) => (props.disabled ? '#888' : '#bf3030')};
   color: #fff;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  opacity: ${({ disabled }) => (disabled ? '0.6' : '1')};
-  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${(props) => (props.disabled ? '0.6' : '1')};
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 
   &:hover {
-    background-color: ${({ disabled }) => (disabled ? '#888' : '#982828')};
+    background-color: ${(props) => (props.disabled ? '#888' : '#982828')};
   }
 `;
 const Available = styled.div`
@@ -67,9 +67,9 @@ const Available = styled.div`
   padding: 3px 8px;
   border: 3px double #fff;
   border-radius: 8px;
-  background-color: ${({ notAvailable }) => (notAvailable ? '#bf3030' : 'green')};
+  background-color: ${(props) => (props.notAvailable ? '#bf3030' : 'green')};
   color: #fff;
-  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
+  display: ${(props) => (props.hidden ? 'none' : 'block')};
 `;
 
 export default {
