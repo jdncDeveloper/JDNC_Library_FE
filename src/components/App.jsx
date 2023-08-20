@@ -16,11 +16,10 @@ const App = () => {
         <Route path="/" element={<Layout children={<Main />} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
-        <Route path="/search:string" element={<Layout children={<SearchPage />} />} />
-        <Route path="/borrowedlist" element={<Layout children={<BorrowedListPage />} />} />
         {/* path= /bookDetail bookDetailPage */}
         {/* path= /borrowbook/qr:number BorrowBookPage */}
         <Route path="/search/:string" element={<Layout children={<SearchPage />} />} />
+        <Route path="/borrowedlist" element={<Layout children={<BorrowedList />} />} />
         <Route path="/returnpage/qr" element={<Layout children={<ReturnBookPage />} />} />
         <Route path="/qr/create" element={<Layout children={<CreateQR />} />} />
       </Routes>
