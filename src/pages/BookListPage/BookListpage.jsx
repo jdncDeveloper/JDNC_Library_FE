@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import AllBooks from '../../components/AllBooks/AllBooks';
 import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 

@@ -3,14 +3,16 @@ import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from '../../assets/commonStyles/BookListContanier.style';
 import BookList from '../BookList/BookList';
 
-const BorrowedList = () => {
+const BorrowedList = (borrowBook) => {
   const [booklist, setBooklist] = useState([]);
 
   useEffect(() => {
-    getBookList()
-      .then((res) => setBooklist(res))
-      .catch((err) => console.log(err));
-  }, []);
+    async function fetchBooks() {
+      const books = await getBookList();
+      setBooklist(books);
+    }
+    fetchBooks();
+  }, [borrowBook]);
 
   return (
     <Style.Container>

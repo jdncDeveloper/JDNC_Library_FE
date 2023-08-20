@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   max-width: 1024px;
@@ -6,6 +7,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const Header = styled.header`
+  position: relative;
   width: 100%;
   height: 60px;
   display: flex;
@@ -19,22 +21,15 @@ const Header = styled.header`
   & > img {
     width: 90px;
     height: 30px;
+    cursor: pointer;
   }
   & span {
-    font-size: 12px;
+    font-size: 14px;
   }
-  & button {
-    border: none;
-    color: white;
-    width: 70px;
-    height: 29px;
-    background-color: #4aa7de;
-    border-radius: 6px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
-    font-size: 12px;
-    cursor: pointer;
-    margin-left: 16px;
-  }
+`;
+const MenuBars = styled(FontAwesomeIcon)`
+  cursor: pointer;
+  margin-left: 16px;
 `;
 const SearchContainer = styled.div`
   margin: 24px auto;
@@ -68,4 +63,4 @@ const SearchInput = styled.input`
   font-size: 16px;
 `;
 
-export default { Container, Header, SearchContainer, SearchInput };
+export default { Container, Header, SearchContainer, SearchInput, MenuBars };
