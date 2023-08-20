@@ -17,8 +17,8 @@ const  CreateQR = () => {
         <>
             <Style.QrContainer>
                 <Style.QRInput placeholder='bookId를 입력하세요.' value={idValue} onChange={inputHandler} />
-                <QRCodeCanvas value={`${baseUrl}/borrowbook/${idValue}`} />
-                <span>{`${baseUrl}/borrowbook/${idValue}`}</span>
+                <QRCodeCanvas value={`${baseUrl}/borrowbook/qr?${idValue}`} />
+                <span>{`${baseUrl}/borrowbook/qr?${idValue}`}</span>
             </Style.QrContainer>
         </>
     )
