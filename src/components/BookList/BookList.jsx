@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Style from './BookList.style';
 
-const BookList = ({ book, isReturnPage, isMainPage }) => {
+const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
   const [isButtonEnabled, setButtonEnabled] = useState(false);
   const [isHide, setHide] = useState(false);
   const [isAvailable, setAvailable] = useState(true);
-  const [isNotAvailable, setNotAvailable] = useState(false);
 
   useEffect(() => {
     if (isReturnPage) {
@@ -23,13 +22,8 @@ const BookList = ({ book, isReturnPage, isMainPage }) => {
   }, [isMainPage]);
 
   const handleReturnButtonClick = () => {
-    // 반납 처리 하고 리스트를 삭제할 수 있도록 로직 작성
-    if (!isButtonEnabled) {
-      alert('반납은 반납함 앞에있는 QR코드로 해주세요');
-      return;
-    }
-
     if (window.confirm('반납하시겠습니까?')) {
+      onBookReturn(book.id);
       alert('반납이 완료되었습니다.');
     }
   };
