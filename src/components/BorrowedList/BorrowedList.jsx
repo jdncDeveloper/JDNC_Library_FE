@@ -5,14 +5,16 @@ import BookList from '../../components/BookList/BookList';
 import BtnNav from '../../components/BtnNav/BtnNav';
 import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
-const BorrowedList = () => {
+const BorrowedList = (borrowBook) => {
   const [booklist, setBooklist] = useState([]);
 
   useEffect(() => {
-    getBookList()
-      .then((res) => setBooklist(res))
-      .catch((err) => console.log(err));
-  }, []);
+    async function fetchBooks() {
+      const books = await getBookList();
+      setBooklist(books);
+    }
+    fetchBooks();
+  }, [borrowBook]);
 
   return (
     <>

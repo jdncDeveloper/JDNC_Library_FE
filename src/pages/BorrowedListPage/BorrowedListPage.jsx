@@ -1,13 +1,13 @@
-import ReturnList from '../../components/ReturnList/ReturnList';
+import BorrowedList from '../../components/BorrowedList/BorrowedList';
 import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
-const ReturnBook = () => {
+const BorowedListPage = () => {
   return (
     <>
       <BackBtnWithTitle title="대여 현황" />
-      <ReturnList />
+      <BorrowedList />
     </>
   );
 };
 
-export default ReturnBook;
+export default BorowedListPage;

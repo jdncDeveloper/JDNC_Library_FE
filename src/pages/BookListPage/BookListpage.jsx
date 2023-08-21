@@ -3,22 +3,11 @@ import BookList from '../../components/BookList/BookList';
 import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContanier.style';
 import BtnNav from '../../components/BtnNav/BtnNav';
+import { useParams } from 'react-router-dom';
+import AllBooks from '../../components/AllBooks/AllBooks';
+import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
 const BookListPage = () => {
-  const [allBookList, setAllBookList] = useState([]);
-
-  useEffect(() => {
-    async function getAllBookList() {
-      try {
-        const response = await fetchGETQrPage();
-        setAllBookList(response);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getAllBookList();
-  }, []);
-
   return (
     <>
       <Style.Container>
@@ -31,6 +20,8 @@ const BookListPage = () => {
         })}
       </Style.Container>
       <BtnNav />
+      <BackBtnWithTitle title="도서 목록" />
+      <AllBooks />
     </>
   );
 };
