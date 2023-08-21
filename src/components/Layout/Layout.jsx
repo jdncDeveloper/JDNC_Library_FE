@@ -4,6 +4,7 @@ import searchIcon from '../../assets/images/search-icon.png';
 import SubMenu from '../SubMenu/SubMenu';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { navigateUrl } from '../../constant/navigateUrl';
 
 const Layout = ({ children }) => {
   const [username, setUsername] = useState('탐나는 인재');
@@ -28,7 +29,7 @@ const Layout = ({ children }) => {
   };
 
   const navigateToMainPage = () => {
-    navigate('/');
+    navigate(navigateUrl.main);
   };
 
   function searchHandler() {

@@ -1,25 +1,35 @@
 import React, { useState, useEffect } from 'react';
+// import { borrowAPI } from '../../api/Borrow/borrowAPI';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from '../../assets/commonStyles/BookListContanier.style';
 import BookList from '../../components/BookList/BookList';
-import BtnNav from '../../components/BtnNav/BtnNav';
-import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
 const BorrowedList = (borrowBook) => {
-  const [booklist, setBooklist] = useState([]);
+  const [bookList, setBookList] = useState([]);
+
+  // API 연결 후 사용할 예정입니다.
+  // const [borrowedBookList, setBorrowedBookList] = useState([]);
+
+  // useEffect(() => {
+  //   async function fetchBorrowedList() {
+  //     const borrowedList = await borrowAPI();
+  //     setBorrowedBookList(borrowedList);
+  //   }
+  //   fetchBorrowedList();
+  // }, [borrowBook]);
 
   useEffect(() => {
-    async function fetchBooks() {
+    const fetchBooks = async () => {
       const books = await getBookList();
-      setBooklist(books);
-    }
+      setBookList(books);
+    };
     fetchBooks();
   }, [borrowBook]);
 
   return (
     <>
       <Style.Container>
-        {booklist.map((book) => {
+        {bookList.map((book) => {
           return (
             <Style.Booklists key={book.id}>
               <BookList book={book} />
@@ -27,7 +37,6 @@ const BorrowedList = (borrowBook) => {
           );
         })}
       </Style.Container>
-      <BtnNav />
     </>
   );
 };

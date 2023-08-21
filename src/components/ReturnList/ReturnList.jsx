@@ -44,7 +44,7 @@ const ReturnList = () => {
       {booklist.map((book) => {
         return (
           <Style.Booklists key={book.id}>
-            <BookList book={book} isReturnPage={true} onBookReturn={handleBookReturn} />
+            <BookList book={book} isReturnPage onBookReturn={handleBookReturn} />
           </Style.Booklists>
         );
       })}
