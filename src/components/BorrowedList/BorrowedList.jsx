@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from '../../assets/commonStyles/BookListContanier.style';
-import BookList from '../BookList/BookList';
+import BookList from '../../components/BookList/BookList';
+import BtnNav from '../../components/BtnNav/BtnNav';
+import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
 const BorrowedList = (borrowBook) => {
   const [booklist, setBooklist] = useState([]);
@@ -15,15 +17,18 @@ const BorrowedList = (borrowBook) => {
   }, [borrowBook]);
 
   return (
-    <Style.Container>
-      {booklist.map((book) => {
-        return (
-          <Style.Booklists key={book.id}>
-            <BookList book={book} />
-          </Style.Booklists>
-        );
-      })}
-    </Style.Container>
+    <>
+      <Style.Container>
+        {booklist.map((book) => {
+          return (
+            <Style.Booklists key={book.id}>
+              <BookList book={book} />
+            </Style.Booklists>
+          );
+        })}
+      </Style.Container>
+      <BtnNav />
+    </>
   );
 };
 

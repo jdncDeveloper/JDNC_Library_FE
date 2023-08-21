@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const BtnNav = styled.div`
   display: grid;
@@ -13,12 +14,15 @@ const BtnNav = styled.div`
   margin: 0 auto;
 `;
 
-const Btns = styled.button`
+const Btns = styled(Link)`
+  display: inline-block;
+  text-align: center;
+  padding: 30px;
   border-radius: 6px;
   background: #d9d9d9;
   box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
-  grid-column: ${(props) => props.column};
-  grid-row: ${(props) => props.row};
+  grid-column: ${(props) => props.$column};
+  grid-row: ${(props) => props.$row};
 `;
 
 const HowToUseBtn = styled.button`
