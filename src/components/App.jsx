@@ -9,22 +9,24 @@ import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 import Main from '../pages/Main/Main';
 import BorrowBook from '../pages/BorrowBook/BorrowBook';
+import { navigateUrl } from '../constant/navigateUrl';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout children={<Main />} />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/booklist" element={<Layout children={<BookListPage />} />} />
-        <Route path="/search:string" element={<Layout children={<SearchPage />} />} />
-        <Route path="/borrowedlist" element={<Layout children={<BorrowedListPage />} />} />
+        <Route path={navigateUrl.main} element={<Layout children={<Main />} />} />
+        <Route path={navigateUrl.login} element={<Login />} />
+        <Route path={navigateUrl.bookList} element={<Layout children={<BookListPage />} />} />
+        <Route
+          path={navigateUrl.borrowedList}
+          element={<Layout children={<BorrowedListPage />} />}
+        />
         {/* path= /bookDetail bookDetailPage */}
-        {/* path= /borrowbook/qr:number BorrowBookPage */}
-        <Route path="/search/:string" element={<Layout children={<SearchPage />} />} />
-        <Route path="/returnpage/qr" element={<Layout children={<ReturnBookPage />} />} />
-        <Route path="/qr/create" element={<Layout children={<CreateQR />} />} />
-        <Route path="/borrowbook/qr/:bookNumber" element={<Layout children={<BorrowBook />} />} />
+        <Route path={navigateUrl.search} element={<Layout children={<SearchPage />} />} />
+        <Route path={navigateUrl.returnPage} element={<Layout children={<ReturnBookPage />} />} />
+        <Route path={navigateUrl.createQR} element={<Layout children={<CreateQR />} />} />
+        <Route path={navigateUrl.borrowBook} element={<Layout children={<BorrowBook />} />} />
       </Routes>
     </BrowserRouter>
   );

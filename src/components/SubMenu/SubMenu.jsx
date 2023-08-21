@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Style from './SubMenu.style';
+import { navigateUrl } from '../../constant/navigateUrl';
 
 const SubMenu = ({ setIsSubMenuOpen, username, show, hide }) => {
   const navigate = useNavigate();
@@ -9,12 +10,12 @@ const SubMenu = ({ setIsSubMenuOpen, username, show, hide }) => {
   };
 
   const navigateToBookListPage = () => {
-    navigate('/booklist');
+    navigate(navigateUrl.bookList);
     setIsSubMenuOpen(false);
   };
 
   const navigateToBorrowedListPage = () => {
-    navigate('/borrowedlist');
+    navigate(navigateUrl.borrowedList);
     setIsSubMenuOpen(false);
   };
 
