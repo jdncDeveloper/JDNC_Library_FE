@@ -15,10 +15,11 @@ const BtnNav = styled.div`
   max-width: 600px;
   width: calc(100% - 60px);
   margin: 0 auto;
+  display: ${({$display}) => ($display ? "block" : "none")};
 `;
 
 const HomeBtn = styled(Link)`
-  background-image: ${(props) => (props.$active ? `url(${homeIconClicked})` : `url(${homeIcon})`)};
+  background-image: ${({$active}) => ($active ? `url(${homeIconClicked})` : `url(${homeIcon})`)};
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100%;
@@ -32,7 +33,7 @@ const HomeBtn = styled(Link)`
   }
 
   & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
+    display: ${({$active}) => ($active ? 'inline-block' : 'none')};
     position: absolute;
     right: -50px;
     color: #91c8e4;
@@ -40,8 +41,8 @@ const HomeBtn = styled(Link)`
 `;
 
 const BookListBtn = styled(Link)`
-  background-image: ${(props) =>
-    (props.$active ? `url(${bookListIconClicked})` : `url(${bookListIcon})`)};
+  background-image: ${({$active}) =>
+    ($active ? `url(${bookListIconClicked})` : `url(${bookListIcon})`)};
     background-size:100%;
     background-repeat: no-repeat;
     background-position: center;
@@ -55,7 +56,7 @@ const BookListBtn = styled(Link)`
   }
 
   & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
+    display: ${({$active}) => ($active ? 'inline-block' : 'none')};
     position: absolute;
     right: -75px;
     color: #91c8e4;
@@ -63,8 +64,8 @@ const BookListBtn = styled(Link)`
 `;
 
 const MyPageBtn = styled(Link)`
-  background-image: ${(props) =>
-    (props.$active ? `url(${myPageIconClicked})` : `url(${myPageIcon})`)};
+  background-image: ${({$active}) =>
+    ($active ? `url(${myPageIconClicked})` : `url(${myPageIcon})`)};
   background-repeat: no-repeat;
   background-position: center;
   background-size:80%;
@@ -78,7 +79,7 @@ const MyPageBtn = styled(Link)`
   }
 
   & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
+    display: ${({$active}) => ($active ? 'inline-block' : 'none')};
     position: absolute;
     right: -55px;
     color: #91c8e4;

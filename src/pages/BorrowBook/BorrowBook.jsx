@@ -5,7 +5,7 @@ import BookInfo from "../../components/Bookinfo/BookInfo";
 const BorrowBook = () => {
   return (
     <>
-      <BookInfo type={true} />
+      <BookInfo isBorrowPage />
     </>
   )
 }

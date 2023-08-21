@@ -6,22 +6,35 @@ import { fetchGETQrPage } from "../../api/Borrow/borrowAPI";
 import { useParams } from "react-router-dom";
 
 
-const BookInfo = ({ type }) => {
+const BookInfo = ({ isBorrowPage, isBookDetailPage }) => {
   const bookNumber = useParams()
-  console.log(useParams())
   const [book, setBook] = useState({
-    id: "number",      
-    title: "string", 
-    image: "string",  
+    id: "number",
+    title: "string",
+    image: "string",
     content: "string",
-    author: "string",  
+    author: "string",
     publisher: "string",
   });
   useEffect(() => {
-    fetchGETQrPage(bookNumber)
-    .then((res) => {setBook(res)})
-    .catch((err) => console.log(err))
-  })
+    if (isBorrowPage) {
+      //Qr찍고 대출 페이지로 입장시 대출 도서 데이터 불러오기
+      async function showBorrowPage(bookNumber) {
+        try {
+          const QrPageBookData = await fetchGETQrPage(bookNumber)
+          setBook(QrPageBookData)
+        } catch (err) {
+          console.log(err)
+        }
+      }
+    }
+  }, [isBorrowPage])
+
+  // useEffect(() => {
+  //   if (isBookDetailPage) {
+  //     //도서 목록에서 상세정보페이지를 눌렀을때 도서데이터 불러오기
+  //   }
+  // })
 
   // const cover = title;
   //웹 접근성 위한 alt용 커버
