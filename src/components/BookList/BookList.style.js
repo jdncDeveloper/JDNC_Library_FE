@@ -4,7 +4,7 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 120px;
-  padding: 20px;
+  padding: 10px;
   border: 2px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
@@ -23,10 +23,11 @@ const Image = styled.img`
 const BookInfoBox = styled.div`
   position: relative;
   width: 100%;
-  margin-left: 20px;
+  margin-left: 10px;
 `;
 const Title = styled.h2`
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 16px;
   font-weight: bold;
 `;
 const Author = styled.div`

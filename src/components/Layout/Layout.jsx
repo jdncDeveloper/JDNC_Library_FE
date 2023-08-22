@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
       <Style.Header>
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
         <div>
-          <span>{`${username} 님`}</span>
+          {/* <span>{`${username} 님`}</span> */}
           <Style.MenuBars icon="fas fa-bars" size="lg" onClick={handleSubMenu} />
         </div>
         {isSubMenuOpen && (

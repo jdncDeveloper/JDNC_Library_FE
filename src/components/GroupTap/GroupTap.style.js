@@ -29,7 +29,7 @@ const RadioLabel = styled.label`
   justify-content: center;
   width: 100%;
   height: 100%;
-  border: 2px solid ${({ theme }) => theme.colors.blue1};
+  border: 1px solid ${({ theme }) => theme.colors.blue1};
   border-radius: 10px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
   color: ${({ theme }) => theme.colors.blue1};

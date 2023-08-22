@@ -5,7 +5,7 @@ import theme from '../constant/theme';
 import Layout from './Layout/Layout';
 import BorrowedListPage from '../pages/BorrowedListPage/BorrowedListPage';
 import ReturnBookPage from '../pages/ReturnBookPage/ReturnBookPage';
-import BookListPage from '../pages/BookListPage/BookListpage';
+import BookListPage from '../pages/BookListPage/BookListPage';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';

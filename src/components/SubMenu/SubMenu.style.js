@@ -26,7 +26,8 @@ const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   padding: 40px 20px 20px;
-  background-color: ${({ theme }) => theme.colors.gray1};
+  background-color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 999;
   transition: all 0.3s ease-out;
   animation: ${({ show }) => (show !== 'true' ? SlideInAnimation : SlideOutAnimation)} 0.3s ease-out
@@ -52,14 +53,15 @@ const UserBox = styled.div`
   justify-content: space-between;
   border: none;
   border-radius: 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.blue1};
   & p {
     font-size: 20px;
     font-weight: bold;
+    color: ${({ theme }) => theme.colors.white};
   }
   & strong {
     font-size: 24px;
-    color: #4aa7de;
+    color: ${({ theme }) => theme.colors.black};
   }
 `;
 const AccountControl = styled.div`
@@ -68,21 +70,49 @@ const AccountControl = styled.div`
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
+  & span {
+    font-size: 16px;
+    color: ${({ theme }) => theme.colors.white};
+  }
   & a {
     display: ${({ hidden }) => (hidden ? 'none' : 'block')};
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.white};
     font-size: 14px;
     &:hover {
-      color: ${({ theme }) => theme.colors.blue1};
+      color: ${({ theme }) => theme.colors.blue4};
       text-decoration: underline;
     }
   }
+`;
+const MenuBox = styled.ul`
+  width: 100%;
+  margin-top: 14px;
+  list-style: none;
+  & li {
+    margin: 10px 0;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: ${({ theme, disabled }) =>
+      disabled ? theme.colors.gray1 : theme.colors.red1};
+    color: ${({ theme }) => theme.colors.white};
+    font-size: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: ${({ theme }) => theme.colors.red2};
+      transition: all 0.3s ease-out;
+    }
+  }
+`;
+const Buttons = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   & button {
     border: none;
     color: white;
     width: 70px;
-    height: 29px;
-    background-color: ${({ theme }) => theme.colors.blue2};
+    height: 34px;
+    background-color: ${({ theme }) => theme.colors.red2};
     border-radius: 6px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     font-size: 12px;
@@ -91,24 +121,7 @@ const AccountControl = styled.div`
     margin-left: 16px;
     transition: all 0.3s ease-out;
     &:hover {
-      background-color: ${({ theme }) => theme.colors.blue3};
-      transition: all 0.3s ease-out;
-    }
-  }
-`;
-const MenuBox = styled.ul`
-  width: 100%;
-  padding: 16px 0;
-  list-style: none;
-  & li {
-    margin: 8px 0;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 16px;
-    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.gray2};
+      background-color: ${({ theme }) => theme.colors.red3};
       transition: all 0.3s ease-out;
     }
   }
@@ -120,4 +133,5 @@ export default {
   UserBox,
   AccountControl,
   MenuBox,
+  Buttons,
 };
