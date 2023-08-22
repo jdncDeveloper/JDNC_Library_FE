@@ -10,6 +10,6 @@ import axiosInstance from "../axiosConfig";
  * }
  */
 export async function fetchGETUserInfo() {
-  const response = await axiosInstance.get('url');
+  const response = await axiosInstance.get('member');
   return response;
 }
