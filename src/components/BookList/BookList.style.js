@@ -4,16 +4,14 @@ const Container = styled.div`
   display: flex;
   width: 100%;
   height: 120px;
-  padding: 20px;
-  border: 2px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray1};
 `;
 const ImageBox = styled.div`
   width: 90px;
   height: 100%;
   border-radius: 10px;
-  background-color: #ddd;
+  background-color: ${({ theme }) => theme.colors.gray1};
 `;
 const Image = styled.img`
   width: 100%;
@@ -23,19 +21,25 @@ const Image = styled.img`
 const BookInfoBox = styled.div`
   position: relative;
   width: 100%;
-  margin-left: 20px;
+  margin-left: 10px;
 `;
 const Title = styled.h2`
-  font-size: 14px;
+  margin-top: 10px;
+  font-size: 16px;
   font-weight: bold;
 `;
 const Author = styled.div`
-  font-size: 10px;
-  margin: 6px 0;
+  font-size: 12px;
+  margin: 8px 0;
+`;
+const Publisher = styled.div`
+  font-size: 12px;
+  margin: 8px 0;
 `;
 const BorrowedDate = styled.div`
   position: absolute;
-  bottom: 0;
+  right: 0;
+  bottom: 34px;
   font-size: 10px;
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
 `;
@@ -62,14 +66,16 @@ const Available = styled.div`
   position: absolute;
   bottom: 0;
   right: 0;
+  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   font-size: 10px;
   font-weight: bold;
   padding: 3px 8px;
   border: 3px double #fff;
   border-radius: 8px;
-  background-color: ${({ notAvailable }) => (notAvailable ? '#bf3030' : 'green')};
-  color: #fff;
-  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
+  background-color: ${({ notAvailable, theme }) =>
+    notAvailable ? theme.colors.red1 : theme.colors.blue1};
+  color: ${({ theme }) => theme.colors.white};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 `;
 
 export default {
@@ -79,6 +85,7 @@ export default {
   BookInfoBox,
   Title,
   Author,
+  Publisher,
   BorrowedDate,
   ReturnButton,
   Available,

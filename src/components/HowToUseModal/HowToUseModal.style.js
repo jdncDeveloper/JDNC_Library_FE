@@ -1,47 +1,23 @@
 import styled from 'styled-components';
 
-const ModalBackground = styled.div`
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  display: flex;
-  background-color: rgba(0, 0, 0, 0.6);
-`;
-
 const Modal = styled.div`
   display: flex;
   flex-direction: column;
-  width: 330px;
+  width: calc(100% - 40px);
+  max-width: 600px;
   height: 500px;
-  position: relative;
+  line-height: 1.2;
   border-radius: 8px;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.white};
   padding: 30px 14px;
   margin: 0 auto;
-  margin-top: calc((100vh - 500px) / 2);
-`;
-
-const CloseBtn = styled.button`
-  position: absolute;
-  display: block;
-  top: 13px;
-  right: 15px;
-  cursor: pointer;
-  border: none;
-  background-color: #fff;
-  & > img {
-    width: 16px;
-    height: 16px;
-  }
 `;
 
 const ModalTitle = styled.h1`
+  display: ${({ hidden }) => (hidden ? 'none' : 'block')};
   height: 35px;
-  color: #4aa7de;
+  color: ${({ theme }) => theme.colors.blue1};
   text-align: center;
-  font-family: Arial;
   font-size: 18px;
   font-weight: 700;
   margin: 0;
@@ -52,8 +28,8 @@ const ListContainer = styled.div`
 `;
 
 const ListUl = styled.ul`
-  list-style-type: disc;
-  color: #4aa7de;
+  list-style-type: none;
+  color: ${({ theme }) => theme.colors.blue1};
 
   & > li {
     margin-bottom: 8px;
@@ -61,7 +37,7 @@ const ListUl = styled.ul`
 `;
 
 const ListTitle = styled.h2`
-  color: #4aa7de;
+  color: ${({ theme }) => theme.colors.blue1};
   font-family: Arial;
   font-size: 14px;
   font-weight: 700;
@@ -69,7 +45,7 @@ const ListTitle = styled.h2`
 `;
 
 const SublistUl = styled.ul`
-  color: #2c2c2c;
+  color: ${({ theme }) => theme.colors.black};
   list-style-type: disc;
   padding: 0 3px;
   font-size: 12px;
@@ -87,7 +63,7 @@ const Footer = styled.div`
   align-items: center;
 
   & > h2 {
-    color: #4aa7de;
+    color: ${({ theme }) => theme.colors.blue1};
     font-size: 12px;
     font-weight: 400;
     margin: 0;
@@ -99,9 +75,7 @@ const Footer = styled.div`
 `;
 
 export default {
-  ModalBackground,
   Modal,
-  CloseBtn,
   ModalTitle,
   ListContainer,
   ListUl,

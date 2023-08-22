@@ -3,18 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   max-width: 1024px;
-  height: 640px;
   margin: 0 auto;
 `;
 const Header = styled.header`
   position: relative;
+  top: 0;
   width: 100%;
   height: 60px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.gray1};
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 0 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 
@@ -28,25 +28,26 @@ const Header = styled.header`
   }
 `;
 const MenuBars = styled(FontAwesomeIcon)`
-  cursor: pointer;
   margin-left: 16px;
+  font-size: 24px;
+  cursor: pointer;
 `;
 const SearchContainer = styled.div`
-  margin: 24px auto;
-  max-width: 600px;
-  width: calc(100% - 60px);
   display: flex;
   align-items: center;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  margin: 24px auto;
 
   & > button {
-    width: 50px;
+    width: 60px;
     height: 48px;
-    cursor: pointer;
-    padding: 10px;
-    border: 2px solid #888;
+    padding: 10px 14px;
+    border: 2px solid ${({ theme }) => theme.colors.gray3};
     border-left: none;
     border-radius: 0 6px 6px 0;
     background-color: white;
+    cursor: pointer;
   }
   & img {
     width: 100%;
@@ -56,7 +57,7 @@ const SearchContainer = styled.div`
 const SearchInput = styled.input`
   width: 100%;
   height: 48px;
-  border: 2px solid #888;
+  border: 2px solid ${({ theme }) => theme.colors.gray3};
   border-right: none;
   border-radius: 6px 0 0 6px;
   padding: 15px 12px;

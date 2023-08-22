@@ -1,12 +1,13 @@
 import BorrowedList from '../../components/BorrowedList/BorrowedList';
-import BtnNav from '../../components/BtnNav/BtnNav';
 import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
+import HowToUseModal from '../../components/HowToUseModal/HowToUseModal';
 
 const BorowedListPage = () => {
   return (
     <>
       <BackBtnWithTitle title="대여 현황" />
       <BorrowedList />
+      <HowToUseModal returnInfo={true} />
     </>
   );
 };

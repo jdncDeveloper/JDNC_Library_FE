@@ -5,7 +5,7 @@ import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTi
 const SearchPage = () => {
   return (
     <>
-      <BackBtnWithTitle title="검색 결과" />
+      <BackBtnWithTitle title="도서 목록" />
       <GroupTap />
       <SearchList />
     </>
