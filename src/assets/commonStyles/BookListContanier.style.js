@@ -11,6 +11,12 @@ const Container = styled.ul`
 const Booklists = styled.li`
   list-style: none;
   margin-bottom: 20px;
+  text-align: ${({ $align }) => $align && 'center'};
+  font-size: ${({ $align }) => $align && '20px'};
+  & > img {
+    width: 120px;
+    margin: 10px auto;
+  }
 `;
 
 export default { Container, Booklists, Title };

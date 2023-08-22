@@ -6,15 +6,17 @@ import Style from '../../assets/commonStyles/BookListContanier.style';
 import BookList from '../BookList/BookList';
 
 const ReturnList = () => {
-  // const [booklist, setBooklist] = useState([]);
-
-  // API 연결 후 사용할 예정입니다.
   const [returnBookList, setReturnBookList] = useState([]);
 
+  // API 연결 후 사용할 예정입니다.
   useEffect(() => {
     async function fetchReturnList() {
-      const returnList = await fetchGETReturnList();
-      setReturnBookList(returnList);
+      try {
+        const returnList = await fetchGETReturnList();
+        setReturnBookList(returnList.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
     fetchReturnList();
   }, []);
@@ -28,25 +30,33 @@ const ReturnList = () => {
   // useEffect(() => {
   //   async function fetchBooks() {
   //     const books = await getBookList();
-  //     setBooklist(books);
+  //     setReturnBookList(books);
   //   }
   //   fetchBooks();
   // }, []);
 
   // const handleBookReturn = (returnedBookId) => {
-  //   const updatedBookList = booklist.filter((book) => book.id !== returnedBookId);
-  //   setBooklist(updatedBookList);
+  //   const updatedBookList = returnBookList.filter((book) => book.borrowId !== returnedBookId);
+  //   setReturnBookList(updatedBookList);
   // };
 
   return (
     <Style.Container>
-      {returnBookList.map((book) => {
-        return (
+      {returnBookList.length === 0 ? (
+        <Style.Booklists $align>
+          <img
+            src="https://img.freepik.com/free-vector/man-doubting-design_1133-263.jpg?w=900&t=st=1692711479~exp=1692712079~hmac=d2a39e1cf40b91c0367062b38c8eb1f5d10d952bbdaafd3a396e53bff2b734cb"
+            alt=""
+          />
+          대여중인 도서가 없습니다.
+        </Style.Booklists>
+      ) : (
+        returnBookList.map((book) => (
           <Style.Booklists key={book.borrowId}>
             <BookList book={book} isReturnPage onBookReturn={handleBookReturn} />
           </Style.Booklists>
-        );
-      })}
+        ))
+      )}
     </Style.Container>
   );
 };
