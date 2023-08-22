@@ -5,9 +5,8 @@ const Title = styled.h2`
   padding-left: 30px;
 `;
 const Container = styled.ul`
-  width: 100%;
-  padding: 30px;
-  margin: 0 auto;
+  width: calc(100% - 40px);
+  margin: 30px auto;
 `;
 const Booklists = styled.li`
   list-style: none;

@@ -1,4 +1,3 @@
-import BtnNav from '../../components/BtnNav/BtnNav';
 import AllBooks from '../../components/AllBooks/AllBooks';
 import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 import GroupTap from '../../components/GroupTap/GroupTap';

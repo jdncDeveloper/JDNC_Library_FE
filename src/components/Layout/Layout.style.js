@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   max-width: 1024px;
-  height: 640px;
   margin: 0 auto;
 `;
 const Header = styled.header`
   position: relative;
+  top: 0;
   width: 100%;
   height: 60px;
   display: flex;
@@ -28,25 +28,26 @@ const Header = styled.header`
   }
 `;
 const MenuBars = styled(FontAwesomeIcon)`
-  cursor: pointer;
   margin-left: 16px;
+  font-size: 24px;
+  cursor: pointer;
 `;
 const SearchContainer = styled.div`
-  margin: 24px auto;
-  max-width: 600px;
-  width: calc(100% - 40px);
   display: flex;
   align-items: center;
+  width: calc(100% - 40px);
+  max-width: 600px;
+  margin: 24px auto;
 
   & > button {
     width: 60px;
     height: 48px;
-    cursor: pointer;
     padding: 10px 14px;
     border: 2px solid ${({ theme }) => theme.colors.gray3};
     border-left: none;
     border-radius: 0 6px 6px 0;
     background-color: white;
+    cursor: pointer;
   }
   & img {
     width: 100%;

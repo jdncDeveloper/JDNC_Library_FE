@@ -3,18 +3,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const SlideInAnimation = keyframes`
   from {
-    transform: translateX(100%);
+    transform: translateY(-100%);
   }
   to {
-    transform: translateX(0);
+    transform: translateY(0);
   }
 `;
 const SlideOutAnimation = keyframes`
   from {
-    transform: translateX(0);
+    transform: translateY(0);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateY(-100%);
   }
 `;
 
@@ -28,7 +28,7 @@ const Container = styled.div`
   padding: 40px 20px 20px;
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-  z-index: 999;
+  z-index: 9999;
   transition: all 0.3s ease-out;
   animation: ${({ show }) => (show !== 'true' ? SlideInAnimation : SlideOutAnimation)} 0.3s ease-out
     forwards;
@@ -88,20 +88,27 @@ const MenuBox = styled.ul`
   width: 100%;
   margin-top: 14px;
   list-style: none;
-  & li {
-    margin: 10px 0;
-    padding: 16px;
-    border-radius: 6px;
-    background-color: ${({ theme, disabled }) =>
-      disabled ? theme.colors.gray1 : theme.colors.red1};
-    color: ${({ theme }) => theme.colors.white};
-    font-size: 20px;
-    cursor: pointer;
-    &:hover {
-      background-color: ${({ theme }) => theme.colors.red2};
-      transition: all 0.3s ease-out;
-    }
+`;
+const NavigateTo = styled.li`
+  margin: 10px 0;
+  padding: 16px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.colors.red1};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.red2};
+    transition: all 0.3s ease-out;
   }
+`;
+const ToAdminPage = styled.li`
+  margin: 10px 0;
+  padding: 16px;
+  border-radius: 6px;
+  background-color: ${({ theme }) => theme.colors.gray1};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: 20px;
 `;
 const Buttons = styled.div`
   display: flex;
@@ -133,5 +140,7 @@ export default {
   UserBox,
   AccountControl,
   MenuBox,
+  NavigateTo,
+  ToAdminPage,
   Buttons,
 };

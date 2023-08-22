@@ -4,7 +4,6 @@ import Style from './SubMenu.style';
 import { navigateUrl } from '../../constant/navigateUrl';
 
 const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
-  const [disabled, setdisabled] = useState(false);
   const navigate = useNavigate();
 
   const handleCloseButton = () => {
@@ -49,9 +48,9 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
         </Style.AccountControl>
       </Style.UserBox>
       <Style.MenuBox>
-        <li onClick={navigateToBookListPage}>도서 목록</li>
-        <li onClick={navigateToBorrowedListPage}>대여 현황</li>
-        <li disabled={disabled}>도서 관리</li>
+        <Style.NavigateTo onClick={navigateToBookListPage}>도서 목록</Style.NavigateTo>
+        <Style.NavigateTo onClick={navigateToBorrowedListPage}>대여 현황</Style.NavigateTo>
+        <Style.ToAdminPage>도서 관리</Style.ToAdminPage>
       </Style.MenuBox>
       <Style.Buttons>
         <button>로그아웃</button>
