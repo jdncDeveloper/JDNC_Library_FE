@@ -10,12 +10,12 @@ import { useValidRole } from '../../hooks/useValidRole';
 const Layout = ({ children }) => {
   const [username, setUsername] = useState('탐나는 인재');
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  const userValid = useValidRole();
+  // const userValid = useValidRole();
   const navigate = useNavigate();
   const $search = useRef(null);
 
   useEffect(() => {
-    console.log(userValid);
+    // console.log(userValid);
     //유저정보 가져오기 (username)
     // fetch()
     //     .then((res) => {
