@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Styled from "./BookInfo.style";
+import Styled from "./Bookinfo.style";
 import { useEffect } from "react";
 import BorrowBtn from "../BorrowBtn/BorrowBtn";
 import { fetchGETQrPage } from "../../api/Borrow/borrowAPI";
