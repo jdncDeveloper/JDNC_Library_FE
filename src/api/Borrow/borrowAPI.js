@@ -16,7 +16,7 @@ import axiosInstance from "../axiosConfig";
  */ 
 export async function fetchGETQrPage(bookNumber) {
   try {
-    const response = await axiosInstance.get(`/qrbook?${bookNumber}`);
+    const response = await axiosInstance.get(`borrow/qrbook?bookNumber=${bookNumber}`);
     return response.data;
   } catch (error) {
     throw new Error(`Error fetching book details: ${error.message}`);
@@ -31,7 +31,7 @@ export async function fetchGETQrPage(bookNumber) {
 export async function fetchGETBorrowBook(bookNumber) {
   try {
     const response = await axiosInstance.get(`/borrowbook?${bookNumber}`);
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error(`Error fetching book borrow: ${error.message}`);
   }

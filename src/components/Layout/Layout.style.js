@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
@@ -14,7 +14,7 @@ const Header = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #d9d9d9;
+  background-color: ${({ theme }) => theme.colors.gray1};
   padding: 0 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 
