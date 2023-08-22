@@ -7,7 +7,6 @@ const BookListPage = () => {
     <>
       <BackBtnWithTitle title="도서 목록" />
       <AllBooks />
-      <BtnNav />
     </>
   );
 };
