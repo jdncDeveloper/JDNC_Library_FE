@@ -10,28 +10,28 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
 
   useEffect(() => {
     if (isReturnPage) {
-      // 반납 페이지로 입장시 버튼 활성화
       setButtonEnabled(true);
     }
   }, [isReturnPage]);
 
   useEffect(() => {
     if (isMainPage) {
-      // 반납버튼 숨김
       setHide(true);
       setAvailable(false);
     }
   }, [isMainPage]);
 
-  const handleReturnButtonClick = () => {
-    if (window.confirm('반납하시겠습니까?')) {
-      onBookReturn(book.bookNumber);
-      alert('반납이 완료되었습니다.');
+  const handleBookClick = () => {
+    if (!isButtonEnabled) {
+      navigate(`/borrowBook/qr/${book.borrowId}`);
     }
   };
 
-  const handleBookClick = () => {
-    navigate(`/borrowBook/qr/${book.borrowId}`);
+  const handleReturnButtonClick = () => {
+    if (window.confirm('반납하시겠습니까?')) {
+      onBookReturn(book.borrowId);
+      alert('반납이 완료되었습니다.');
+    }
   };
 
   return (

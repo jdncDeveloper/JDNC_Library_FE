@@ -72,7 +72,7 @@ export async function fetchGETReturnList() {
  */
 export async function fetchGETReturnBook(bookNumber) {
   try {
-    const response = await axiosInstance.get(`/borrow/return?${bookNumber}`);
+    const response = await axiosInstance.get(`/borrow/return?bookNumber=${bookNumber}`);
     return response.data;
   } catch (error) {
     throw new Error(`Error fetching return book: ${error.message}`);
