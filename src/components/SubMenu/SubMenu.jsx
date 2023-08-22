@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Style from './SubMenu.style';
 import { navigateUrl } from '../../constant/navigateUrl';
 
-const SubMenu = ({ setIsSubMenuOpen, username, show, hide }) => {
+const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
   const navigate = useNavigate();
   const handleCloseButton = () => {
     setIsSubMenuOpen(false);
@@ -20,7 +20,7 @@ const SubMenu = ({ setIsSubMenuOpen, username, show, hide }) => {
   };
 
   return (
-    <Style.Container show={show ? 'true' : 'false'}>
+    <Style.Container show={slideOpen}>
       <Style.CloseButton onClick={handleCloseButton}>
         <Style.CloseIcon icon="fas fa-times" size="lg" />
       </Style.CloseButton>
