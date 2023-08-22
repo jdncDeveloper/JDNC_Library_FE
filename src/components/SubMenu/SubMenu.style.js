@@ -11,25 +11,25 @@ const SlideInAnimation = keyframes`
 `;
 const SlideOutAnimation = keyframes`
   from {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(0);
+    transform: translateX(-100%);
   }
 `;
 
 const Container = styled.div`
   position: absolute;
-  top: 0;
+  top: 60px;
   right: 0;
   max-width: 600px;
   width: 100%;
   margin: 0 auto;
   padding: 40px 20px 20px;
-  background-color: #d9d9d9;
+  background-color: ${({ theme }) => theme.colors.gray1};
   z-index: 999;
   transition: all 0.3s ease-out;
-  animation: ${({ show }) => (show === 'true' ? SlideInAnimation : SlideOutAnimation)} 0.3s ease-out
+  animation: ${({ show }) => (show !== 'true' ? SlideInAnimation : SlideOutAnimation)} 0.3s ease-out
     forwards;
 `;
 const CloseButton = styled.button`
@@ -52,7 +52,7 @@ const UserBox = styled.div`
   justify-content: space-between;
   border: none;
   border-radius: 10px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.white};
   & p {
     font-size: 20px;
     font-weight: bold;
@@ -70,10 +70,10 @@ const AccountControl = styled.div`
   justify-content: space-between;
   & a {
     display: ${({ hidden }) => (hidden ? 'none' : 'block')};
-    color: #333;
+    color: ${({ theme }) => theme.colors.black};
     font-size: 14px;
     &:hover {
-      color: #4aa7de;
+      color: ${({ theme }) => theme.colors.blue1};
       text-decoration: underline;
     }
   }
@@ -82,15 +82,16 @@ const AccountControl = styled.div`
     color: white;
     width: 70px;
     height: 29px;
-    background-color: #4aa7de;
+    background-color: ${({ theme }) => theme.colors.blue2};
     border-radius: 6px;
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     font-size: 12px;
     font-weight: bold;
     cursor: pointer;
     margin-left: 16px;
+    transition: all 0.3s ease-out;
     &:hover {
-      background-color: #3b8ac9;
+      background-color: ${({ theme }) => theme.colors.blue3};
       transition: all 0.3s ease-out;
     }
   }
@@ -105,9 +106,9 @@ const MenuBox = styled.ul`
     font-weight: bold;
     cursor: pointer;
     padding: 16px;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.black};
     &:hover {
-      background-color: #999999;
+      background-color: ${({ theme }) => theme.colors.gray2};
       transition: all 0.3s ease-out;
     }
   }

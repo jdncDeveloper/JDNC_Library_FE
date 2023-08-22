@@ -7,9 +7,11 @@ const SearchList = () => {
   const [searchBook, setSearchBook] = useState([]);
 
   useEffect(() => {
-    getBookList()
-      .then((res) => setSearchBook(res))
-      .catch((err) => console.log(err));
+    const fetchBooks = async () => {
+      const books = await getBookList();
+      setSearchBook(books);
+    };
+    fetchBooks();
   }, []);
 
   return (
