@@ -1,88 +1,71 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import homeIcon from '../../assets/images/house.svg';
-import homeIconClicked from '../../assets/images/house-clicked.svg';
-import bookListIcon from '../../assets/images/book-open.svg'
-import bookListIconClicked from '../../assets/images/book-open-clicked.svg'
-import myPageIcon from '../../assets/images/user.svg'
-import myPageIconClicked from '../../assets/images/user-clicked.svg'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import theme from '../../constant/theme';
 
 const BtnNav = styled.div`
-  border-top: 1px solid #d3d3d3;
-  padding-top: 15px;
+  width: 330px;
+  height: 120px;
+  border-radius: 10px;
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  background-color: ${({ theme }) => theme.colors.white};
   display: flex;
-  justify-content: space-around;
-  max-width: 600px;
-  width: calc(100% - 60px);
+  justify-content: space-between;
   margin: 0 auto;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
-const HomeBtn = styled(Link)`
-  background-image: ${(props) => (props.$active ? `url(${homeIconClicked})` : `url(${homeIcon})`)};
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
-  width: 45px;
-  height: 45px;
-  & > div {
-    position: relative;
-    display:flex;
-    height:100%;
-    align-items:center;
-  }
-
-  & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
-    position: absolute;
-    right: -50px;
-    color: #91c8e4;
+const BtnNavContainer = styled.div`
+  width: 50%;
+  height: 100%;
+  padding: 8px 12px;
+  cursor: pointer;
+  &:first-child {
+    border-right: 1px solid ${({ theme }) => theme.colors.gray1};
   }
 `;
 
-const BookListBtn = styled(Link)`
-  background-image: ${(props) =>
-    (props.$active ? `url(${bookListIconClicked})` : `url(${bookListIcon})`)};
-    background-size:100%;
-    background-repeat: no-repeat;
-    background-position: center;
-  width: 45px;
-  height: 45px;
-  & > div {
-    position: relative;
-    display:flex;
-    height:100%;
-    align-items:center;
+const BtnNavTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 2px;
+`;
+
+const ArrowIcon = styled(FontAwesomeIcon)`
+  width: 12px;
+`;
+
+const BtnNavContents = styled.div`
+  padding-top: 5px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  & > h1 {
+    font-weight: 700;
+    font-size: 40px;
   }
 
-  & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
-    position: absolute;
-    right: -75px;
-    color: #91c8e4;
+  & > h2 {
+    color: ${({ theme }) => theme.colors.black};
+    font-size: 20px;
+    font-weight: 700;
   }
 `;
 
-const MyPageBtn = styled(Link)`
-  background-image: ${(props) =>
-    (props.$active ? `url(${myPageIconClicked})` : `url(${myPageIcon})`)};
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size:80%;
-  width: 45px;
-  height: 45px;
-  & > div {
-    position: relative;
-    display:flex;
-    height:100%;
-    align-items:center;
-  }
-
-  & > div > p {
-    display: ${(props) => (props.$active ? 'inline-block' : 'none')};
-    position: absolute;
-    right: -55px;
-    color: #91c8e4;
-  }
+const CurrentNumberOfBook = styled.h1`
+  color: ${({ theme }) => theme.colors.blue2};
 `;
 
-export default { BtnNav, HomeBtn, BookListBtn, MyPageBtn };
+const MyBorrowedBookNumber = styled.h1`
+  color: ${({ $myBorrowedBook }) =>
+    $myBorrowedBook == 3 ? theme.colors.red3 : theme.colors.blue2};
+`;
+
+export default {
+  BtnNav,
+  BtnNavContainer,
+  BtnNavContents,
+  BtnNavTitle,
+  ArrowIcon,
+  CurrentNumberOfBook,
+  MyBorrowedBookNumber,
+};

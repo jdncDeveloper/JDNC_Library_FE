@@ -7,7 +7,6 @@ const BorowedListPage = () => {
     <>
       <BackBtnWithTitle title="대여 현황" />
       <BorrowedList />
-      <BtnNav />
     </>
   );
 };
