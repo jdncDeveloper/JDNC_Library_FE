@@ -4,20 +4,20 @@ import theme from '../../constant/theme';
 
 const BtnNav = styled.div`
   width: 330px;
-  height: 120px;
+  height: 100px;
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   background-color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: space-between;
-  margin: 0 auto;
+  margin: 20px auto 0;
   color: ${({ theme }) => theme.colors.black};
 `;
 
 const BtnNavContainer = styled.div`
   width: 50%;
   height: 100%;
-  padding: 8px 12px;
+  padding: 12px;
   cursor: pointer;
   &:first-child {
     border-right: 1px solid ${({ theme }) => theme.colors.gray1};
@@ -28,6 +28,7 @@ const BtnNavTitle = styled.div`
   display: flex;
   align-items: center;
   gap: 2px;
+  font-weight: 700;
 `;
 
 const ArrowIcon = styled(FontAwesomeIcon)`

@@ -1,19 +1,18 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const BorrowBtn = styled.button`
-display: inline-block;
-padding: 0.7rem;
-background-color: green;
-color: #fff;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-font-weight: 400;
-font-size: 1em;
-
-&:hover {
-  font-weight: 600;
-}
+  display: ${({ $btnStatus }) => ($btnStatus ? 'inline - block' : 'none')};
+  padding: 0.7rem;
+  background-color: ${({ theme }) => theme.colors.blue1};
+  color: ${({ theme }) => theme.colors.white};
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1em;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 
-export default { BorrowBtn }
+export default { BorrowBtn };
