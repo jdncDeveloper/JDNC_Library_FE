@@ -20,7 +20,7 @@ export function useValidRole(role = 'user') {
     try {
       const response = await fetchGETUserInfo();
 
-      dispatch(updateUserInfo(response));
+      dispatch(updateUserInfo(response.data));
 
       if(response.role !== role) {
         setValidateUserRole(false);
@@ -33,7 +33,7 @@ export function useValidRole(role = 'user') {
       
     } catch (error) {
       alert('유저 정보 확인에 실패했습니다.');
-      navigate(-1);
+      navigate('/login');
     }
   }
 

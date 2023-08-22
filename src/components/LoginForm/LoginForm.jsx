@@ -26,6 +26,21 @@ const LoginForm = () => {
                 navigate('/');
             }
         }
+        // console.log('실행');
+        // fetch('http://15.164.10.229/login', {
+        //         method: 'POST',
+        //         headers: {
+        //           'Content-Type': 'application/json',
+        //         },
+        //         body: JSON.stringify(loginForm),
+        //         'Authorization': '',
+        //         // credentials: 'include',
+        //   })
+        //   .then((res) => {
+        //     console.log(res.headers);
+        //     console.log(res.headers.get('Authorization'));
+        //     console.log(res.status);
+        // });
     }
     return(
         <Style.LoginContainer>
