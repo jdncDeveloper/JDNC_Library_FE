@@ -15,12 +15,11 @@ const Modal = styled.div`
 
 const ModalTitle = styled.h1`
   display: ${({ hidden }) => (hidden ? 'none' : 'block')};
-  height: 35px;
+  margin: 0 0 20px;
   color: ${({ theme }) => theme.colors.blue1};
   text-align: center;
   font-size: 18px;
   font-weight: 700;
-  margin: 0;
 `;
 
 const ListContainer = styled.div`

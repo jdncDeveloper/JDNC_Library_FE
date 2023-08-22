@@ -7,16 +7,18 @@ const AllBooks = () => {
   const [allBookList, setAllBookList] = useState([]);
 
   useEffect(() => {
-    getBookList()
-      .then((res) => setAllBookList(res))
-      .catch((err) => console.log(err));
+    const fetchBooks = async () => {
+      const books = await getBookList();
+      setAllBookList(books);
+    };
+    fetchBooks();
   }, []);
 
   return (
     <Style.Container>
       {allBookList.map((book) => {
         return (
-          <Style.Booklists key={book.id}>
+          <Style.Booklists key={book.borrowId}>
             <BookList book={book} isMainPage />
           </Style.Booklists>
         );

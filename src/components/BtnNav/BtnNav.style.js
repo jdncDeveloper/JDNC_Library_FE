@@ -3,7 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import theme from '../../constant/theme';
 
 const BtnNav = styled.div`
-  width: 330px;
+  max-width: 360px;
+  width: calc(100% - 40px);
   height: 100px;
   border-radius: 10px;
   border: 1px solid ${({ theme }) => theme.colors.gray1};

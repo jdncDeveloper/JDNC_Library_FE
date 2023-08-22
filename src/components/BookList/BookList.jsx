@@ -25,19 +25,19 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
 
   const handleReturnButtonClick = () => {
     if (window.confirm('반납하시겠습니까?')) {
-      onBookReturn(book.id);
+      onBookReturn(book.bookNumber);
       alert('반납이 완료되었습니다.');
     }
   };
 
   const handleBookClick = () => {
-    navigate(`/borrowBook/qr/${book.id}`);
+    navigate(`/borrowBook/qr/${book.borrowId}`);
   };
 
   return (
     <Style.Container onClick={handleBookClick}>
       <Style.ImageBox>
-        <Style.Image src={book.imageUrl} />
+        <Style.Image src={book.image} />
       </Style.ImageBox>
       <Style.BookInfoBox>
         <Style.Title>{book.title}</Style.Title>
