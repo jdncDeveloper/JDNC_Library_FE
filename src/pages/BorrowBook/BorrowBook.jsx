@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import BookInfo from "../../components/Bookinfo/BookInfo";
+import BookInfo from "../../components/Bookinfo/Bookinfo";
 
 
 const BorrowBook = () => {
   return (
     <>
-      <BookInfo type={true} />
+      <BookInfo isBorrowPage />
     </>
   )
 }

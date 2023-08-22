@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createBrowserHistory } from 'history';
 
 const history = createBrowserHistory();
-
+// axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
   baseURL: 'http://15.164.10.229',
   headers: {'Authorization': ''}
@@ -12,8 +12,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   config => {
     const token = localStorage.getItem('jdncLibAccessToken');
-    console.log('req', config);
-    console.log('token', token);
     if (token) {
       config.headers['Authorization'] = token;
     }
@@ -28,7 +26,6 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   response => {
     const newToken = response.headers['Authorization']; 
-    console.log('res',response);
     if (newToken) {
       localStorage.setItem('jdncLibAccessToken', newToken);
     }
