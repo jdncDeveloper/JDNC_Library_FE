@@ -31,7 +31,7 @@ const BorrowedList = (borrowBook) => {
       <Style.Container>
         {bookList.map((book) => {
           return (
-            <Style.Booklists key={book.id}>
+            <Style.Booklists key={book.borrowId}>
               <BookList book={book} />
             </Style.Booklists>
           );

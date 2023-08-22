@@ -6,7 +6,7 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 const Header = styled.header`
-  position: relative;
+  position: sticky;
   top: 0;
   width: 100%;
   height: 60px;
@@ -14,10 +14,10 @@ const Header = styled.header`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.colors.white};
   padding: 0 16px;
+  background-color: ${({ theme }) => theme.colors.white};
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-
+  z-index: 9998;
   & > img {
     width: 90px;
     height: 30px;
