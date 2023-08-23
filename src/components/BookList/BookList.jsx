@@ -22,14 +22,14 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
   }, [isMainPage]);
 
   const handleBookClick = () => {
-    if (!isButtonEnabled) {
-      navigate(`/borrowBook/qr/${book.borrowId}`);
+    if (window.location.pathname !== '/borrowedlist' && !isButtonEnabled) {
+      navigate(`/borrowBook/qr/${book.bookNumber}`);
     }
   };
 
   const handleReturnButtonClick = () => {
     if (window.confirm('반납하시겠습니까?')) {
-      onBookReturn(book.borrowId);
+      onBookReturn(book.bookNumber);
       alert('반납이 완료되었습니다.');
     }
   };

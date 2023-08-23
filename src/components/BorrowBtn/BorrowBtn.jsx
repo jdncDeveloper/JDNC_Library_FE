@@ -9,7 +9,6 @@ const BorrowBtn = ({ bookNumber, btnStatus }) => {
   async function borrowBook(bookNumber) {
     try {
       const borrowBookData = await fetchGETBorrowBook(bookNumber);
-      console.log(bookNumber);
       if (borrowBookData.status == '201') {
         alert('대여 완료!');
         navigate(navigateUrl.borrowedList);

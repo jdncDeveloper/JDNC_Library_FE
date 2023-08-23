@@ -8,4 +8,5 @@ export const navigateUrl = {
   borrowedList: '/borrowedlist',
   returnPage: '/returnpage/qr',
   createQR: '/qr/create',
+  adminBookList: '/admin/booklist',
 };
