@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userInfoSlice = createSlice({
   name: 'userInfo',
   initialState: {
-    username: '탐나는 인재',
+    mbNumber: '22200000',
+    name: '탐나는 인재',
     email: 'TAMNa@jdncLibrary.com',
     role: 'user',
   },
@@ -18,8 +19,9 @@ export const userInfoSlice = createSlice({
       state.role = action.payload;
     },
     updateUserInfo: (state, action) => {
-      const { username, email, role } = action.payload;
-      state.username = username;
+      const { name, email, role, mbNumber } = action.payload;
+      state.name = name;
+      state.mbNumber = mbNumber;
       state.email = email;
       state.role = role;
     },
