@@ -1,6 +1,6 @@
 import axios from "axios"
 const axiosLoginConfig = axios.create({
-  baseURL: 'http://15.164.10.229'
+  baseURL: 'https://15.164.10.229'
 })
 
 axiosLoginConfig.interceptors.response.use(
