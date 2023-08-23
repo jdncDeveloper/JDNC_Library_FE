@@ -27,7 +27,7 @@ const AllBooks = () => {
     <Style.Container>
       {allBookList.map((book) => {
         return (
-          <Style.Booklists key={book.borrowId}>
+          <Style.Booklists key={book.bookNumber}>
             <BookList book={book} isMainPage />
           </Style.Booklists>
         );

@@ -52,7 +52,7 @@ const ReturnList = () => {
         </Style.Booklists>
       ) : (
         returnBookList.map((book) => (
-          <Style.Booklists key={book.borrowId}>
+          <Style.Booklists key={book.bookNumber}>
             <BookList book={book} isReturnPage onBookReturn={handleBookReturn} />
           </Style.Booklists>
         ))

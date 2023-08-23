@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from '../constant/theme';
 import Layout from './Layout/Layout';
+import AdminLayout from './AdminLayout/AdminLayout';
 import BorrowedListPage from '../pages/BorrowedListPage/BorrowedListPage';
 import ReturnBookPage from '../pages/ReturnBookPage/ReturnBookPage';
 import BookListPage from '../pages/BookListPage/BookListPage';
@@ -11,6 +12,7 @@ import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 import Main from '../pages/Main/Main';
 import BorrowBook from '../pages/BorrowBook/BorrowBook';
+import AdminBookListPage from '../pages/AdminPage/AdminBookListPage';
 import { navigateUrl } from '../constant/navigateUrl';
 
 const App = () => {
@@ -30,6 +32,10 @@ const App = () => {
           <Route path={navigateUrl.returnPage} element={<Layout children={<ReturnBookPage />} />} />
           <Route path={navigateUrl.createQR} element={<Layout children={<CreateQR />} />} />
           <Route path={navigateUrl.borrowBook} element={<Layout children={<BorrowBook />} />} />
+          <Route
+            path={navigateUrl.adminBookList}
+            element={<AdminLayout children={<AdminBookListPage />} />}
+          />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

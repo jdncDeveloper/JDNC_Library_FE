@@ -4,7 +4,7 @@ import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContanier.style';
 import BookList from '../../components/BookList/BookList';
 
-const BorrowedList = (borrowBook) => {
+const BorrowedList = () => {
   const [borrowedBookList, setBorrowedBookList] = useState([]);
 
   // API 연결 후 사용할 예정입니다.
@@ -12,9 +12,10 @@ const BorrowedList = (borrowBook) => {
     const fetchBorrowedList = async () => {
       const borrowedList = await fetchGETReturnList();
       setBorrowedBookList(borrowedList.data);
+      console.log(borrowedList.data);
     };
     fetchBorrowedList();
-  }, [borrowBook]);
+  }, []);
 
   //mockdata로 테스트중입니다.
   // useEffect(() => {
@@ -39,7 +40,7 @@ const BorrowedList = (borrowBook) => {
         ) : (
           borrowedBookList.map((book) => {
             return (
-              <Style.Booklists key={book.borrowId}>
+              <Style.Booklists key={book.bookNumber}>
                 <BookList book={book} />
               </Style.Booklists>
             );
