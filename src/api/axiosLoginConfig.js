@@ -1,6 +1,6 @@
 import axios from "axios"
 const axiosLoginConfig = axios.create({
-  baseURL: 'https://15.164.10.229'
+  baseURL: 'https://api.jdnclib.com'
 })
 
 axiosLoginConfig.interceptors.response.use(
