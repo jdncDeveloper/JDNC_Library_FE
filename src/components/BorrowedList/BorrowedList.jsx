@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 // import { getBookList } from '../../api/testAPI/get/getBookList';
-import Style from '../../assets/commonStyles/BookListContanier.style';
+import Style from '../../assets/commonStyles/BookListContainer.style';
 import BookList from '../../components/BookList/BookList';
 
 const BorrowedList = () => {
