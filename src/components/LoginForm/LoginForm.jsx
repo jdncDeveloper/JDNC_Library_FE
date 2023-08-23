@@ -3,12 +3,14 @@ import Style from './LoginForm.style';
 import { isValidateLogin } from '../../utils/validation/loginValidation';
 import { fetchPOSTLogin } from '../../api/user/LoginAPI';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 const LoginForm = () => {
     const [ loginForm, setLoginForm ] = useState({
         username: '',
         password: '',
     });
     const navigate = useNavigate();
+    const location = useLocation();
 
     function loginFormHandler(event) {
         const value = event.target.value;
@@ -23,24 +25,14 @@ const LoginForm = () => {
             const response = await fetchPOSTLogin(loginForm);
             if(response.status === 200) {
                 // 유저정보 전역상태관리 함수
-                navigate('/');
+                if(location.state && location.state.returnPath) {
+                    navigate(location.state.returnPath);
+                }
+                if(!location.state || location.state.returnPath === '/') {
+                    navigate('/');
+                }
             }
         }
-        // console.log('실행');
-        // fetch('http://15.164.10.229/login', {
-        //         method: 'POST',
-        //         headers: {
-        //           'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify(loginForm),
-        //         'Authorization': '',
-        //         // credentials: 'include',
-        //   })
-        //   .then((res) => {
-        //     console.log(res.headers);
-        //     console.log(res.headers.get('Authorization'));
-        //     console.log(res.status);
-        // });
     }
     return(
         <Style.LoginContainer>

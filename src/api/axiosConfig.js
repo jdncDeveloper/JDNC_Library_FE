@@ -42,8 +42,7 @@ axiosInstance.interceptors.response.use(
   },
   error => {
     // handleHTTPError(object);
-    if (error.response.status === 401) {
-      history.push('/login');
+    if (error.response.status === 500) {
     }
     if (error.response.status === 403) {
       alert('로그인 정보가 일치하지 않습니다.');
