@@ -11,13 +11,13 @@
   "orientation": "any",
   "icons": [
       {
-          "src": "./Icon512.png",
+          "src": "Icon512.png",
           "sizes": "512x512",
           "type": "image/png",
           "purpose": "maskable"
       },
       {
-          "src": "./Icon192.png",
+          "src": "Icon192.png",
           "sizes": "192x192",
           "type": "image/png",
           "purpose": "any"
@@ -25,7 +25,7 @@
   ],
   "screenshots": [
       {
-          "src": "./screenshot.png",
+          "src": "screenshot.png",
           "sizes": "400x700",
           "type": "image/png",
           "description": "도서관 이용 안내"
