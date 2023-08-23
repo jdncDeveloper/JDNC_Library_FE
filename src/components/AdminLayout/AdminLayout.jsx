@@ -37,10 +37,10 @@ const AdminLayout = ({ children }) => {
           <button>로그아웃</button>
         </Style.AccountControl>
       </Style.Header>
-      <main>
+      <Style.Main>
         <AsideMenu />
         {children}
-      </main>
+      </Style.Main>
     </Style.Container>
   );
 };

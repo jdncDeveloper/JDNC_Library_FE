@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Container = styled.div`
   width: 100%;
@@ -50,5 +49,12 @@ const AccountControl = styled.div`
     }
   }
 `;
+const Main = styled.main`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: calc(100vh - 60px);
+`;
 
-export default { Container, Header, AccountControl };
+export default { Container, Header, AccountControl, Main };
