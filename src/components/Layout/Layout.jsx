@@ -26,8 +26,6 @@ const Layout = ({ children }) => {
         
         dispatch(updateUserInfo(response.data));
       } catch (error) {
-        console.log(error);
-        alert('유저 정보 확인에 실패했습니다.');
         navigate('/login',  { state: { returnPath: location.pathname } });
       }
     }
