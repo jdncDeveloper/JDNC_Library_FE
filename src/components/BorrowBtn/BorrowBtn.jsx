@@ -9,7 +9,7 @@ const BorrowBtn = ({ bookNumber, btnStatus }) => {
   async function borrowBook(bookNumber) {
     try {
       const borrowBookData = await fetchGETBorrowBook(bookNumber);
-      if (borrowBookData.status == '200') {
+      if (borrowBookData.status == '201') {
         alert('대여 완료!');
         navigate(navigateUrl.borrowedList);
       } else {
@@ -22,7 +22,7 @@ const BorrowBtn = ({ bookNumber, btnStatus }) => {
 
   return (
     <>
-      <Style.BorrowBtn onClick={borrowBook} $btnStatus={btnStatus}>
+      <Style.BorrowBtn onClick={() => borrowBook(bookNumber)} $btnStatus={btnStatus}>
         대여하기
       </Style.BorrowBtn>
     </>
