@@ -1,12 +1,12 @@
 import AdminTitle from '../../components/AdminTitle/AdminTitle';
 import Style from '../../assets/commonStyles/AdminContainer.style';
 
-const AdminBookKeeperPage = () => {
+const AdminBorrowedListPage = () => {
   return (
     <Style.Container>
-      <AdminTitle mainTitle="인재관리" subTitle="도서지기 관리" />
+      <AdminTitle mainTitle="대여관리" subTitle="대여목록" />
     </Style.Container>
   );
 };
 
-export default AdminBookKeeperPage;
+export default AdminBorrowedListPage;
