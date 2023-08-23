@@ -1,5 +1,6 @@
 import Style from './AdminLayout.style';
 import logo from '../../assets/images/logo.png';
+import AsideMenu from '../../components/AsideMenu/AsideMenu';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { navigateUrl } from '../../constant/navigateUrl';
@@ -31,11 +32,15 @@ const AdminLayout = ({ children }) => {
     <Style.Container>
       <Style.Header>
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
-        <div>
+        <Style.AccountControl>
           <span>{`${username} 님`}</span>
-        </div>
+          <button>로그아웃</button>
+        </Style.AccountControl>
       </Style.Header>
-      <main>{children}</main>
+      <main>
+        <AsideMenu />
+        {children}
+      </main>
     </Style.Container>
   );
 };

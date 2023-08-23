@@ -1,11 +1,5 @@
-import AsideMenu from '../../components/AsideMenu/AsideMenu';
-
 const AdminBookListPage = () => {
-  return (
-    <>
-      <AsideMenu />
-    </>
-  );
+  return <></>;
 };
 
 export default AdminBookListPage;
