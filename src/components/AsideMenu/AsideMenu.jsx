@@ -43,6 +43,10 @@ const AsideMenu = () => {
     navigate(subMenuRoute);
   };
 
+  const handleMenuClick = (menuRoute) => {
+    navigate(menuRoute);
+  };
+
   return (
     <Style.Container>
       {Object.keys(menuData).map((menuKey) => {
@@ -54,6 +58,7 @@ const AsideMenu = () => {
               id={menuKey}
               checked={selectedMenu === menuKey}
               onChange={handleMenuChange}
+              onClick={() => handleMenuClick(menu.route)}
             />
             <Style.MenuLabel htmlFor={menuKey}>{menu.label}</Style.MenuLabel>
             {selectedMenu === menuKey && (

@@ -1,10 +1,10 @@
 import Style from '../../assets/commonStyles/AdminContainer.style';
-import AdminTitle from '../../components/AdminTitle/AdminTitle';
+import AdminMainHead from '../../components/AdminMainHead/AdminMainHead';
 
 const AdminBookListPage = () => {
   return (
     <Style.Container>
-      <AdminTitle mainTitle="도서관리" subTitle="도서목록" />
+      <AdminMainHead mainTitle="도서관리" subTitle="도서목록" />
     </Style.Container>
   );
 };

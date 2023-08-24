@@ -7,10 +7,10 @@ const Container = styled.div`
 const Header = styled.header`
   position: sticky;
   top: 0;
+  min-width: 1366px;
   width: 100%;
   height: 60px;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;

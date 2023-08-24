@@ -9,7 +9,7 @@ const TitleContainer = styled.div`
   justify-content: space-between;
 
   & h1 {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
   }
   & h2 {
