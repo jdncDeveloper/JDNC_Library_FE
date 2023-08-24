@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const TitleContainer = styled.div`
   width: 150px;
-  height: 80px;
+  height: 100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;

@@ -33,7 +33,7 @@ const AdminLayout = ({ children }) => {
       <Style.Header>
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
         <Style.AccountControl>
-          <span>{`${username} 님`}</span>
+          <span>{`Admin ${username} 님`}</span>
           <button>로그아웃</button>
         </Style.AccountControl>
       </Style.Header>
