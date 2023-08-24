@@ -47,22 +47,23 @@ const BookLocation = styled.div`
 const BookShelf = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.gray1};
   border-top: 7px solid ${({ theme }) => theme.colors.blue1};
+  border-bottom: none;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: repeat(12, 56px);
   grid-template-areas:
-    '1 .'
-    '1 2'
-    '3 2'
-    '3 4'
-    '5 4'
-    '5 6'
-    '7 6'
-    '7 8'
-    '9 8'
-    '9 .'
-    '10 11'
-    '10 11';
+    'a .'
+    'a b'
+    'c b'
+    'c d'
+    'e d'
+    'e f'
+    'g f'
+    'g h'
+    'i h'
+    'i .'
+    'j k'
+    'j k';
 `;
 
 export default { LocationInfo, LocationInfoUl, UseInfoUl, BookLocation, BookShelf };

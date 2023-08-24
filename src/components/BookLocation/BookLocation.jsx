@@ -4,10 +4,10 @@ import { useState } from 'react';
 import BookSection from '../BookSection/BookSection';
 import Style from './BookLocation.style';
 
+const bookShelf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
+
 const BookLocation = ({ isBorrowPage, bookNumber }) => {
-  const [bookShelf, setBookShelf] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   const [bookGroup, setBookGroup] = useState('');
-  const [inHere, setInHere] = useState(false);
   const [bookLocationNum, setBookLocationNum] = useState(0);
 
   function findBookLocation(bookNumber) {
@@ -21,6 +21,7 @@ const BookLocation = ({ isBorrowPage, bookNumber }) => {
   useEffect(() => {
     findBookLocation(bookNumber);
   }, [bookNumber]);
+  console.log(bookLocationNum);
   return (
     <>
       <Style.LocationInfo>
@@ -44,7 +45,10 @@ const BookLocation = ({ isBorrowPage, bookNumber }) => {
         <h2>{bookGroup}</h2>
         <Style.BookShelf>
           {bookShelf.map((book, index) => {
-            return <BookSection $area={index + 1} />;
+            const isSelected = index === bookLocationNum - 1;
+            return (
+              <BookSection $area={book} key={book} $inHere={isSelected} bookNumber={bookNumber} />
+            );
           })}
         </Style.BookShelf>
       </Style.BookLocation>
