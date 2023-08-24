@@ -1,7 +1,6 @@
 import Style from './CreateQR.style';
 import { QRCodeCanvas } from 'qrcode.react';
 import { useState } from 'react';
-import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 
 const  CreateQR = () => {
     const [ idValue, setIdValue ] = useState('');
@@ -16,9 +15,7 @@ const  CreateQR = () => {
 
     function imageDownload() {
         const canvasDom = document.querySelector('canvas');
-        console.log(canvasDom);
         const imageCanvas = canvasDom.toDataURL('image/png');
-        console.log(imageCanvas);
 
         const a = document.createElement("a");
         a.href = imageCanvas;

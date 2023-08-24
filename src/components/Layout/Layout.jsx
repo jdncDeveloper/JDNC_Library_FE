@@ -5,26 +5,32 @@ import SubMenu from '../SubMenu/SubMenu';
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { navigateUrl } from '../../constant/navigateUrl';
-import { useValidRole } from '../../hooks/useValidRole';
+import { useLocation } from 'react-router-dom';
+import { fetchGETUserInfo } from '../../api/user/userInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserInfo } from '../../store/userInfoSlice';
 
 const Layout = ({ children }) => {
   const [username, setUsername] = useState('탐나는 인재');
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  // const userValid = useValidRole();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const userRole =  useSelector(state => state.userInfo);
   const $search = useRef(null);
 
   useEffect(() => {
-    // console.log(userValid);
-    //유저정보 가져오기 (username)
-    // fetch()
-    //     .then((res) => {
-    //         setUsername(res.data);
-    //     })
-    //     .catch((error) => {
-    //         setUsername('탐나는 인재');
-    //         console.error(error);
-    //     })
+    async function getUserInfo() {
+      try {
+        const response = await fetchGETUserInfo();
+        
+        dispatch(updateUserInfo(response.data));
+      } catch (error) {
+        navigate('/login',  { state: { returnPath: location.pathname } });
+      }
+    }
+    getUserInfo();
+    setUsername(userRole.username);
   }, []);
 
   const handleSubMenu = () => {

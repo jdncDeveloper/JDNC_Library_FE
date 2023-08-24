@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BookList from '../BookList/BookList';
 import { getBookList } from '../../api/testAPI/get/getBookList';
-import Style from '../../assets/commonStyles/BookListContanier.style';
+import Style from '../../assets/commonStyles/BookListContainer.style';
 
 const SearchList = () => {
   const [searchBook, setSearchBook] = useState([]);

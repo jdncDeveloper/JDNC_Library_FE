@@ -4,7 +4,7 @@ import { createBrowserHistory } from 'history';
 const history = createBrowserHistory();
 // axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
-  baseURL: 'http://15.164.10.229',
+  baseURL: 'https://api.jdnclib.com',
   headers: {'Authorization': ''}
 });
 
@@ -42,8 +42,7 @@ axiosInstance.interceptors.response.use(
   },
   error => {
     // handleHTTPError(object);
-    if (error.response.status === 401) {
-      history.push('/login');
+    if (error.response.status === 500) {
     }
     if (error.response.status === 403) {
       alert('로그인 정보가 일치하지 않습니다.');
