@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import Style from './Bookinfo.style';
+import Style from './BookInfo.style';
 import { useEffect } from 'react';
 import BorrowBtn from '../BorrowBtn/BorrowBtn';
 import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import { useParams } from 'react-router-dom';
+import BookLocation from '../BookLocation/BookLocation';
 
 const BookInfo = ({ isBorrowPage }) => {
   const bookNumber = useParams();
@@ -61,27 +62,7 @@ const BookInfo = ({ isBorrowPage }) => {
           <h2>소개</h2>
           <p>{book.content}</p>
         </Style.BookContents>
-        <div>
-          <div>
-            <h1>위치</h1>
-            <ul>
-              <li>대여 권수</li>
-              <li>
-                대여 방법
-                <ul>
-                  <li>도서 대여는 실물 도서 뒷면에 있는 QR코드로 하면 완료.</li>
-                  <li>
-                    메인 페이지에서는 도서 목록을 열람하거나 대여 현황을 확인하는 페이지로 즉시
-                    대여는 불가합니다.
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h1>M</h1>
-          </div>
-        </div>
+        <BookLocation isBorrowPage={isBorrowPage} bookNumber={book.bookNumber} />
       </Style.Container>
     </>
   );

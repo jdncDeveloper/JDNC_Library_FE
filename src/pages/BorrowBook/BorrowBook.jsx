@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import BookInfo from '../../components/Bookinfo/Bookinfo';
+import BookInfo from '../../components/BookInfo/BookInfo';
 
-const BorrowBook = () => {
+function BorrowBook() {
   return (
     <>
       <BookInfo isBorrowPage={true} />
     </>
   );
-};
+}
 
 export default BorrowBook;
