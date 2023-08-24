@@ -4,7 +4,7 @@ import AdminMainHead from '../../components/AdminMainHead/AdminMainHead';
 const AdminAddBookPage = () => {
   return (
     <Style.Container>
-      <AdminMainHead mainTitle="도서관리" subTitle="도서추가" />
+      <AdminMainHead mainTitle="도서관리" subTitle="도서추가" hide hideSearch />
     </Style.Container>
   );
 };

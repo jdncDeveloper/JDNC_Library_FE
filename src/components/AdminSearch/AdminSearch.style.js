@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  width: calc(100% - 40px);
-  max-width: 330px;
-
+  min-width: 330px;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
   & > button {
     width: 60px;
     height: 48px;

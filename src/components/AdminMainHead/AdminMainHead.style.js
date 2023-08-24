@@ -7,5 +7,10 @@ const HeadSection = styled.section`
   width: 100%;
   height: 100px;
 `;
+const ComponentsWrapper = styled.div`
+  display: flex;
+  align-items: end;
+  gap: 10px;
+`;
 
-export default { HeadSection };
+export default { HeadSection, ComponentsWrapper };
