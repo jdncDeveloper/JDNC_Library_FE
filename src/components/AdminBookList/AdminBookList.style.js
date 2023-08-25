@@ -11,7 +11,7 @@ const BookListTable = styled.table`
     padding: 10px;
   }
   & th {
-    background-color: ${({ theme }) => theme.colors.gray1};
+    background-color: ${({ theme }) => theme.colors.gray2};
     color: ${({ theme }) => theme.colors.black};
     font-weight: bold;
   }
