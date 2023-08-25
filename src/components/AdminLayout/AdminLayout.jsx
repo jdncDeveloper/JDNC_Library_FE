@@ -4,24 +4,31 @@ import AsideMenu from '../../components/AsideMenu/AsideMenu';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { navigateUrl } from '../../constant/navigateUrl';
-import { useValidRole } from '../../hooks/useValidRole';
+import { fetchGETUserInfo } from '../../api/user/userInfo';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUserInfo } from '../../store/userInfoSlice';
 
 const AdminLayout = ({ children }) => {
   const [username, setUsername] = useState('관리자');
-  // const userValid = useValidRole();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userRole =  useSelector(state => state.userInfo);
 
   useEffect(() => {
-    // console.log(userValid);
-    //유저정보 가져오기 (username)
-    // fetch()
-    //     .then((res) => {
-    //         setUsername(res.data);
-    //     })
-    //     .catch((error) => {
-    //         setUsername('탐나는 인재');
-    //         console.error(error);
-    //     })
+    // async function getUserInfo() {
+    //   try {
+    //     const response = await fetchGETUserInfo();
+
+    //     dispatch(updateUserInfo(response.data));
+    //     if(userRole.role !== 'ADMIN') {
+    //       navigate('/login');
+    //     }
+    //   } catch (error) {
+    //     navigate('/login');
+    //   }
+    // }
+    // getUserInfo();
+    // setUsername(userRole.username);
   }, []);
 
   const navigateToMainPage = () => {
