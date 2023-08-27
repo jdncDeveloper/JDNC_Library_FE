@@ -1,6 +1,8 @@
 const mockBookList = [
   {
-    borrowId: 0,
+    borrowId: 1,
+    bookNumber: 1,
+    group: 'T',
     title: '한 권으로 읽는 컴퓨터 구조와 프로그래밍',
     author: '조너선 스타인하트',
     publisher: '책만',
@@ -9,7 +11,9 @@ const mockBookList = [
     borrowedData: '2023.08.01',
   },
   {
-    borrowId: 1,
+    borrowId: 2,
+    bookNumber: 2,
+    group: 'T',
     title: '코딩 자율학습 HTML + CSS + 자바스크립트',
     author: '김기수',
     publisher: '길벗',
@@ -18,7 +22,9 @@ const mockBookList = [
     borrowedData: '2023.08.01',
   },
   {
-    borrowId: 2,
+    borrowId: 3,
+    bookNumber: 3,
+    group: 'A',
     title: '모던 자바스크립트 Deep Dive',
     author: '이웅모',
     publisher: '위키북스',
