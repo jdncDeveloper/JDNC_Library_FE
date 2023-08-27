@@ -21,7 +21,6 @@ const BookLocation = ({ isBorrowPage, bookNumber }) => {
   useEffect(() => {
     findBookLocation(bookNumber);
   }, [bookNumber]);
-  console.log(bookLocationNum);
   return (
     <>
       <Style.LocationInfo>

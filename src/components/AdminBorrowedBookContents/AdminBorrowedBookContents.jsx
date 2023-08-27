@@ -1,20 +1,32 @@
 import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
 import Style from './AdminBorrowedBookContents.style';
 
-const AdminBorrowedBookContents = () => {
+const AdminBorrowedBookContents = ({ book }) => {
+  const [borrowedBookData, setBorrowedBookData] = useState([]);
+  useEffect(() => {
+    setBorrowedBookData(book);
+  });
   return (
     <>
-      <tr>
-        <td>
-          <input type={checkbox} />
-        </td>
-        <td>연번</td>
-        <td>구분</td>
-        <td>제목</td>
-        <td>대출자</td>
-        <td>대출일</td>
-        <td>상태</td>
-      </tr>
+      <tbody>
+        {borrowedBookData.map((book) => {
+          return (
+            <tr>
+              <td>
+                <input type={checkbox} />
+              </td>
+              <td>{book.id}</td>
+              <td>{book.group}</td>
+              <td>{book.title}</td>
+              <td>{book.borrower}</td>
+              <td>{book.date}</td>
+              <td>{book.status}</td>
+            </tr>
+          );
+        })}
+      </tbody>
     </>
   );
 };

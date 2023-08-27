@@ -28,10 +28,8 @@ export async function useValidRole(role = 'user') {
 
       if(response.data.role !== role) {
         setValidateUserRole(false);
-        console.log('false 실행');
         return;
       }
-      console.log('트루실행');
       setValidateUserRole(true);
       return;
       
