@@ -14,35 +14,49 @@ const AdminBookList = () => {
     fetchBookList();
   }, []);
 
+  const theadWidthData = [
+    { width: '8%', label: '연번' },
+    { width: '8%', label: '구분' },
+    { width: '40%', label: '도서명' },
+    { width: '14%', label: '저자' },
+    { width: '14%', label: '출판사' },
+    { width: '8%', label: '상태' },
+    { width: '8%', label: '수정' },
+  ];
+
   return (
     <Style.BookListTable>
       <thead>
         <tr>
-          <Style.ColumnHeader width="8%">연번</Style.ColumnHeader>
-          <Style.ColumnHeader width="8%">구분</Style.ColumnHeader>
-          <Style.ColumnHeader width="40%">도서명</Style.ColumnHeader>
-          <Style.ColumnHeader width="14%">저자</Style.ColumnHeader>
-          <Style.ColumnHeader width="14%">출판사</Style.ColumnHeader>
-          <Style.ColumnHeader width="8%">상태</Style.ColumnHeader>
-          <Style.ColumnHeader width="8%">수정</Style.ColumnHeader>
+          {theadWidthData.map((data) => {
+            const { width, label } = data;
+            return (
+              <Style.ColumnHeader key={label} width={width}>
+                {label}
+              </Style.ColumnHeader>
+            );
+          })}
         </tr>
       </thead>
       <tbody>
-        {bookList.map((book) => (
-          <tr key={book.bookNumber}>
-            <td>{book.bookNumber}</td>
-            <td>{book.group}</td>
-            <td>{book.title}</td>
-            <td>{book.author}</td>
-            <td>{book.publisher}</td>
-            <td>
-              <Style.BookStatus>상태</Style.BookStatus>
-            </td>
-            <td>
-              <Style.EditButton>수정</Style.EditButton>
-            </td>
-          </tr>
-        ))}
+        {bookList.map((book) => {
+          const { bookNumber, group, title, author, publisher } = book;
+          return (
+            <tr key={bookNumber}>
+              <td>{bookNumber}</td>
+              <td>{group}</td>
+              <td>{title}</td>
+              <td>{author}</td>
+              <td>{publisher}</td>
+              <td>
+                <Style.BookStatus>상태</Style.BookStatus>
+              </td>
+              <td>
+                <Style.EditButton>수정</Style.EditButton>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </Style.BookListTable>
   );

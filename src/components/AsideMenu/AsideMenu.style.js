@@ -5,7 +5,7 @@ const Container = styled.aside`
   background-color: ${({ theme }) => theme.colors.blue2};
   padding-top: 20px;
   min-width: 300px;
-  height: 100vh;
+  height: 100%;
 `;
 const MenuContainer = styled.div`
   display: flex;
