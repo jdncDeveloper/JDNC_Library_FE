@@ -44,7 +44,7 @@ const BookDetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 10px;
+  gap: 16px;
   padding: 10px;
   & label {
     font-weight: bold;
@@ -60,6 +60,9 @@ const BookDetailInfo = styled.div`
         transition: all 0.3s ease-out;
       }
     }
+  }
+  & span {
+    font-weight: bold;
   }
 `;
 const BookDetailContent = styled.div`

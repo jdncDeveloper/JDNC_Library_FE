@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 import Style from './AdminAddBookList.style';
+import CreateQR from '../CreateQR/CreateQR';
 
-const AdminAddBookList = () => {
-  const [disappear, setDisappear] = useState(false);
-
-  const handleAppear = () => {
-    setDisappear(!disappear);
-  };
-
+const AdminAddBookList = ({ newBooks, disappear, setDisappear }) => {
   const theadWidthData = [
     { width: '20%', label: 'ID' },
     { width: '30%', label: '책번호' },
@@ -20,7 +15,7 @@ const AdminAddBookList = () => {
       <Style.CreatedBookList>
         <Style.CreatedBookListTitle>
           <h3>생성된 책</h3>
-          <button onClick={handleAppear}>{disappear ? '취소' : '편집'}</button>
+          <button onClick={() => setDisappear(!disappear)}>{disappear ? '취소' : '편집'}</button>
         </Style.CreatedBookListTitle>
         <Style.AddedBookList>
           <thead>
@@ -36,15 +31,23 @@ const AdminAddBookList = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>T 001</td>
-              <td>대출가능</td>
-              <td>{disappear && <button>삭제</button>}</td>
-            </tr>
+            {newBooks.map((book) => {
+              const { id, bookNumber, status } = book;
+              return (
+                <tr key={id}>
+                  <td>{id}</td>
+                  <td>{bookNumber}</td>
+                  <td>{status}</td>
+                  <td>
+                    <button>삭제</button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </Style.AddedBookList>
       </Style.CreatedBookList>
+      <CreateQR />
     </Style.AddBookListContainer>
   );
 };
