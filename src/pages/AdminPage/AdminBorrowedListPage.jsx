@@ -25,14 +25,12 @@ const test = [
 
 const AdminBorrowedListPage = () => {
   return (
-    <Style.Container>
-      <AdminMainHead mainTitle="대여관리" subTitle="대여목록" hide />
-      <table>
-        <AdminBorrowedBookList />
-        <AdminBorrowedBookContents book={test} />
-        <AdminBookListButtons />
-      </table>
-    </Style.Container>
+    <>
+      <Style.Container>
+        <AdminMainHead mainTitle="대여관리" subTitle="대여목록" hide />
+      </Style.Container>
+      <AdminBorrowedBookList book={test} />
+    </>
   );
 };
 
