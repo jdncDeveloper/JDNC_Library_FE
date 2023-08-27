@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Style from './AdminBookDetail.style';
+import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 
 const AdminBookDetail = ({ book }) => {
   const [text, setText] = useState('');
@@ -38,13 +39,14 @@ const AdminBookDetail = ({ book }) => {
           <textarea value={text} onChange={handleTextareaChange}></textarea>
         </Style.BookDetailContent>
         <Style.BookDetailButtonWrapper>
-          <button>새로운 책</button>
+          <button>초기화</button>
           <div>
             <button>책 추가</button>
             <button>수정</button>
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
+      <AdminAddBookList />
     </Style.Container>
   );
 };

@@ -100,7 +100,7 @@ const BookDetailButtonWrapper = styled.div`
     gap: 20px;
   }
   & button {
-    padding: 8px 12px;
+    padding: 10px 18px;
     border-radius: 10px;
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.blue2};
