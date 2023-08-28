@@ -32,10 +32,10 @@ const AsideMenu = () => {
     menu3: {
       label: '인재관리',
       subMenu: [
-        { label: '인재목록', route: navigateUrl.adminUserList },
+        { label: '인재목록', route: navigateUrl.adminUserList.base },
         { label: '도서지기 관리', route: navigateUrl.adminBookKeeper },
       ],
-      route: navigateUrl.adminUserList,
+      route: navigateUrl.adminUserList.base,
     },
   };
 

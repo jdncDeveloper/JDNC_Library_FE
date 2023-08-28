@@ -54,7 +54,7 @@ const App = () => {
             element={<AdminLayout children={<AdminReturnListPage />} />}
           />
           <Route
-            path={navigateUrl.adminUserList}
+            path={navigateUrl.adminUserList.search}
             element={<AdminLayout children={<AdminUserListPage />} />}
           />
           <Route

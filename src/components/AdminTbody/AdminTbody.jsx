@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useEffect } from "react"
 import Style from './AdminTbody.style';
+import { useLocation } from "react-router-dom";
 
 const AdminTbody = ({ fetchGetFn, TbodyData }) => {
   const [ fetchData, setFetchData ] = useState([]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
   useEffect(() => {
     // fetchGetFn()
     // .then((res) => {  
@@ -13,8 +16,15 @@ const AdminTbody = ({ fetchGetFn, TbodyData }) => {
     //   console.error(error);
     // })
     setFetchData(TbodyData);
-  }, []);
-  //
+    const searchValue = searchParams.get('search');
+    if (searchValue) {
+      const filteredData = TbodyData.filter((item) => {
+        return item.name.includes(searchValue);
+      });
+      setFetchData(filteredData);
+    }
+
+  }, [searchParams.get('search')]);
   return(
     <Style.Tbody>
         {
