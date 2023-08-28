@@ -1,6 +1,4 @@
 import Style from '../../assets/commonStyles/AdminContainer.style';
-import AdminBookListButtons from '../../components/AdminBookListButtons/AdminBookListButtons';
-import AdminBorrowedBookContents from '../../components/AdminBorrowedBookContents/AdminBorrowedBookContents';
 import AdminBorrowedBookList from '../../components/AdminBorrowedBookList/AdminBorrowedBookList';
 import AdminMainHead from '../../components/AdminMainHead/AdminMainHead';
 
@@ -25,14 +23,12 @@ const test = [
 
 const AdminBorrowedListPage = () => {
   return (
-    <Style.Container>
-      <AdminMainHead mainTitle="대여관리" subTitle="대여목록" hide />
-      <table>
-        <AdminBorrowedBookList />
-        <AdminBorrowedBookContents book={test} />
-        <AdminBookListButtons />
-      </table>
-    </Style.Container>
+    <>
+      <Style.Container>
+        <AdminMainHead mainTitle="대여관리" subTitle="대여목록" hide />
+        <AdminBorrowedBookList book={test} />
+      </Style.Container>
+    </>
   );
 };
 
