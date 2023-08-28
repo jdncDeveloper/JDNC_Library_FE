@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 
-const AdminBookDetail = ({ book }) => {
+const AdminBookDetail = () => {
   const [text, setText] = useState('');
-  const [imageSrc, setImageSrc] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [newBooks, setNewBooks] = useState([]);
   const [newBook, setNewBook] = useState({
     title: '',
     author: '',
     publisher: '',
     bookNumber: '',
-    imageSrc: '',
+    imageUrl: '',
     content: '',
   });
   const [disappear, setDisappear] = useState(false);
@@ -22,13 +22,13 @@ const AdminBookDetail = ({ book }) => {
 
   const handleImageChange = (event) => {
     const selectedImage = event.target.files[0];
-    const imageUrl = URL.createObjectURL(selectedImage);
-    setImageSrc(imageUrl);
+    const image = URL.createObjectURL(selectedImage);
+    setImageUrl(image);
   };
 
   const handleReset = () => {
     setText('');
-    setImageSrc('');
+    setImageUrl('');
   };
 
   const handleAddBook = () => {
@@ -44,34 +44,37 @@ const AdminBookDetail = ({ book }) => {
       author: '',
       publisher: '',
       bookNumber: '',
-      imageSrc: '',
+      imageUrl: '',
       content: '',
     });
   };
 
   const labelData = [
-    { value: 'title', label: '도서명' },
-    { value: 'author', label: '저자' },
-    { value: 'publisher', label: '출판사' },
-    { value: 'bookNumber', label: '책번호' },
+    { value: 'title', label: '도서명', placeholder: '도서명을 입력하세요.' },
+    { value: 'author', label: '저자', placeholder: '저자를 입력하세요.' },
+    { value: 'publisher', label: '출판사', placeholder: '출판사를 입력하세요.' },
+    { value: 'bookNumber', label: '책번호', placeholder: '책번호(그룹포함)를 기입하세요' },
   ];
+
+  console.log('추가');
 
   return (
     <Style.Container>
       <Style.BookDetailContainer>
         <Style.BookDetailWrapper>
           <Style.BookDetailImage>
-            <img src={imageSrc} alt="" />
+            <img src={imageUrl} alt="" />
           </Style.BookDetailImage>
           <Style.BookDetailInfo>
             {labelData.map((data) => {
-              const { value, label } = data;
+              const { value, label, placeholder } = data;
               return (
                 <label key={value}>
-                  {label} :{' '}
+                  {label} :{''}
                   <input
                     type="text"
                     value={newBook[value]}
+                    placeholder={placeholder}
                     onChange={(e) => setNewBook({ ...newBook, [value]: e.target.value })}
                   />
                 </label>

@@ -10,6 +10,8 @@ const AdminAddBookList = ({ newBooks, disappear, setDisappear }) => {
     { width: '20%', label: '' },
   ];
 
+  console.log('리스트');
+
   return (
     <Style.AddBookListContainer>
       <Style.CreatedBookList>

@@ -44,8 +44,8 @@ const BookDetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 16px;
-  padding: 10px;
+  gap: 10px;
+  padding: 0 10px;
   & label {
     font-weight: bold;
     & > input {
@@ -58,6 +58,11 @@ const BookDetailInfo = styled.div`
       &:focus {
         border-bottom: 1px solid ${({ theme }) => theme.colors.blue3};
         transition: all 0.3s ease-out;
+      }
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.gray1};
+        font-weight: 400;
+        font-size: 14px;
       }
     }
   }
