@@ -45,7 +45,7 @@ const BookDetailInfo = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 10px;
-  padding: 10px;
+  padding: 0 10px;
   & label {
     font-weight: bold;
     & > input {
@@ -59,7 +59,15 @@ const BookDetailInfo = styled.div`
         border-bottom: 1px solid ${({ theme }) => theme.colors.blue3};
         transition: all 0.3s ease-out;
       }
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.gray1};
+        font-weight: 400;
+        font-size: 14px;
+      }
     }
+  }
+  & span {
+    font-weight: bold;
   }
 `;
 const BookDetailContent = styled.div`
@@ -100,7 +108,7 @@ const BookDetailButtonWrapper = styled.div`
     gap: 20px;
   }
   & button {
-    padding: 8px 12px;
+    padding: 10px 18px;
     border-radius: 10px;
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.blue2};
