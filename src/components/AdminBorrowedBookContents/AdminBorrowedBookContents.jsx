@@ -15,18 +15,17 @@ const AdminBorrowedBookContents = ({ book, handleSelectedBooksList }) => {
     } else {
       setSelectedBook([...selectedBooks, id]);
     }
-
-    handleSelectedBooksList(borrowedBookData);
   };
+  handleSelectedBooksList(selectedBooks);
   return (
     <>
       <Style.Tbody>
         {borrowedBookData.map((book) => {
           return (
-            <tr>
+            <tr key={book.id}>
               <td>
                 <input
-                  type={checkbox}
+                  type="checkbox"
                   checked={selectedBooks.includes(book.id)}
                   onChange={() => handleCheckboxChange(book.id)}
                 />

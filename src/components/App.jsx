@@ -61,6 +61,10 @@ const App = () => {
             path={navigateUrl.adminBookKeeper}
             element={<AdminLayout children={<AdminBookKeeperPage />} />}
           />
+          <Route
+            path={navigateUrl.adminBorrowedList}
+            element={<AdminLayout children={<AdminBorrowedListPage />} />}
+          />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
