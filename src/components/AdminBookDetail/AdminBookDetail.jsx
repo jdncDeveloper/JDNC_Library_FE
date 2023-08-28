@@ -1,8 +1,10 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 
 const AdminBookDetail = () => {
+  const { bookNumber } = useParams();
   const [text, setText] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [newBooks, setNewBooks] = useState([]);
@@ -15,6 +17,13 @@ const AdminBookDetail = () => {
     content: '',
   });
   const [disappear, setDisappear] = useState(false);
+
+  useEffect(() => {
+    const bookDetail = newBooks.find((book) => book.bookNumber === bookNumber);
+    if (bookDetail) {
+      setNewBook(bookDetail);
+    }
+  }, [bookNumber]);
 
   const handleTextareaChange = (event) => {
     setText(event.target.value);
@@ -29,24 +38,6 @@ const AdminBookDetail = () => {
   const handleReset = () => {
     setText('');
     setImageUrl('');
-  };
-
-  const handleAddBook = () => {
-    const newId = newBooks.length + 1;
-    const newBookObject = {
-      id: newId,
-      ...newBook,
-      status: '대여가능',
-    };
-    setNewBooks([...newBooks, newBookObject]);
-    setNewBook({
-      title: '',
-      author: '',
-      publisher: '',
-      bookNumber: '',
-      imageUrl: '',
-      content: '',
-    });
   };
 
   const labelData = [
@@ -91,7 +82,7 @@ const AdminBookDetail = () => {
         <Style.BookDetailButtonWrapper>
           <button onClick={handleReset}>초기화</button>
           <div>
-            <button onClick={handleAddBook}>책 추가</button>
+            <button>책 추가</button>
             <button>수정</button>
           </div>
         </Style.BookDetailButtonWrapper>

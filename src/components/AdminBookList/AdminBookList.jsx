@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from './AdminBookList.style';
 
 const AdminBookList = () => {
   const [bookList, setBookList] = useState([]);
+  const navigate = useNavigate();
 
   // mockdata로 테스트중입니다.
   useEffect(() => {
@@ -13,6 +15,10 @@ const AdminBookList = () => {
     };
     fetchBookList();
   }, []);
+
+  const handleAddBook = (bookNumber) => {
+    navigate(`/admin/addbook/${bookNumber}`);
+  };
 
   const theadWidthData = [
     { width: '8%', label: '연번' },
@@ -52,7 +58,7 @@ const AdminBookList = () => {
                 <Style.BookStatus>상태</Style.BookStatus>
               </td>
               <td>
-                <Style.EditButton>수정</Style.EditButton>
+                <Style.EditButton onClick={() => handleAddBook(bookNumber)}>수정</Style.EditButton>
               </td>
             </tr>
           );
