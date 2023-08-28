@@ -16,7 +16,9 @@ const AdminBorrowedBookContents = ({ book, handleSelectedBooksList }) => {
       setSelectedBook([...selectedBooks, id]);
     }
   };
-  handleSelectedBooksList(selectedBooks);
+  useEffect(() => {
+    handleSelectedBooksList(selectedBooks);
+  }, [selectedBooks]);
   return (
     <>
       <Style.Tbody>
