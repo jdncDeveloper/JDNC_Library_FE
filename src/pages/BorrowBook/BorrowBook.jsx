@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import BookInfo from '../../components/BookInfo/BookInfo';
+import BookInfo from '../../components/Bookinfo/Bookinfo';
 
 function BorrowBook() {
   return (
