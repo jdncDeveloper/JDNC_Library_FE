@@ -16,7 +16,9 @@ const AdminTbody = ({ fetchGetFn, TbodyData }) => {
     //   console.error(error);
     // })
     setFetchData(TbodyData);
+    
     const searchValue = searchParams.get('search');
+
     if (searchValue) {
       const filteredData = TbodyData.filter((item) => {
         return item.name.includes(searchValue);

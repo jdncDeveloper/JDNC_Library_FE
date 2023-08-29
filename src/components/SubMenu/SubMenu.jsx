@@ -4,6 +4,7 @@ import Style from './SubMenu.style';
 import { navigateUrl } from '../../constant/navigateUrl';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserInfo } from '../../store/userInfoSlice';
+import { Link } from 'react-router-dom';
 
 const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
   const userRole =  useSelector(state => state.userInfo);
@@ -55,7 +56,7 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
         </p>
         <Style.AccountControl>
           {userRole.role === 'ROLE_BOOKKEEKPER'? <span>도서지기</span>: <></>}
-          <a hidden={hide}>[관리자 페이지]</a>
+          {userRole.role === 'ROLE_ADMIN' ? <Link to={navigateUrl.adminBookList}>[관리자 페이지]</Link> : <></>}
         </Style.AccountControl>
       </Style.UserBox>
       <Style.MenuBox>

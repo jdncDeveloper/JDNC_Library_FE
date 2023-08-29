@@ -12,7 +12,15 @@ const LoginContainer = styled.div`
     align-items: center;
     margin: 0 auto;
 
-    & > h1 {
+    & form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        margin: 0 auto;
+    }
+    &  h1 {
         position: absolute;
         font-size: 28px;
         color: white;
@@ -27,7 +35,7 @@ const LoginContainer = styled.div`
         border-radius: 6px;
         margin: 0 auto 10px;
     }
-    & > button{
+    &  button{
         background-color: #255C8F;
         color: white;
         width: 250px;
