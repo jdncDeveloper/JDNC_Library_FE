@@ -9,6 +9,8 @@ const AdminBookListButtons = ({ selectedBooks }) => {
   };
 
   const ReturnBook = () => {
+    //여기도 꼭 작성해야 합니다.
+
     alert('반납처리');
     console.log(selectedBooks);
   };
