@@ -2,82 +2,63 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
+import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
+import { getBookList } from '../../api/testAPI/get/getBookList';
+
+const INITIAL_BOOK = {
+  title: '',
+  author: '',
+  publisher: '',
+  bookNumber: '',
+  imageUrl: '',
+  content: '',
+};
 
 const AdminBookDetail = () => {
   const { bookNumber } = useParams();
-  const [text, setText] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
-  const [newBooks, setNewBooks] = useState([]);
-  const [newBook, setNewBook] = useState({
-    title: '',
-    author: '',
-    publisher: '',
-    bookNumber: '',
-    imageUrl: '',
-    content: '',
-  });
+  const [bookList, setBookList] = useState([]);
+  const [newBook, setNewBook] = useState(INITIAL_BOOK);
   const [disappear, setDisappear] = useState(false);
 
+  // mockdata로 테스트중입니다.
   useEffect(() => {
-    const bookDetail = newBooks.find((book) => book.bookNumber === bookNumber);
+    const fetchBookList = async () => {
+      const response = await getBookList();
+      setBookList(response);
+    };
+    fetchBookList();
+  }, []);
+
+  useEffect(() => {
+    const bookDetail = bookList.find((book) => book.bookNumber === bookNumber);
     if (bookDetail) {
       setNewBook(bookDetail);
     }
-  }, [bookNumber]);
+  }, [bookNumber, bookList]);
 
   const handleTextareaChange = (event) => {
-    setText(event.target.value);
-  };
-
-  const handleImageChange = (event) => {
-    const selectedImage = event.target.files[0];
-    const image = URL.createObjectURL(selectedImage);
-    setImageUrl(image);
+    setNewBook({ ...newBook, content: event.target.value });
   };
 
   const handleReset = () => {
-    setText('');
-    setImageUrl('');
+    setNewBook(INITIAL_BOOK);
+    if (newBook.imageUrl) {
+      URL.revokeObjectURL(newBook.imageUrl);
+    }
   };
-
-  const labelData = [
-    { value: 'title', label: '도서명', placeholder: '도서명을 입력하세요.' },
-    { value: 'author', label: '저자', placeholder: '저자를 입력하세요.' },
-    { value: 'publisher', label: '출판사', placeholder: '출판사를 입력하세요.' },
-    { value: 'bookNumber', label: '책번호', placeholder: '책번호(그룹포함)를 기입하세요' },
-  ];
-
-  console.log('추가');
 
   return (
     <Style.Container>
       <Style.BookDetailContainer>
         <Style.BookDetailWrapper>
           <Style.BookDetailImage>
-            <img src={imageUrl} alt="" />
+            <img src={newBook.imageUrl} alt="BookDetailImage" />
           </Style.BookDetailImage>
-          <Style.BookDetailInfo>
-            {labelData.map((data) => {
-              const { value, label, placeholder } = data;
-              return (
-                <label key={value}>
-                  {label} :{''}
-                  <input
-                    type="text"
-                    value={newBook[value]}
-                    placeholder={placeholder}
-                    onChange={(e) => setNewBook({ ...newBook, [value]: e.target.value })}
-                  />
-                </label>
-              );
-            })}
-            <span>책 이미지 :</span>
-            <input type="file" onChange={handleImageChange} accept="image/*" />
-          </Style.BookDetailInfo>
+          <AdminBookDetailInfo newBook={newBook} setNewBook={setNewBook} />
         </Style.BookDetailWrapper>
         <Style.BookDetailContent>
           <h3>책 소개 :</h3>
-          <textarea value={text} onChange={handleTextareaChange}></textarea>
+          <textarea value={newBook.content} onChange={handleTextareaChange}></textarea>
         </Style.BookDetailContent>
         <Style.BookDetailButtonWrapper>
           <button onClick={handleReset}>초기화</button>
@@ -87,7 +68,7 @@ const AdminBookDetail = () => {
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
-      <AdminAddBookList newBooks={newBooks} disappear={disappear} setDisappear={setDisappear} />
+      <AdminAddBookList bookList={bookList} disappear={disappear} setDisappear={setDisappear} />
     </Style.Container>
   );
 };

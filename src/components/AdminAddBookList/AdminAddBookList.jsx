@@ -2,28 +2,29 @@ import React, { useState } from 'react';
 import Style from './AdminAddBookList.style';
 import CreateQR from '../CreateQR/CreateQR';
 
-const AdminAddBookList = ({ newBooks, disappear, setDisappear }) => {
-  const theadWidthData = [
-    { width: '20%', label: 'ID' },
-    { width: '30%', label: '책번호' },
-    { width: '30%', label: '상태' },
-    { width: '20%', label: '' },
-  ];
+const theadWidthData = [
+  { width: '20%', label: 'ID' },
+  { width: '30%', label: '책번호' },
+  { width: '30%', label: '상태' },
+  { width: '20%', label: '' },
+];
 
-  console.log('리스트');
+const AdminAddBookList = ({ bookList, disappear, setDisappear }) => {
+  const toggleEditButton = () => {
+    setDisappear((disappear) => !disappear);
+  };
 
   return (
     <Style.AddBookListContainer>
       <Style.CreatedBookList>
         <Style.CreatedBookListTitle>
           <h3>생성된 책</h3>
-          <button onClick={() => setDisappear(!disappear)}>{disappear ? '취소' : '편집'}</button>
+          <button onClick={toggleEditButton}>{disappear ? '취소' : '편집'}</button>
         </Style.CreatedBookListTitle>
         <Style.AddedBookList>
           <thead>
             <tr>
-              {theadWidthData.map((data) => {
-                const { width, label } = data;
+              {theadWidthData.map(({ width, label }) => {
                 return (
                   <Style.ColumnHeader key={label} width={width}>
                     {label}
@@ -33,13 +34,13 @@ const AdminAddBookList = ({ newBooks, disappear, setDisappear }) => {
             </tr>
           </thead>
           <tbody>
-            {newBooks.map((book) => {
-              const { id, bookNumber, status } = book;
+            {bookList.map((book) => {
+              const { borrowId, bookNumber, title, borrowedStatus } = book;
               return (
-                <tr key={id}>
-                  <td>{id}</td>
+                <tr key={title}>
+                  <td>{borrowId}</td>
                   <td>{bookNumber}</td>
-                  <td>{status}</td>
+                  <td>{borrowedStatus ? '보유중' : '대여중'}</td>
                   <td>
                     <button>삭제</button>
                   </td>

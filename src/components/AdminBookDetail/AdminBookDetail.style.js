@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Container = styled.section`
   width: 84%;
   min-width: 1144px;
-  height: 86%;
+  height: 680px;
   margin-top: 10px;
   padding: 20px;
   display: flex;
@@ -38,38 +38,7 @@ const BookDetailImage = styled.div`
     border-radius: 10px;
   }
 `;
-const BookDetailInfo = styled.div`
-  width: 60%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  padding: 0 10px;
-  & label {
-    font-weight: bold;
-    & > input {
-      width: 100%;
-      padding: 6px 10px;
-      border: none;
-      border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
-      outline: none;
-      transition: all 0.3s ease-out;
-      &:focus {
-        border-bottom: 1px solid ${({ theme }) => theme.colors.blue3};
-        transition: all 0.3s ease-out;
-      }
-      &::placeholder {
-        color: ${({ theme }) => theme.colors.gray1};
-        font-weight: 400;
-        font-size: 14px;
-      }
-    }
-  }
-  & span {
-    font-weight: bold;
-  }
-`;
+
 const BookDetailContent = styled.div`
   width: 100%;
   height: 40%;
@@ -137,7 +106,6 @@ export default {
   BookDetailContainer,
   BookDetailWrapper,
   BookDetailImage,
-  BookDetailInfo,
   BookDetailContent,
   BookDetailButtonWrapper,
 };
