@@ -19,6 +19,7 @@ import AdminReturnListPage from '../pages/AdminPage/AdminReturnListPage';
 import AdminUserListPage from '../pages/AdminPage/AdminUserListPage';
 import AdminBookKeeperPage from '../pages/AdminPage/AdminBookKeeperPage';
 import { navigateUrl } from '../constant/navigateUrl';
+import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
           <Route path={navigateUrl.returnPage} element={<Layout children={<ReturnBookPage />} />} />
           <Route path={navigateUrl.createQR} element={<Layout children={<CreateQR />} />} />
           <Route path={navigateUrl.borrowBook} element={<Layout children={<BorrowBook />} />} />
+          <Route path={navigateUrl.bookDetail} element={<Layout children={<BookDetailPage />} />} />
           <Route
             path={navigateUrl.adminBookList}
             element={<AdminLayout children={<AdminBookListPage />} />}

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import Style from './Bookinfo.style';
+import Style from './BookInfo.style';
 import { useEffect } from 'react';
 import BorrowBtn from '../BorrowBtn/BorrowBtn';
 import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import { useParams } from 'react-router-dom';
 import BookLocation from '../BookLocation/BookLocation';
 import BookStatus from '../BookStatus/BookStatus';
+import { useFetcher } from 'react-router-dom';
 
 const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   const bookNumber = useParams();
@@ -22,24 +23,30 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   const [btnStatus, setBtnStatus] = useState(false);
   const [isHide, setIsHide] = useState(false);
   useEffect(() => {
-    async function showPage(bookNumber) {
-      try {
-        const QrPageBookData = await fetchGETQrPage(bookNumber);
-        setBook(QrPageBookData.data);
-        console.log(QrPageBookData.data);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-    showPage(bookNumber.bookNumber);
     if (isBorrowPage) {
+      async function showBorrowPage(bookNumber) {
+        try {
+          const QrPageBookData = await fetchGETQrPage(bookNumber);
+          setBook(QrPageBookData.data);
+          console.log(QrPageBookData.data);
+        } catch (err) {
+          console.log(err);
+        }
+      }
       setBtnStatus(true);
       setIsHide(true);
-    } else if (isBookListEnter) {
+      showBorrowPage(book.bookNumber);
+    }
+  }, [isBorrowPage]);
+
+  useEffect(() => {
+    if (isBookListEnter) {
       setBtnStatus(false);
       setIsHide(false);
+      // async function BookDetailPageData = await
     }
-  }, []);
+  }, [isBookListEnter]);
+
   // if (isBorrowPage) {
   //   //Qr찍고 대출 페이지로 입장시 대출 도서 데이터 불러오기
   //   async function showBorrowPage(bookNumber) {
@@ -80,7 +87,7 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
           <h2>소개</h2>
           <p>{book.content}</p>
         </Style.BookContents>
-        <BookLocation />
+        <BookLocation bookNumber={bookNumber} />
       </Style.Container>
     </>
   );
