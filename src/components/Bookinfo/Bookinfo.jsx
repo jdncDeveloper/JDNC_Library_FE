@@ -6,7 +6,6 @@ import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import { useParams } from 'react-router-dom';
 import BookLocation from '../BookLocation/BookLocation';
 import BookStatus from '../BookStatus/BookStatus';
-import { useFetcher } from 'react-router-dom';
 
 const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   const bookNumber = useParams();
