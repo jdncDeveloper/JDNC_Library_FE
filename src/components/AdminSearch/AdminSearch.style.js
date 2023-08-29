@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const SearchContainer = styled.div`
-  display: flex;
+const SearchContainer = styled.form`
+  display: ${({ $display }) => $display};
   align-items: center;
   min-width: 330px;
   border-radius: 6px;

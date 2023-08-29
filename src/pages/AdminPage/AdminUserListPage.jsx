@@ -2,6 +2,7 @@ import Style from '../../assets/commonStyles/AdminContainer.style';
 import AdminMainHead from '../../components/AdminMainHead/AdminMainHead';
 import AdminTbody from '../../components/AdminTbody/AdminTbody';
 import AdminThead from '../../components/AdminThead/AdminThead';
+import { navigateUrl } from '../../constant/navigateUrl';
 const TEST = [
   '연번',
   '기수',
@@ -75,9 +76,11 @@ const AdminUserListPage = () => {
       <AdminMainHead
         mainTitle="인재관리"
         subTitle="인재목록"
+        hide={false}
         hideButton
         hideDate
         placeholder="인재 검색"
+        url={navigateUrl.adminUserList.base}
       />
       <AdminThead rowTitleData={TEST}>
         <AdminTbody TbodyData={TbodyBookKeeper}/>
