@@ -12,6 +12,9 @@ export const navigateUrl = {
   adminAddBook: '/admin/addbook',
   adminBorrowedList: '/admin/borrowedlist',
   adminReturnList: '/admin/returnlist',
-  adminUserList: '/admin/userlist',
+  adminUserList: {
+    base: '/admin/userlist',
+    search: '/admin/:userlist',
+  },
   adminBookKeeper: '/admin/bookkeeper',
 };

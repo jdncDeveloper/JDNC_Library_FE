@@ -25,6 +25,7 @@ const Layout = ({ children }) => {
         const response = await fetchGETUserInfo();
         
         dispatch(updateUserInfo(response.data));
+        
       } catch (error) {
         navigate('/login',  { state: { returnPath: location.pathname } });
       }
