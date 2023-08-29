@@ -13,22 +13,34 @@ const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userRole =  useSelector(state => state.userInfo);
+ 
+  const handleLogout = () => {
+    localStorage.setItem('jdncLibAccessToken', '');
+    localStorage.setItem('jdncLibRefreshToken', '');
+    dispatch(updateUserInfo({
+      mbNumber: '',
+      name: '',
+      email: '',
+      role: '',
+    }))
+    navigate(navigateUrl.login);
+  };
 
   useEffect(() => {
-    // async function getUserInfo() {
-    //   try {
-    //     const response = await fetchGETUserInfo();
+    async function getUserInfo() {
+      try {
+        const response = await fetchGETUserInfo();
 
-    //     dispatch(updateUserInfo(response.data));
-    //     if(userRole.role !== 'ADMIN') {
-    //       navigate('/login');
-    //     }
-    //   } catch (error) {
-    //     navigate('/login');
-    //   }
-    // }
-    // getUserInfo();
-    // setUsername(userRole.username);
+        dispatch(updateUserInfo(response.data));
+        if(response.data.role !== 'ROLE_ADMIN') {
+          navigate(navigateUrl.main);
+        }
+      } catch (error) {
+        navigate(navigateUrl.login);
+      }
+    }
+    getUserInfo();
+    setUsername(userRole.username);
   }, []);
 
   const navigateToMainPage = () => {
@@ -41,7 +53,7 @@ const AdminLayout = ({ children }) => {
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
         <Style.AccountControl>
           <span>{`Admin ${username} 님`}</span>
-          <button>로그아웃</button>
+          <button onClick={handleLogout}>로그아웃</button>
         </Style.AccountControl>
       </Style.Header>
       <Style.Main>

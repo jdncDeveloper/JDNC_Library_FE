@@ -8,6 +8,7 @@ import { fetchGETUserInfo } from '../../api/user/userInfo';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserInfo } from '../../store/userInfoSlice';
 import { navigateUrl } from '../../constant/navigateUrl';
+
 const LoginForm = () => {
     const [ loginForm, setLoginForm ] = useState({
         username: '',
@@ -19,6 +20,7 @@ const LoginForm = () => {
     const userRole =  useSelector(state => state.userInfo);
 
     function loginFormHandler(event) {
+        event.preventDefault();
         const value = event.target.value;
         const name = event.target.name;
         setLoginForm({
@@ -26,12 +28,25 @@ const LoginForm = () => {
             [name]: value,
         })
     }
-    async function submitLogin() {
+
+    async function submitLogin(event) {
+        event.preventDefault();
         if(!isValidateLogin(loginForm.username, loginForm.password)) return;
 
         const response = await fetchPOSTLogin(loginForm);
 
-        if(response.status !== 200) return;
+        if(response.status !== 200) {
+            alert('아이디 비밀번호를 확인해주세요.');
+            return;
+        };
+
+        const userResponse = await fetchGETUserInfo();
+        dispatch(updateUserInfo(userResponse.data));
+        
+        if(userResponse.data.role === 'ROLE_ADMIN') {
+            navigate(navigateUrl.adminBookList);
+            return;
+        }
 
         if(location.state && location.state.returnPath) {
             navigate(location.state.returnPath);
@@ -39,14 +54,6 @@ const LoginForm = () => {
         }
 
         if(!location.state || location.state.returnPath === '/') {
-            const response = await fetchGETUserInfo();
-            dispatch(updateUserInfo(response.data));
-
-            if(userRole.role === 'ADMIN') {
-                navigate(navigateUrl.adminBookList);
-                return;
-            }
-
             navigate(navigateUrl.main);
             return;
         }
@@ -55,9 +62,11 @@ const LoginForm = () => {
     return(
         <Style.LoginContainer>
             <h1>더큰내일도서관</h1>
-            <input type="text" name='username' placeholder='아이디' value={loginForm.username} onChange={loginFormHandler}/>
-            <input type="password" name='password' placeholder='비밀번호' value={loginForm.password} onChange={loginFormHandler}/>
-            <button onClick={submitLogin}>Login</button>
+            <form action="/">
+                <input type="text" name='username' placeholder='아이디' value={loginForm.username} onChange={loginFormHandler}/>
+                <input type="password" name='password' placeholder='비밀번호' value={loginForm.password} onChange={loginFormHandler}/>
+                <button onClick={submitLogin}>Login</button>
+            </form>
         </Style.LoginContainer>
     )
 }

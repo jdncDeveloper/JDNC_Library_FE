@@ -1,7 +1,7 @@
 export function isValidateLogin(username, password) {
   
   if(!isValidateUsername(username)) {
-    alert('인재번호 8자리를 입력해주세요!');
+    alert('아이디를 확인해주세요!');
     return false;
   }
   if(!isValidatePassword(password)) {
@@ -12,10 +12,9 @@ export function isValidateLogin(username, password) {
 }
 
 function isValidateUsername(username) {
-  const validateLength = username.length === 8;
-  const isUsernameNumber = /^\d+$/.test(username);
+  const validateLength = username.length > 4 && username.length < 9;
 
-  if(validateLength && isUsernameNumber) {
+  if(validateLength) {
     return true;
   }
   return false;
