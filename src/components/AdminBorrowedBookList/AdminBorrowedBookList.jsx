@@ -6,9 +6,6 @@ import Style from './AdminBorrowedBookList.style';
 
 const AdminBorrowedBookList = ({ book }) => {
   const [selectedBooks, setSelectedBooks] = useState([]);
-  const handleSelectedBooksList = (selected) => {
-    setSelectedBooks(selected);
-  };
 
   return (
     <>
@@ -24,7 +21,11 @@ const AdminBorrowedBookList = ({ book }) => {
             <th scope="col">상태</th>
           </tr>
         </Style.Thead>
-        <AdminBorrowedBookContents book={book} handleSelectedBooksList={handleSelectedBooksList} />
+        <AdminBorrowedBookContents
+          book={book}
+          selectedBooks={selectedBooks}
+          setSelectedBooks={setSelectedBooks}
+        />
       </Style.Table>
       <AdminBookListButtons selectedBooks={selectedBooks} />
     </>

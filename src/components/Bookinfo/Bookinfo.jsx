@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import Style from './Bookinfo.style';
+import Style from './BookInfo.style';
 import { useEffect } from 'react';
 import BorrowBtn from '../BorrowBtn/BorrowBtn';
 import { fetchGETQrPage } from '../../api/Borrow/borrowAPI';
 import { useParams } from 'react-router-dom';
 import BookLocation from '../BookLocation/BookLocation';
+import BookStatus from '../BookStatus/BookStatus';
+import { useFetcher } from 'react-router-dom';
 
-const BookInfo = ({ isBorrowPage }) => {
+const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   const bookNumber = useParams();
   const [book, setBook] = useState({
     id: 'number',
@@ -15,15 +17,13 @@ const BookInfo = ({ isBorrowPage }) => {
     content: 'string',
     author: 'string',
     publisher: 'string',
+    available: true,
   });
 
-  const [btnStatus, setBtnStatus] = useState(true);
-  const handleBtnStatus = () => {
-    setBtnStatus(false);
-  };
+  const [btnStatus, setBtnStatus] = useState(false);
+  const [isHide, setIsHide] = useState(false);
   useEffect(() => {
     if (isBorrowPage) {
-      //Qr찍고 대출 페이지로 입장시 대출 도서 데이터 불러오기
       async function showBorrowPage(bookNumber) {
         try {
           const QrPageBookData = await fetchGETQrPage(bookNumber);
@@ -33,15 +33,40 @@ const BookInfo = ({ isBorrowPage }) => {
           console.log(err);
         }
       }
-      showBorrowPage(bookNumber.bookNumber);
+      setBtnStatus(true);
+      setIsHide(true);
+      showBorrowPage(book.bookNumber);
     }
-    // else {
-    //   async function showDetailPage(bookNumber) {
-    //     try {
-    //       const BookDetailData = await
-    //     }
-    //   }
-  }, []);
+  }, [isBorrowPage]);
+
+  useEffect(() => {
+    if (isBookListEnter) {
+      setBtnStatus(false);
+      setIsHide(false);
+      // async function BookDetailPageData = await
+    }
+  }, [isBookListEnter]);
+
+  // if (isBorrowPage) {
+  //   //Qr찍고 대출 페이지로 입장시 대출 도서 데이터 불러오기
+  //   async function showBorrowPage(bookNumber) {
+  //     try {
+  //       const QrPageBookData = await fetchGETQrPage(bookNumber);
+  //       setBook(QrPageBookData.data);
+  //       console.log(QrPageBookData.data);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  //   showBorrowPage(bookNumber.bookNumber);
+  // }
+  // else {
+  //   async function showDetailPage(bookNumber) {
+  //     try {
+  //       const BookDetailData = await
+  //     }
+  //   }
+  // }, []);
 
   return (
     <>
@@ -54,7 +79,7 @@ const BookInfo = ({ isBorrowPage }) => {
               <p>저자 : {book.author}</p>
               <p>출판사 : {book.publisher}</p>
             </Style.TitleContent>
-            {/* <Style.BookStatus btnStatus={btnStatus}>{book.borrowStatus}</Style.BookStatus> */}
+            <BookStatus isHide={isHide} bookStatus={book.available}></BookStatus>
             <BorrowBtn bookNumber={book.bookNumber} btnStatus={btnStatus}></BorrowBtn>
           </Style.TitleContainer>
         </Style.InfoTitle>
@@ -62,7 +87,7 @@ const BookInfo = ({ isBorrowPage }) => {
           <h2>소개</h2>
           <p>{book.content}</p>
         </Style.BookContents>
-        <BookLocation />
+        <BookLocation bookNumber={bookNumber} />
       </Style.Container>
     </>
   );
