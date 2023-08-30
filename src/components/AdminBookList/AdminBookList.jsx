@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getBookList } from '../../api/testAPI/get/getBookList';
+// import { getBookList } from '../../api/testAPI/get/getBookList';
+import { fetchGETBookList } from '../../api/Book/bookListAPI';
 import Style from './AdminBookList.style';
 
 const theadWidthData = [
-  { width: '8%', label: '연번' },
-  { width: '8%', label: '구분' },
-  { width: '40%', label: '도서명' },
+  { width: '8%', label: 'ID' },
+  { width: '48%', label: '도서명' },
   { width: '14%', label: '저자' },
   { width: '14%', label: '출판사' },
   { width: '8%', label: '상태' },
@@ -17,17 +17,26 @@ const AdminBookList = () => {
   const [bookList, setBookList] = useState([]);
   const navigate = useNavigate();
 
-  // mockdata로 테스트중입니다.
   useEffect(() => {
     const fetchBookList = async () => {
-      const response = await getBookList();
-      setBookList(response);
+      const response = await fetchGETBookList();
+      setBookList(response.data);
     };
     fetchBookList();
+    console.log(bookList);
   }, []);
 
-  const handleAddBook = (bookNumber) => {
-    navigate(`/admin/addbook/${bookNumber}`);
+  // mockdata로 테스트중입니다.
+  // useEffect(() => {
+  //   const fetchBookList = async () => {
+  //     const response = await getBookList();
+  //     setBookList(response);
+  //   };
+  //   fetchBookList();
+  // }, []);
+
+  const handleAddBook = (id) => {
+    navigate(`/admin/addbook/${id}`);
   };
 
   return (
@@ -46,19 +55,18 @@ const AdminBookList = () => {
       </thead>
       <tbody>
         {bookList.map((book) => {
-          const { bookNumber, group, title, author, publisher, borrowedStatus } = book;
+          const { id, title, author, publisher, available } = book;
           return (
-            <tr key={bookNumber}>
-              <td>{bookNumber}</td>
-              <td>{group}</td>
+            <tr key={id}>
+              <td>{id}</td>
               <td>{title}</td>
               <td>{author}</td>
               <td>{publisher}</td>
               <td>
-                <Style.BookStatus>{borrowedStatus ? '대여가능' : '대여중'}</Style.BookStatus>
+                <Style.BookStatus>{available ? '대여가능' : '대여중'}</Style.BookStatus>
               </td>
               <td>
-                <Style.EditButton onClick={() => handleAddBook(bookNumber)}>수정</Style.EditButton>
+                <Style.EditButton onClick={() => handleAddBook(id)}>수정</Style.EditButton>
               </td>
             </tr>
           );

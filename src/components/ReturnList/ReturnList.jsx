@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { getBookList } from '../../api/testAPI/get/getBookList';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
-import { fetchGETReturnBook } from '../../api/Borrow/borrowAPI';
+import { fetchPUTReturnBook } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContainer.style';
 import BookList from '../BookList/BookList';
 
@@ -21,8 +21,8 @@ const ReturnList = () => {
     fetchReturnList();
   }, []);
 
-  const handleBookReturn = async (bookNumber) => {
-    const updatedBookList = await fetchGETReturnBook(bookNumber);
+  const handleBookReturn = async (bookNumber, state) => {
+    const updatedBookList = await fetchPUTReturnBook(bookNumber, state);
     setReturnBookList(updatedBookList);
   };
 
