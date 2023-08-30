@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Style from './BookInfo.style';
+import Style from './Bookinfo.style';
 import { useEffect } from 'react';
 import BorrowBtn from '../BorrowBtn/BorrowBtn';
 import { useParams } from 'react-router-dom';
@@ -23,7 +23,6 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
       const showBorrowPage = async (bookNumber) => {
         try {
           const bookInfo = await fetchGETQrBorrowBookInfo(bookNumber);
-          console.log(bookI);
           setBook(bookInfo.data);
         } catch (error) {
           console.log(error);

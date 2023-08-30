@@ -12,6 +12,7 @@ const BookStatus = ({ bookStatus, isHide }) => {
       }
       setBookStatusText('대여불가');
     }
+    handleText();
   }, [bookStatus]);
   return (
     <>
