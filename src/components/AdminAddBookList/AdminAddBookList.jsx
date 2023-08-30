@@ -9,7 +9,7 @@ const theadWidthData = [
   { width: '35%', label: '' },
 ];
 
-const AdminAddBookList = ({ bookList }) => {
+const AdminAddBookList = ({ selectedBook }) => {
   const [disappear, setDisappear] = useState(false);
 
   const toggleEditButton = () => {
@@ -36,27 +36,24 @@ const AdminAddBookList = ({ bookList }) => {
             </tr>
           </thead>
           <tbody>
-            {bookList.map((book) => {
-              const { borrowId, group, bookNumber, title, borrowedStatus } = book;
-              return (
-                <tr key={title}>
-                  <td>{borrowId}</td>
-                  <td>
-                    {group}
-                    {bookNumber}
-                  </td>
-                  <td>{borrowedStatus ? '보유중' : '대여중'}</td>
-                  <td>
-                    {disappear && (
-                      <div>
-                        <button>소실</button>
-                        <button>삭제</button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              );
-            })}
+            {selectedBook && (
+              <tr>
+                <td>{selectedBook.id}</td>
+                <td>
+                  {selectedBook.bookGroup}
+                  {selectedBook.bookNumber}
+                </td>
+                <td>{selectedBook.available ? '보유중' : '대여중'}</td>
+                <td>
+                  {disappear && (
+                    <div>
+                      <button>소실</button>
+                      <button>삭제</button>
+                    </div>
+                  )}
+                </td>
+              </tr>
+            )}
           </tbody>
         </Style.AddedBookList>
       </Style.CreatedBookList>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
 import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookListNew';
-import { getBookList } from '../../api/testAPI/get/getBookList';
+import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
 
 const INITIAL_BOOK = {
   title: '',
@@ -16,9 +16,10 @@ const INITIAL_BOOK = {
 };
 
 const AdminBookDetail = () => {
-  const { bookNumber } = useParams();
-  const [bookList, setBookList] = useState([]);
-  const [selectedBook, setSelectedBook] = useState({});
+  const path = useLocation().pathname;
+  const pathArray = path.split('/');
+  const id = pathArray[pathArray.length - 1];
+  const [selectedBook, setSelectedBook] = useState(INITIAL_BOOK);
   const [newBook, setNewBook] = useState(INITIAL_BOOK);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -37,28 +38,40 @@ const AdminBookDetail = () => {
     { groupValue: 'a', bookGroup: 'a' },
   ];
 
-  // mockdata로 테스트중입니다.
   useEffect(() => {
-    const fetchBookList = async () => {
-      const response = await getBookList();
-      setBookList(response);
+    const fetchBookDetailPage = async (id) => {
+      const response = await fetchGETBookDetailPage(id);
+      setSelectedBook(response.data);
     };
-    fetchBookList();
-  }, []);
+    fetchBookDetailPage(id);
+  }, [id]);
 
   useEffect(() => {
-    const bookDetail = bookList.find((book) => book.bookNumber === bookNumber);
-    setSelectedBook(bookDetail);
-  }, [bookNumber, bookList]);
+    if (selectedBook.id === id) {
+      setSelectedBook(selectedBook);
+    }
+  }, [id, selectedBook]);
+
   const handleTextareaChange = (event) => {
-    setBookList({ ...bookList, bookInfo: event.target.value });
+    setSelectedBook({ ...selectedBook, content: event.target.value });
+  };
+
+  const handleEditOrSave = (event) => {
+    event.preventDefault();
+    if (isEditing) {
+      // 수정 updateBook.api
+      setIsEditing(false);
+    } else {
+      // 저장 createBook.api
+      setIsEditing(true);
+    }
   };
 
   const handleReset = (event) => {
     event.preventDefault();
     setNewBook(INITIAL_BOOK);
     setSelectedBook(INITIAL_BOOK);
-    setIsEditing(true);
+    setIsEditing(false);
   };
 
   return (
@@ -96,11 +109,11 @@ const AdminBookDetail = () => {
           </button>
           <div>
             <button>책 추가</button>
-            <button>수정</button>
+            <button onClick={handleEditOrSave}>{isEditing ? '저장' : '수정'}</button>
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
-      <AdminAddBookList bookList={bookList} />
+      <AdminAddBookList selectedBook={selectedBook} />
     </Style.Container>
   );
 };
