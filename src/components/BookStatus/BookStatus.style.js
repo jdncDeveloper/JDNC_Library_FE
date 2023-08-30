@@ -9,6 +9,9 @@ const BookStatus = styled.span`
   font-weight: 700;
   font-size: 1em;
   border-radius: 8px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 `;
 
 export default { BookStatus };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchGETBorrowBook } from '../../api/Borrow/borrowAPI';
+import { fetchPOSTBorrowBook } from '../../api/Borrow/borrowBookAPI';
 import { navigateUrl } from '../../constant/navigateUrl';
 import Style from './BorrowBtn.style';
 
@@ -8,7 +8,7 @@ const BorrowBtn = ({ bookNumber, btnStatus }) => {
   const navigate = useNavigate();
   async function borrowBook(bookNumber) {
     try {
-      const borrowBookData = await fetchGETBorrowBook(bookNumber);
+      const borrowBookData = await fetchPOSTBorrowBook(bookNumber);
       if (borrowBookData.status == '201') {
         alert('대여 완료!');
         navigate(navigateUrl.borrowedList);
