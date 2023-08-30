@@ -12,6 +12,7 @@ const CreateQR = () => {
 
   function handleBookNumber(event) {
     const value = event.target.value;
+    
     if(Number(value) || value === '') {
       setIdValue(value);
       const context = bookNumberCanvas.current.getContext('2d');

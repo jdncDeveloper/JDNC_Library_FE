@@ -3,7 +3,7 @@ export const navigateUrl = {
   login: '/login',
   search: '/search/:string',
   bookList: '/booklist',
-  bookDetail: '/bookdetail',
+  bookDetail: '/bookdetail/:bookId',
   borrowBook: '/borrowbook/qr/:bookNumber',
   borrowedList: '/borrowedlist',
   returnPage: '/returnpage/qr',

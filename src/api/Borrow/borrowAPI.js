@@ -14,6 +14,7 @@ export async function fetchGETQrPage(bookNumber) {
     throw new Error(`Error fetching book details: ${error.message}`);
   }
 }
+
 /**
  * bookNumber에 해당하는 책 대출 요청을 보냅니다.
  *

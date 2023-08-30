@@ -1,10 +1,10 @@
-import React from 'react';
-import BookInfo from '../../components/BookInfo/BookInfo';
+import React, { useState } from 'react';
+import BookInfo from '../../components/Bookinfo/Bookinfo';
 
 function BorrowBook() {
   return (
     <>
-      <BookInfo isBorrowPage />
+      <BookInfo isBorrowPage={true} />
     </>
   );
 }
