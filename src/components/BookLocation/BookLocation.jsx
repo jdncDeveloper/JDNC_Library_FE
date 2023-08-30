@@ -6,7 +6,7 @@ import Style from './BookLocation.style';
 
 const bookShelf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
 
-const BookLocation = ({ isBorrowPage, bookNumber }) => {
+const BookLocation = ({ bookNumber }) => {
   const [bookGroup, setBookGroup] = useState('');
   const [bookLocationNum, setBookLocationNum] = useState(0);
 

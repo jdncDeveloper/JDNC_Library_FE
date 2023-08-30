@@ -12,7 +12,7 @@ const test = [
     status: '대출중',
   },
   {
-    id: 2,
+    id: 12,
     group: 'M',
     title: '내가 쌌다 어쩔래',
     borrower: 22207038,

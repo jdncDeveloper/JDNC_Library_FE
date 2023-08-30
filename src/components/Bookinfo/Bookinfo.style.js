@@ -37,22 +37,6 @@ const TitleContent = styled.div`
   }
 `;
 
-const BorrowBtn = styled.button`
-  display: ${(props) => (props.display == true ? 'inline-block' : 'none')};
-  padding: 0.7rem;
-  background-color: green;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 400;
-  font-size: 1em;
-
-  &:hover {
-    font-weight: 600;
-  }
-`;
-
 const BookContents = styled.div`
   margin-top: 1.5em;
   border-top: 1px solid ${({ theme }) => theme.colors.gray1};

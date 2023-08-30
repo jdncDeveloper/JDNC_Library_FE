@@ -1,10 +1,12 @@
 import React from 'react';
-import BookInfo from '../../components/BookInfo/BookInfo';
+import BookInfo from '../../components/Bookinfo/Bookinfo';
 
-const BookDetail = () => {
+const BookDetailPage = () => {
   return (
     <>
-      <BookInfo isBorrowPage={false} />
+      <BookInfo isBookListEnter />
     </>
   );
 };
+
+export default BookDetailPage;

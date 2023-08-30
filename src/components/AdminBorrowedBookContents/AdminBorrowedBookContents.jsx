@@ -3,40 +3,35 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Style from './AdminBorrowedBookContents.style';
 
-const AdminBorrowedBookContents = ({ book, handleSelectedBooksList }) => {
-  const [borrowedBookData, setBorrowedBookData] = useState([]);
-  useEffect(() => {
-    setBorrowedBookData(book);
-  });
-  const [selectedBooks, setSelectedBook] = useState([]);
+const AdminBorrowedBookContents = ({ book, setSelectedBooks, selectedBooks }) => {
   const handleCheckboxChange = (id) => {
     if (selectedBooks.includes(id)) {
-      setSelectedBook(selectedBooks.filter((item) => item !== id));
+      setSelectedBooks(selectedBooks.filter((item) => item !== id));
     } else {
-      setSelectedBook([...selectedBooks, id]);
+      setSelectedBooks([...selectedBooks, id]);
     }
   };
-  handleSelectedBooksList(selectedBooks);
+
   return (
     <>
       <Style.Tbody>
-        {borrowedBookData.map((book) => {
+        {book.map(({ id, group, title, borrower, date, status }) => {
           return (
-            <tr key={book.id}>
+            <tr key={id}>
               <td>
                 <input
                   type="checkbox"
-                  checked={selectedBooks.includes(book.id)}
-                  onChange={() => handleCheckboxChange(book.id)}
+                  checked={selectedBooks.includes(id)}
+                  onChange={() => handleCheckboxChange(id)}
                 />
               </td>
-              <td>{book.id}</td>
-              <td>{book.group}</td>
-              <td>{book.title}</td>
-              <td>{book.borrower}</td>
-              <td>{book.date}</td>
+              <td>{id}</td>
+              <td>{group}</td>
+              <td>{title}</td>
+              <td>{borrower}</td>
+              <td>{date}</td>
               <td>
-                <Style.BookStatus>{book.status}</Style.BookStatus>
+                <Style.BookStatus>{status}</Style.BookStatus>
               </td>
             </tr>
           );

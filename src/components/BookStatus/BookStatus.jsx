@@ -1,5 +1,8 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import Style from './BookStatus.style';
+
 const BookStatus = ({ bookStatus, isHide }) => {
   const [bookStatusText, setBookStatusText] = useState('');
   useEffect(() => {
@@ -12,7 +15,9 @@ const BookStatus = ({ bookStatus, isHide }) => {
   }, [bookStatus]);
   return (
     <>
-      <Style.BookStatus $btnStatus={btnStatus}>{bookStatus}</Style.BookStatus>
+      <Style.BookStatus $isHide={isHide} $bookStatus={bookStatus}>
+        {bookStatusText}
+      </Style.BookStatus>
     </>
   );
 };
