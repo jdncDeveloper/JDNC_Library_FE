@@ -3,6 +3,7 @@ import searchIcon from '../../assets/images/search-icon.png';
 import Style from './AdminSearch.style';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const AdminSearch = ({ hide, placeholder = '도서 검색'}) => {
   const $search = useRef(null);
@@ -10,6 +11,7 @@ const AdminSearch = ({ hide, placeholder = '도서 검색'}) => {
   const location = useLocation();
   const originUrl = window.location.origin;
   const pathWithoutUrl = location.pathname.replace(originUrl, '');
+  const searchParam = new URLSearchParams(location.search);
   
   const display = hide ? 'none' : 'flex';
 
@@ -19,12 +21,18 @@ const AdminSearch = ({ hide, placeholder = '도서 검색'}) => {
     const searchValue = $search.current.value;
 
     if (searchValue === '') {
-      alert('검색어를 입력해주세요.');
+      navigate(pathWithoutUrl);
       return
     }
 
     navigate(`${pathWithoutUrl}?search=${searchValue}`);
   }
+
+  useEffect(() => {
+    if(searchParam.get('search')) {
+      $search.current.value = searchParam.get('search');
+    }
+  }, [])
 
   return (
     <Style.SearchContainer $display={display}>
