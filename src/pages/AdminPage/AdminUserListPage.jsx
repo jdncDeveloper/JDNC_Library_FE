@@ -86,6 +86,7 @@ const AdminUserListPage = () => {
           searchAxios={fetchGetBookKeeperList} 
           TbodyData={bookKeeperList}
           setRefresh={setRefreshTable}
+          isActiveSearch={false}
         />
       </AdminThead>
       <AdminThead rowTitleData={TEST}>
@@ -93,6 +94,7 @@ const AdminUserListPage = () => {
           searchAxios={fetchGetSearchUserList} 
           TbodyData={userList}
           setRefresh={setRefreshTable}
+          isActiveSearch={true}
         />
       </AdminThead>
     </Style.Container>
