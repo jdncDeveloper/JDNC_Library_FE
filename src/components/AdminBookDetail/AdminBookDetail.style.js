@@ -53,7 +53,6 @@ const BookDetailContent = styled.div`
     font-weight: bold;
   }
   & textarea {
-    height: 200px;
     font-size: 14px;
     padding: 10px;
     border: none;

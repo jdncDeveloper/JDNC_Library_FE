@@ -3,13 +3,15 @@ import Style from './AdminAddBookList.style';
 import CreateQR from '../CreateQR/CreateQR';
 
 const theadWidthData = [
-  { width: '20%', label: 'ID' },
-  { width: '30%', label: '책번호' },
-  { width: '30%', label: '상태' },
-  { width: '20%', label: '' },
+  { width: '15%', label: 'ID' },
+  { width: '25%', label: '책번호' },
+  { width: '25%', label: '상태' },
+  { width: '35%', label: '' },
 ];
 
-const AdminAddBookList = ({ bookList, disappear, setDisappear }) => {
+const AdminAddBookList = ({ bookList }) => {
+  const [disappear, setDisappear] = useState(false);
+
   const toggleEditButton = () => {
     setDisappear((disappear) => !disappear);
   };
@@ -35,14 +37,22 @@ const AdminAddBookList = ({ bookList, disappear, setDisappear }) => {
           </thead>
           <tbody>
             {bookList.map((book) => {
-              const { borrowId, bookNumber, title, borrowedStatus } = book;
+              const { borrowId, group, bookNumber, title, borrowedStatus } = book;
               return (
                 <tr key={title}>
                   <td>{borrowId}</td>
-                  <td>{bookNumber}</td>
+                  <td>
+                    {group}
+                    {bookNumber}
+                  </td>
                   <td>{borrowedStatus ? '보유중' : '대여중'}</td>
                   <td>
-                    <button>삭제</button>
+                    {disappear && (
+                      <div>
+                        <button>소실</button>
+                        <button>삭제</button>
+                      </div>
+                    )}
                   </td>
                 </tr>
               );

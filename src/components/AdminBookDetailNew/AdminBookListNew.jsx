@@ -1,21 +1,19 @@
 import React from 'react';
-import Style from './AdminBookDetailForm.style';
+import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
-const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupData }) => {
+const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
   const handleInputChange = ({ name, value }) => {
-    if (selectedBook) {
-      setSelectedBook({ ...selectedBook, [name]: value });
-    }
+    setNewBook({ ...newBook, [name]: value });
   };
 
   const handleImageChange = (event) => {
     const [selectedImage] = event.target.files;
     const imageUrl = URL.createObjectURL(selectedImage);
-    setSelectedBook((bookList) => ({ ...bookList, imageUrl }));
 
-    if (selectedBook.imageUrl) {
-      URL.revokeObjectURL(selectedBook.imageUrl);
+    if (newBook.imageUrl) {
+      URL.revokeObjectURL(newBook.imageUrl);
     }
+    setNewBook((newBook) => ({ ...newBook, imageUrl }));
   };
 
   return (
@@ -28,9 +26,9 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
               <div>
                 <input
                   type="text"
-                  value={selectedBook?.title || ''}
+                  value={newBook[labelValue]}
                   placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
                 <button>검색</button>
               </div>
@@ -46,16 +44,16 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
                   {groupData.map(({ groupValue, bookGroup }) => {
                     return (
                       <option key={groupValue} value={groupValue}>
-                        {selectedBook?.bookGroup || bookGroup}
+                        {bookGroup}
                       </option>
                     );
                   })}
                 </select>
                 <input
                   type="text"
-                  value={selectedBook?.bookNumber || ''}
+                  value={newBook[labelValue]}
                   placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
               </div>
             </label>
@@ -66,9 +64,9 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
             {label} :{''}
             <input
               type="text"
-              value={selectedBook?.[labelValue] || ''}
+              value={newBook[labelValue]}
               placeholder={placeholder}
-              onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+              onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
             />
           </label>
         );
@@ -79,4 +77,4 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
   );
 };
 
-export default AdminBookDetailInfo;
+export default AdminBookDetailNew;

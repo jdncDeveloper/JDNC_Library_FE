@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
+import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookListNew';
 import { getBookList } from '../../api/testAPI/get/getBookList';
 
 const INITIAL_BOOK = {
@@ -10,15 +11,31 @@ const INITIAL_BOOK = {
   author: '',
   publisher: '',
   bookNumber: '',
-  imageUrl: '',
+  image: '',
   content: '',
 };
 
 const AdminBookDetail = () => {
   const { bookNumber } = useParams();
   const [bookList, setBookList] = useState([]);
+  const [selectedBook, setSelectedBook] = useState({});
   const [newBook, setNewBook] = useState(INITIAL_BOOK);
-  const [disappear, setDisappear] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const labelData = [
+    { labelValue: 'title', label: '도서명', placeholder: '도서명을 입력하세요.' },
+    { labelValue: 'author', label: '저자', placeholder: '저자를 입력하세요.' },
+    { labelValue: 'publisher', label: '출판사', placeholder: '출판사를 입력하세요.' },
+    { labelValue: 'bookNumber', label: '책번호', placeholder: '책번호를 기입하세요' },
+  ];
+
+  const groupData = [
+    { groupValue: 'T', bookGroup: 'T' },
+    { groupValue: 'A', bookGroup: 'A' },
+    { groupValue: 'M', bookGroup: 'M' },
+    { groupValue: 'N', bookGroup: 'N' },
+    { groupValue: 'a', bookGroup: 'a' },
+  ];
 
   // mockdata로 테스트중입니다.
   useEffect(() => {
@@ -31,20 +48,17 @@ const AdminBookDetail = () => {
 
   useEffect(() => {
     const bookDetail = bookList.find((book) => book.bookNumber === bookNumber);
-    if (bookDetail) {
-      setNewBook(bookDetail);
-    }
+    setSelectedBook(bookDetail);
   }, [bookNumber, bookList]);
-
   const handleTextareaChange = (event) => {
-    setNewBook({ ...newBook, content: event.target.value });
+    setBookList({ ...bookList, bookInfo: event.target.value });
   };
 
-  const handleReset = () => {
+  const handleReset = (event) => {
+    event.preventDefault();
     setNewBook(INITIAL_BOOK);
-    if (newBook.imageUrl) {
-      URL.revokeObjectURL(newBook.imageUrl);
-    }
+    setSelectedBook(INITIAL_BOOK);
+    setIsEditing(true);
   };
 
   return (
@@ -52,23 +66,41 @@ const AdminBookDetail = () => {
       <Style.BookDetailContainer>
         <Style.BookDetailWrapper>
           <Style.BookDetailImage>
-            <img src={newBook.imageUrl} alt="BookDetailImage" />
+            {selectedBook && <img src={selectedBook?.image} alt="BookDetailImage" />}
           </Style.BookDetailImage>
-          <AdminBookDetailInfo newBook={newBook} setNewBook={setNewBook} />
+          {isEditing ? (
+            <AdminBookDetailNew
+              newBook={newBook}
+              setNewBook={setNewBook}
+              labelData={labelData}
+              groupData={groupData}
+            />
+          ) : (
+            <AdminBookDetailInfo
+              selectedBook={selectedBook}
+              setSelectedBook={setSelectedBook}
+              labelData={labelData}
+              groupData={groupData}
+            />
+          )}
         </Style.BookDetailWrapper>
         <Style.BookDetailContent>
           <h3>책 소개 :</h3>
-          <textarea value={newBook.content} onChange={handleTextareaChange}></textarea>
+          {selectedBook && (
+            <textarea value={selectedBook?.content} onChange={handleTextareaChange}></textarea>
+          )}
         </Style.BookDetailContent>
         <Style.BookDetailButtonWrapper>
-          <button onClick={handleReset}>초기화</button>
+          <button type="button" onClick={handleReset}>
+            초기화
+          </button>
           <div>
             <button>책 추가</button>
             <button>수정</button>
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
-      <AdminAddBookList bookList={bookList} disappear={disappear} setDisappear={setDisappear} />
+      <AdminAddBookList bookList={bookList} />
     </Style.Container>
   );
 };

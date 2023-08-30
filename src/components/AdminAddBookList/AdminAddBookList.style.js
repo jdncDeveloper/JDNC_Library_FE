@@ -30,7 +30,6 @@ const CreatedBookListTitle = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 10px;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
   & > h3 {
     font-size: 18px;
     font-weight: bold;
@@ -72,7 +71,8 @@ const AddedBookList = styled.table`
     text-align: center;
   }
   & button {
-    padding: 6px 12px;
+    padding: 4px 9px;
+    margin: 0 5px;
     border-radius: 6px;
     color: ${({ theme }) => theme.colors.white};
     background-color: ${({ theme }) => theme.colors.red2};
