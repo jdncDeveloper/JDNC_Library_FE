@@ -6,7 +6,10 @@ import AdminTbody from '../../components/AdminTbody/AdminTbody';
 import AdminThead from '../../components/AdminThead/AdminThead';
 import { navigateUrl } from '../../constant/navigateUrl';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchGETUserInfo } from '../../api/user/userInfo';
+import { updateUserInfo } from '../../store/userInfoSlice';
 
 const TEST = [
   '연번',
@@ -22,6 +25,9 @@ const AdminUserListPage = () => {
   const [ userList, setUserList ] = useState([]);
   const [ bookKeeperList, setBookKeeperList ] = useState([]);
   const [ refreshTable, setRefreshTable ] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userRole =  useSelector(state => state.userInfo);
 
   const getUsers = async () => {
     try {
@@ -44,7 +50,22 @@ const AdminUserListPage = () => {
     }
   }
   
+  async function getUserInfo() {
+    try {
+      const response = await fetchGETUserInfo();
+
+      dispatch(updateUserInfo(response.data));
+      if(response.data.role !== 'ROLE_ADMIN') {
+        alert('접근 권한이 없습니다. 관리자에게 문의하세요.');
+        navigate(navigateUrl.adminBookList);
+      }
+    } catch (error) {
+      navigate(navigateUrl.login);
+    }
+  }
+
   useEffect(() => {
+    getUserInfo();
     getBookKeeper();
     getUsers();
   }, [refreshTable]);
