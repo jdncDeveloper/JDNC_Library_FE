@@ -6,13 +6,12 @@ import { useState } from 'react';
 const CreateQR = () => {
   const [ idValue, setIdValue ] = useState('');
   const [ fileName, setFileName ] = useState('QR_Book_');
-  const [bookNumberCanvasImage, setBookNumberCanvasImage] = useState('null');
   const baseUrl = window.location.origin;
   const bookNumberCanvas = useRef(null);
+  const [bookNumberCanvasImage, setBookNumberCanvasImage] = useState('null');
 
   function handleBookNumber(event) {
     const value = event.target.value;
-    
     if(Number(value) || value === '') {
       setIdValue(value);
       const context = bookNumberCanvas.current.getContext('2d');

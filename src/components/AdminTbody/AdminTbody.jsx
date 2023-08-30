@@ -4,13 +4,13 @@ import Style from './AdminTbody.style';
 import { useLocation } from "react-router-dom";
 import { fetchDeleteBookKeeper, fetchPostBookKeeper } from "../../api/user/adminUserAPI";
 
-const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
+const AdminTbody = ({ searchAxios, TbodyData, setRefresh, isActiveSearch }) => {
   const [ fetchData, setFetchData ] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const searchValue = searchParams.get('search');
 
-  const fetchGetList = async () => {
+  const fetchGetSearchList = async () => {
     try {
       const response = await searchAxios(searchValue);
       if(!response) {
@@ -26,8 +26,9 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   useEffect(() => {
     setFetchData(TbodyData);
 
-    if(searchValue) {
-      fetchGetList();
+    if(searchValue && isActiveSearch) {
+      setFetchData([]);
+      fetchGetSearchList();
     }
   }, [searchParams.get('search'), TbodyData]);
 
@@ -46,7 +47,9 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   const appointBookKeeper = async (mbNumber) => {
     try {
       const response = await fetchPostBookKeeper(mbNumber);
-      setRefresh((refreshTable) => !refreshTable);
+      if(response.status === 200) {
+        setRefresh((refresh) => !refresh);
+      }
     } catch (error) { 
       alert('임명하기 실패');
     }
@@ -55,7 +58,9 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   const dismissBookKeeper = async (mbNumber) => {
     try {
       const response = await fetchDeleteBookKeeper(mbNumber);
-      setRefresh((refreshTable) => !refreshTable);
+      if(response.status === 200) {
+        setRefresh((refresh) => !refresh);
+      }
     } catch (error) {
       alert('해제하기 실패');
     }
@@ -80,8 +85,8 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
                 <td>
                 {
                   role !== 'ROLE_BOOKKEEPER' 
-                  ? <Style.Button $backColor={'blue'} onClick={() => appointBookKeeper(mbNumber)}>임명</Style.Button> 
-                  : <Style.Button $backColor={'red'} onClick={() => dismissBookKeeper(mbNumber)}>해제</Style.Button>
+                  ? <Style.Button $backColor={'#548FDB'} onClick={() => appointBookKeeper(mbNumber)}>임명</Style.Button> 
+                  : <Style.Button $backColor={'#EE5A46'} onClick={() => dismissBookKeeper(mbNumber)}>해제</Style.Button>
                 }
                 </td>
                 <td>
