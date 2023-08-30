@@ -9,14 +9,17 @@ const bookShelf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
 const BookLocation = ({ bookNumber }) => {
   const [bookGroup, setBookGroup] = useState('');
   const [bookLocationNum, setBookLocationNum] = useState(0);
-
+  console.log(typeof bookNumber);
   function findBookLocation(bookNumber) {
-    const groups = ['T', 'A', 'M', 'N', 'a'];
-    const groupIndex = Math.floor((bookNumber - 1) / 110);
-    const group = groups[groupIndex];
-    setBookGroup(group);
-    const section = Math.ceil((bookNumber % 110) / 10);
-    setBookLocationNum(section);
+    if (typeof bookNumber == 'string') {
+      const groups = ['T', 'A', 'M', 'N', 'a'];
+      const groupIndex = Math.floor((bookNumber - 1) / 110);
+      const group = groups[groupIndex];
+      setBookGroup(group);
+      const section = Math.ceil((bookNumber % 110) / 10);
+      setBookLocationNum(section);
+    } else if (typeof bookNumber == 'object') {
+    }
   }
   useEffect(() => {
     findBookLocation(bookNumber);
