@@ -38,7 +38,7 @@ export async function fetchGETBorrowBook(bookNumber) {
  */
 export async function fetchGETReturnList() {
   try {
-    const response = await axiosInstance.get(`/borrow/returnlist`);
+    const response = await axiosInstance.get(`/borrow/return`);
     return response.data;
   } catch (error) {
     throw new Error(`Error fetching returnlist: ${error.message}`);
@@ -49,11 +49,14 @@ export async function fetchGETReturnList() {
  * 반납 요청을 보냅니다.
  *
  * @param {Number} bookNumber 책의 고유 번호
+ * @param {Number} state 반납함 위치 번호
  * @returns {Promise<object>} 서버 응답의 정보를 담은 객체
  */
-export async function fetchGETReturnBook(bookNumber) {
+export async function fetchPUTReturnBook(bookNumber, state) {
   try {
-    const response = await axiosInstance.get(`/borrow/return?bookNumber=${bookNumber}`);
+    const response = await axiosInstance.put(
+      `/borrow/return?bookNumber=${bookNumber}&state=${state}`
+    );
     return response.data;
   } catch (error) {
     throw new Error(`Error fetching return book: ${error.message}`);

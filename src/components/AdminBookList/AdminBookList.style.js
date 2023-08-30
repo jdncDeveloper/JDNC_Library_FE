@@ -27,7 +27,7 @@ const ColumnHeader = styled.th`
 `;
 const BookStatus = styled.span`
   display: inline-block;
-  padding: 6px 12px;
+  padding: 5px 10px;
   border-style: double;
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.white};

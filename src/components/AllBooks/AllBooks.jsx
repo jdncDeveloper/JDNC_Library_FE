@@ -1,33 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import BookList from '../BookList/BookList';
-import { getBookList } from '../../api/testAPI/get/getBookList';
+import { fetchGETBookList } from '../../api/Book/bookListAPI';
 import Style from '../../assets/commonStyles/BookListContainer.style';
 
 const AllBooks = () => {
   const [allBookList, setAllBookList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
+  const [page, setPage] = useState(1);
+  const observerRef = useRef(null);
 
-  // mockdata로 테스트중입니다.
   useEffect(() => {
-    const fetchBooks = async () => {
-      if (!hasMore) {
-        setLoading(false);
-        return;
-      }
-      const books = await getBookList();
-      setAllBookList(books);
+    const fetchBookList = async () => {
+      setLoading(true);
+      const response = await fetchGETBookList(page);
+      setAllBookList((prevBookList) => [...prevBookList, ...response.data]);
       setLoading(false);
-      setHasMore(false);
+
+      if (response.data.length === 0) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }
     };
-    fetchBooks();
-  }, []);
+    fetchBookList();
+  }, [page]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPage((page) => page + 1);
+        }
+      },
+      { threshold: 1 }
+    );
+    if (observerRef.current) {
+      observer.observe(observerRef.current);
+    }
+    return () => observer.disconnect();
+  }, [hasMore]);
 
   return (
     <Style.Container>
-      {allBookList.map((book) => {
+      {allBookList.map((book, index) => {
         return (
-          <Style.Booklists key={book.bookNumber}>
+          <Style.Booklists
+            key={book.bookNumber}
+            ref={index === allBookList.length - 1 ? observerRef : null}
+          >
             <BookList book={book} isMainPage />
           </Style.Booklists>
         );
