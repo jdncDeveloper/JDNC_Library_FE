@@ -3,7 +3,7 @@ import Style from './Login.style';
 const Login = () => {
     return(
         <Style.Background>
-        <LoginForm />
+            <LoginForm />
         </Style.Background>
     )
 }

@@ -32,7 +32,8 @@ const AdminLayout = ({ children }) => {
         const response = await fetchGETUserInfo();
 
         dispatch(updateUserInfo(response.data));
-        if(response.data.role !== 'ROLE_ADMIN') {
+        setUsername(response.data.name);
+        if(response.data.role === 'ROLE_USER') {
           navigate(navigateUrl.main);
         }
       } catch (error) {
@@ -52,7 +53,7 @@ const AdminLayout = ({ children }) => {
       <Style.Header>
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
         <Style.AccountControl>
-          <span>{`Admin ${username} 님`}</span>
+          <span>{`${userRole.role === 'ROLE_ADMIN' ? 'Admin': '도서지기'} ${username} 님`}</span>
           <button onClick={handleLogout}>로그아웃</button>
         </Style.AccountControl>
       </Style.Header>

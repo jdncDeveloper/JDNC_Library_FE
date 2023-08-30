@@ -8,26 +8,26 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   const [ fetchData, setFetchData ] = useState([]);
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
+  const searchValue = searchParams.get('search');
+
+  const fetchGetList = async () => {
+    try {
+      const response = await searchAxios(searchValue);
+      if(!response) {
+        setFetchData([]);
+        return;
+      };
+      setFetchData(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     setFetchData(TbodyData);
 
-    const searchValue = searchParams.get('search');
-
-    const getBookKeeper = async () => {
-      try {
-        const response = await searchAxios(searchValue);
-        if(!response) {
-          setFetchData([]);
-          return;
-        };
-        setFetchData(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
     if(searchValue) {
-      getBookKeeper();
+      fetchGetList();
     }
   }, [searchParams.get('search'), TbodyData]);
 
@@ -46,7 +46,6 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   const appointBookKeeper = async (mbNumber) => {
     try {
       const response = await fetchPostBookKeeper(mbNumber);
-
       setRefresh((refreshTable) => !refreshTable);
     } catch (error) { 
       alert('임명하기 실패');
@@ -56,7 +55,6 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
   const dismissBookKeeper = async (mbNumber) => {
     try {
       const response = await fetchDeleteBookKeeper(mbNumber);
-
       setRefresh((refreshTable) => !refreshTable);
     } catch (error) {
       alert('해제하기 실패');
@@ -82,8 +80,8 @@ const AdminTbody = ({ searchAxios, TbodyData, setRefresh }) => {
                 <td>
                 {
                   role !== 'ROLE_BOOKKEEPER' 
-                  ? <Style.Button onClick={() => appointBookKeeper(mbNumber)}>임명</Style.Button> 
-                  : <Style.Button onClick={() => dismissBookKeeper(mbNumber)}>해제</Style.Button>
+                  ? <Style.Button $backColor={'blue'} onClick={() => appointBookKeeper(mbNumber)}>임명</Style.Button> 
+                  : <Style.Button $backColor={'red'} onClick={() => dismissBookKeeper(mbNumber)}>해제</Style.Button>
                 }
                 </td>
                 <td>

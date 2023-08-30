@@ -56,7 +56,7 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
         </p>
         <Style.AccountControl>
           {userRole.role === 'ROLE_BOOKKEEKPER'? <span>도서지기</span>: <></>}
-          {userRole.role === 'ROLE_ADMIN' ? <Link to={navigateUrl.adminBookList}>[관리자 페이지]</Link> : <></>}
+          {userRole.role !== 'ROLE_USER' ? <Link to={navigateUrl.adminBookList}>[관리자 페이지]</Link> : <></>}
         </Style.AccountControl>
       </Style.UserBox>
       <Style.MenuBox>
