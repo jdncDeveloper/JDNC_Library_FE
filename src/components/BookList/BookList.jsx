@@ -29,8 +29,14 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
 
   const handleReturnButtonClick = () => {
     if (window.confirm('반납하시겠습니까?')) {
-      onBookReturn(book.bookNumber);
-      alert('반납이 완료되었습니다.');
+      if (onBookReturn === 204) {
+        onBookReturn(book.bookNumber);
+        alert('반납이 완료되었습니다.');
+      } else {
+        alert('반납에 실패하였습니다.');
+      }
+    } else {
+      alert('반납이 취소되었습니다.');
     }
   };
 

@@ -24,3 +24,13 @@ export async function fetchPOSTCreateBook(book) {
     throw new Error(`Error fetching book list: ${error.message}`);
   }
 }
+
+export async function fetchPUTUpdateBook(id, book) {
+  try {
+    const response = await axiosInstance.put(`/book?id=${id}`, book);
+
+    return response;
+  } catch (error) {
+    throw new Error(`Error fetching book list: ${error.message}`);
+  }
+}
