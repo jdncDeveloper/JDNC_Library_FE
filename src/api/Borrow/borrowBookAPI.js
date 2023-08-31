@@ -9,8 +9,8 @@ import axiosInstance from '../axiosConfig';
 
 export async function fetchGETQrBorrowBookInfo(bookNumber) {
   try {
-    const response = await axiosInstance.get(`/borrow/${bookNumber}`);
-    return response.data;
+    const { data } = await axiosInstance.get(`/borrow/${bookNumber}`);
+    return data;
   } catch (error) {
     throw new Error(`Error fetching BorrowBookInfo: ${error.message}`);
   }
@@ -24,7 +24,7 @@ export async function fetchGETQrBorrowBookInfo(bookNumber) {
  */
 export async function fetchPOSTBorrowBook(bookNumber) {
   try {
-    const response = await axiosInstance.post(`/borrow?bookNumber=${bookNumber}`);
+    await axiosInstance.post(`/borrow?bookNumber=${bookNumber}`);
     return response;
   } catch (error) {
     throw new Error(`Error fetching Book Borrow: ${error.message}`);

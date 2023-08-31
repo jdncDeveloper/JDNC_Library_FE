@@ -24,7 +24,7 @@ export async function fetchGETAllBorrowedBookList() {
 
 export async function fetchPUTAdminReturnBookRequest(IdArray) {
   try {
-    const response = await axiosInstance.get(`book/admincheck`, IdArray);
+    const response = await axiosInstance.get(`/book/admincheck`, IdArray);
     return response;
   } catch (error) {
     throw new Error(`Error fetching book ReturnRequest: ${error.message}`);
