@@ -7,8 +7,8 @@ import axiosInstance from '../axiosConfig';
  */
 export async function fetchGETBookDetailPage(bookId) {
   try {
-    const response = await axiosInstance.get(`/book/${bookId}`);
-    return response.data;
+    const { data } = await axiosInstance.get(`/book/${bookId}`);
+    return data;
   } catch (error) {
     throw new Error(`Error fetching book details: ${error.message}`);
   }

@@ -5,13 +5,12 @@ import BookSection from '../BookSection/BookSection';
 import GroupTap from '../GroupTap/GroupTap';
 import Style from './BookLocation.style';
 
-const bookShelf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
-
 const BookLocation = ({ bookNumber }) => {
   const [bookGroup, setBookGroup] = useState('T');
   const [bookLocationNum, setBookLocationNum] = useState(0);
-  // const [group, setGroup] = useState('');
   const [bookData, setBookData] = useState([]);
+  const [changeData, setChangeData] = useState([]);
+
   function findBookLocation(number) {
     const groups = ['T', 'A', 'M', 'N', 'a'];
     const groupIndex = Math.floor((number - 1) / 110);
@@ -20,13 +19,18 @@ const BookLocation = ({ bookNumber }) => {
     setBookLocationNum(section);
     return { number, group, section };
   }
+  useEffect(() => {
+    if (bookNumber) {
+      setBookData(bookNumber.map(findBookLocation));
+    }
+  }, [bookNumber]);
 
-  // useEffect(() => {
-  //   setBookData(bookNumber.map(findBookLocation));
-  // }, [bookNumber]);
-  console.log(bookData);
-  console.log(bookNumber);
-
+  useEffect(() => {
+    if (bookData.length > 0) {
+      const changedBookGroup = bookData.filter((item) => item.group === bookGroup);
+      setChangeData(changedBookGroup);
+    }
+  }, [bookGroup, bookData]);
   return (
     <>
       <Style.LocationInfo>
@@ -49,14 +53,7 @@ const BookLocation = ({ bookNumber }) => {
       <GroupTap setBookGroup={setBookGroup} bookGroup={bookGroup} />
       <Style.BookLocation>
         <h2>{bookGroup}</h2>
-        <Style.BookShelf>
-          {bookShelf.map((book, index) => {
-            const isSelected = index === bookLocationNum - 1;
-            return (
-              <BookSection $area={book} key={book} $inHere={isSelected} bookNumber={bookNumber} />
-            );
-          })}
-        </Style.BookShelf>
+        <BookSection bookNumbers={changeData} />
       </Style.BookLocation>
     </>
   );

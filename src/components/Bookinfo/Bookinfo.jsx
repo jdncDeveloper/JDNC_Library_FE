@@ -9,10 +9,9 @@ import { fetchGETQrBorrowBookInfo } from '../../api/Borrow/borrowBookAPI';
 import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
 
 const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
-  const { bookNumber } = useParams();
-  const { bookId } = useParams();
+  const { bookNumber, bookId } = useParams();
 
-  const [book, setBook] = useState({});
+  const [book, setBook] = useState();
   const [btnStatus, setBtnStatus] = useState(false);
   const [isHide, setIsHide] = useState(false);
   const [bookLocation, setBookLocation] = useState([]);
@@ -25,6 +24,7 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
           const bookInfo = await fetchGETQrBorrowBookInfo(bookNumber);
           setBook(bookInfo.data);
         } catch (error) {
+          //유저 입장에서 오류처리 로직만들기
           console.log(error);
         }
       };
@@ -36,19 +36,18 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   // 책 리스트를 통해 책 상세페이지 진입시
 
   useEffect(() => {
-    if (isBookListEnter) {
-      const showBookDetailPage = async (bookId) => {
-        try {
-          const bookInfo = await fetchGETBookDetailPage(bookId);
-          setBook(bookInfo.data);
-        } catch (error) {
-          console.log(error);
-        }
-      };
-      setBtnStatus(false);
-      setIsHide(false);
-      showBookDetailPage(bookId);
-    }
+    if (!isBookListEnter) return;
+    const showBookDetailPage = async (bookId) => {
+      try {
+        const bookInfo = await fetchGETBookDetailPage(bookId);
+        setBook(bookInfo.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    setBtnStatus(false);
+    setIsHide(false);
+    showBookDetailPage(bookId);
   }, [isBookListEnter]);
 
   useEffect(() => {
@@ -57,10 +56,11 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
       setBookLocation([bookNumber]);
     }
     if (isBookListEnter) {
-      const availableBookNumbers = book.bookNumbers;
+      const availableBookNumbers = book?.bookNumbers;
       setBookLocation(availableBookNumbers);
     }
-  }, []);
+  }, [book?.bookNumbers]);
+  if (!book) return <></>;
 
   return (
     <>
