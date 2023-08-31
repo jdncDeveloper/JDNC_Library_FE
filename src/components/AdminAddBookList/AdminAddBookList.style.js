@@ -21,6 +21,7 @@ const CreatedBookList = styled.div`
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.colors.gray2};
   border-radius: 10px;
+  overflow: auto;
 `;
 
 const CreatedBookListTitle = styled.div`

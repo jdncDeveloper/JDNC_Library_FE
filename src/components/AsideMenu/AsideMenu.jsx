@@ -17,24 +17,21 @@ const AsideMenu = () => {
       label: '도서관리',
       subMenu: [
         { label: '도서목록', route: navigateUrl.adminBookList },
-        { label: '도서추가', route: navigateUrl.adminAddBook },
+        { label: '도서추가', route: navigateUrl.adminAddBookNew },
       ],
       route: navigateUrl.adminBookList,
     },
     menu2: {
       label: '대여관리',
       subMenu: [
-        { label: '대여목록', route: navigateUrl.adminBorrowedList },
-        { label: '반납목록', route: navigateUrl.adminReturnList },
+        { label: '반납관리', route: navigateUrl.adminBorrowedList },
+        { label: '대여기록', route: navigateUrl.adminReturnList },
       ],
       route: navigateUrl.adminBorrowedList,
     },
     menu3: {
       label: '인재관리',
-      subMenu: [
-        { label: '인재목록', route: navigateUrl.adminUserList.base },
-        { label: '도서지기 관리', route: navigateUrl.adminBookKeeper },
-      ],
+      subMenu: [{ label: '인재목록', route: navigateUrl.adminUserList.base }],
       route: navigateUrl.adminUserList.base,
     },
   };

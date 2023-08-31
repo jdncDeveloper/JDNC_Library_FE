@@ -36,24 +36,26 @@ const AdminAddBookList = ({ selectedBook }) => {
             </tr>
           </thead>
           <tbody>
-            {selectedBook && (
-              <tr>
-                <td>{selectedBook.id}</td>
-                <td>
-                  {selectedBook.bookGroup}
-                  {selectedBook.bookNumber}
-                </td>
-                <td>{selectedBook.available ? '보유중' : '대여중'}</td>
-                <td>
-                  {disappear && (
-                    <div>
-                      <button>소실</button>
-                      <button>삭제</button>
-                    </div>
-                  )}
-                </td>
-              </tr>
-            )}
+            {selectedBook &&
+              selectedBook.bookNumbers &&
+              selectedBook.bookNumbers.map((number) => (
+                <tr key={number}>
+                  <td>{selectedBook.id}</td>
+                  <td>
+                    {selectedBook.bookGroup}
+                    {number}
+                  </td>
+                  <td>{selectedBook.available ? '보유중' : '대여중'}</td>
+                  <td>
+                    {disappear && (
+                      <div>
+                        <button>소실</button>
+                        <button>삭제</button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </Style.AddedBookList>
       </Style.CreatedBookList>

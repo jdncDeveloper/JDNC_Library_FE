@@ -1,25 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
+import { navigateUrl } from '../../constant/navigateUrl';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
 import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookListNew';
 import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
+import { fetchPOSTAddBookList, fetchPOSTCreateBook } from '../../api/AdminBook/AdminBookDetailAPI';
 
 const INITIAL_BOOK = {
   title: '',
   author: '',
   publisher: '',
-  bookNumber: '',
+  bookNumbers: '',
   image: '',
   content: '',
 };
 
 const AdminBookDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [selectedBook, setSelectedBook] = useState(INITIAL_BOOK);
   const [newBook, setNewBook] = useState(INITIAL_BOOK);
-  const [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(id ? true : false);
 
   const labelData = [
     { labelValue: 'title', label: '도서명', placeholder: '도서명을 입력하세요.' },
@@ -41,8 +44,28 @@ const AdminBookDetail = () => {
       const response = await fetchGETBookDetailPage(id);
       setSelectedBook(response.data);
     };
-    fetchBookDetailPage(id);
+    if (id) fetchBookDetailPage(id);
   }, [id]);
+
+  // const handleAddBook = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const bookNumber = newBook.bookNumbers;
+  //     const response = await fetchPOSTAddBookList(bookNumber);
+  //     if (response.status === 201) {
+  //       setSelectedBook({
+  //         ...selectedBook,
+  //         bookNumbers: [...selectedBook.bookNumbers, bookNumber],
+  //       });
+  //       alert('책이 추가되었습니다.');
+  //     } else {
+  //       alert('책 추가에 실패했습니다.');
+  //     }
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     if (selectedBook.id === id) return;
@@ -53,14 +76,27 @@ const AdminBookDetail = () => {
     setSelectedBook((selectedBook) => ({ ...selectedBook, content: event.target.value }));
   };
 
-  const handleEditOrSave = (event) => {
+  const handleEditOrSave = async (event) => {
     event.preventDefault();
     if (isEditing) {
       // 수정 updateBook.api
-      setIsEditing(false);
+      setIsEditing(true);
     } else {
       // 저장 createBook.api
-      setIsEditing(true);
+      try {
+        const response = await fetchPOSTCreateBook(newBook);
+        console.log(newBook);
+        if (response.status === 201) {
+          alert('책 정보가 등록 되었습니다.');
+          setNewBook(INITIAL_BOOK);
+        } else {
+          alert('책 정보 등록에 실패했습니다.');
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsEditing(false);
+      }
     }
   };
 
@@ -68,6 +104,7 @@ const AdminBookDetail = () => {
     event.preventDefault();
     setNewBook(INITIAL_BOOK);
     setSelectedBook(INITIAL_BOOK);
+    navigate(navigateUrl.adminAddBookNew);
     setIsEditing(false);
   };
 
@@ -79,16 +116,16 @@ const AdminBookDetail = () => {
             {selectedBook && <img src={selectedBook?.image} alt="BookDetailImage" />}
           </Style.BookDetailImage>
           {isEditing ? (
-            <AdminBookDetailNew
-              newBook={newBook}
-              setNewBook={setNewBook}
+            <AdminBookDetailInfo
+              selectedBook={selectedBook}
+              setSelectedBook={setSelectedBook}
               labelData={labelData}
               groupData={groupData}
             />
           ) : (
-            <AdminBookDetailInfo
-              selectedBook={selectedBook}
-              setSelectedBook={setSelectedBook}
+            <AdminBookDetailNew
+              newBook={newBook}
+              setNewBook={setNewBook}
               labelData={labelData}
               groupData={groupData}
             />
@@ -106,7 +143,9 @@ const AdminBookDetail = () => {
           </button>
           <div>
             <button>책 추가</button>
-            <button onClick={handleEditOrSave}>{isEditing ? '저장' : '수정'}</button>
+            <button type="submit" onClick={handleEditOrSave}>
+              {isEditing ? '수정' : '저장'}
+            </button>
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>

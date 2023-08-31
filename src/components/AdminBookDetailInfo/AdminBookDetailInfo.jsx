@@ -30,7 +30,7 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
                   type="text"
                   value={selectedBook?.title ?? ''}
                   placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
                 <button>검색</button>
               </div>
@@ -55,7 +55,7 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
                   type="text"
                   value={selectedBook?.bookNumber ?? ''}
                   placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
               </div>
             </label>
@@ -68,7 +68,7 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
               type="text"
               value={selectedBook?.[labelValue] ?? ''}
               placeholder={placeholder}
-              onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
+              onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
             />
           </label>
         );

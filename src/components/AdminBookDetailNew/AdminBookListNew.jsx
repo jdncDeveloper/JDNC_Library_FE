@@ -26,6 +26,8 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
               <div>
                 <input
                   type="text"
+                  name={labelValue}
+                  id={labelValue}
                   value={newBook[labelValue]}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
@@ -51,6 +53,8 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
                 </select>
                 <input
                   type="text"
+                  name={labelValue}
+                  id={labelValue}
                   value={newBook[labelValue]}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
@@ -64,6 +68,8 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
             {label} :{''}
             <input
               type="text"
+              name={labelValue}
+              id={labelValue}
               value={newBook[labelValue]}
               placeholder={placeholder}
               onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
