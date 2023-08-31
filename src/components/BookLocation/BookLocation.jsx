@@ -2,28 +2,31 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import BookSection from '../BookSection/BookSection';
+import GroupTap from '../GroupTap/GroupTap';
 import Style from './BookLocation.style';
 
 const bookShelf = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'];
 
 const BookLocation = ({ bookNumber }) => {
-  const [bookGroup, setBookGroup] = useState('');
+  const [bookGroup, setBookGroup] = useState('T');
   const [bookLocationNum, setBookLocationNum] = useState(0);
-  console.log(typeof bookNumber);
-  function findBookLocation(bookNumber) {
-    if (typeof bookNumber == 'string') {
-      const groups = ['T', 'A', 'M', 'N', 'a'];
-      const groupIndex = Math.floor((bookNumber - 1) / 110);
-      const group = groups[groupIndex];
-      setBookGroup(group);
-      const section = Math.ceil((bookNumber % 110) / 10);
-      setBookLocationNum(section);
-    } else if (typeof bookNumber == 'object') {
-    }
+  // const [group, setGroup] = useState('');
+  const [bookData, setBookData] = useState([]);
+  function findBookLocation(number) {
+    const groups = ['T', 'A', 'M', 'N', 'a'];
+    const groupIndex = Math.floor((number - 1) / 110);
+    const group = groups[groupIndex];
+    const section = Math.ceil((number % 110) / 10);
+    setBookLocationNum(section);
+    return { number, group, section };
   }
-  useEffect(() => {
-    findBookLocation(bookNumber);
-  }, [bookNumber]);
+
+  // useEffect(() => {
+  //   setBookData(bookNumber.map(findBookLocation));
+  // }, [bookNumber]);
+  console.log(bookData);
+  console.log(bookNumber);
+
   return (
     <>
       <Style.LocationInfo>
@@ -43,6 +46,7 @@ const BookLocation = ({ bookNumber }) => {
           </li>
         </Style.LocationInfoUl>
       </Style.LocationInfo>
+      <GroupTap setBookGroup={setBookGroup} bookGroup={bookGroup} />
       <Style.BookLocation>
         <h2>{bookGroup}</h2>
         <Style.BookShelf>

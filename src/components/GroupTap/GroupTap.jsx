@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
 import Style from './GroupTap.style';
 
-const GroupTap = () => {
+const GroupTap = ({ bookGroup, setBookGroup }) => {
   const [selectedTap, setSelectedTap] = useState('tab1');
 
   const handleTapChange = (event) => {
     const newSelectedTap = event.target.id;
     setSelectedTap(newSelectedTap);
+    setBookGroup(newSelectedTap);
   };
 
   const tabData = [
-    { id: 'tab1', label: 'T' },
-    { id: 'tab2', label: 'A' },
-    { id: 'tab3', label: 'M' },
-    { id: 'tab4', label: 'N' },
-    { id: 'tab5', label: 'a' },
+    { id: 'T', label: 'T' },
+    { id: 'A', label: 'A' },
+    { id: 'M', label: 'M' },
+    { id: 'N', label: 'N' },
+    { id: 'a', label: 'a' },
   ];
 
   return (

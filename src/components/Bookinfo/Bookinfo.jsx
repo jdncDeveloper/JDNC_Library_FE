@@ -54,13 +54,13 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
   useEffect(() => {
     //책 위치 찾기에서 bookNumber 넘겨주는 방법
     if (isBorrowPage) {
-      setBookLocation(bookNumber);
+      setBookLocation([bookNumber]);
     }
     if (isBookListEnter) {
       const availableBookNumbers = book.bookNumbers;
       setBookLocation(availableBookNumbers);
     }
-  });
+  }, []);
 
   return (
     <>

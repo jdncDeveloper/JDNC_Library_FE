@@ -35,7 +35,7 @@ const UseInfoUl = styled.ul`
 
 const BookLocation = styled.div`
   width: 229px;
-  margin: 0 auto;
+  margin: 10px auto;
 
   & > h2 {
     color: ${({ theme }) => theme.colors.blue1};

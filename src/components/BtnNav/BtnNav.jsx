@@ -1,6 +1,9 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchGETBookList } from '../../api/Book/bookListAPI';
+import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import { navigateUrl } from '../../constant/navigateUrl';
 import Style from './BtnNav.style';
 
@@ -15,6 +18,32 @@ const BtnNav = () => {
   function moveBorrowedPage() {
     navigate(navigateUrl.borrowedList);
   }
+
+  useEffect(() => {
+    const allBookData = async () => {
+      try {
+        const allBookList = await fetchGETBookList();
+        setAllBook(allBookList.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    allBookData();
+    const availableBookList = allBook.filter((book) => book.available);
+    setCurrentNumberOfBook(availableBookList);
+  }, [allBook]);
+
+  useEffect(() => {
+    const myBorrowListData = async () => {
+      try {
+        const myBookData = await fetchGETReturnList();
+        setMyBorrowedBook(myBookData.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    myBorrowListData();
+  }, []);
 
   return (
     <>
