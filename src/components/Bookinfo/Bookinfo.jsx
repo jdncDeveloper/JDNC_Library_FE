@@ -24,7 +24,7 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
           const bookInfo = await fetchGETQrBorrowBookInfo(bookNumber);
           setBook(bookInfo.data);
         } catch (error) {
-          //유저 입장에서 오류처리 로직만들기
+          //유저 입장에서 오류처리 로직만들기!!
           console.log(error);
         }
       };
