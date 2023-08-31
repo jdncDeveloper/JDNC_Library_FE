@@ -9,12 +9,12 @@ export const navigateUrl = {
   returnPage: '/returnpage/qr',
   createQR: '/qr/create',
   adminBookList: '/admin/booklist',
-  adminAddBook: '/admin/addbook/:bookNumber',
+  adminAddBookNew: '/admin/addbook/new',
+  adminAddBookUpdate: '/admin/addbook/:id',
   adminBorrowedList: '/admin/borrowedlist',
   adminReturnList: '/admin/returnlist',
   adminUserList: {
     base: '/admin/userlist',
     search: '/admin/:userlist',
   },
-  adminBookKeeper: '/admin/bookkeeper',
 };

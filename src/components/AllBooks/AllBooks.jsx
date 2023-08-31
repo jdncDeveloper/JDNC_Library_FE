@@ -7,13 +7,14 @@ const AllBooks = () => {
   const [allBookList, setAllBookList] = useState([]);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const observerRef = useRef(null);
 
   useEffect(() => {
     const fetchBookList = async () => {
       setLoading(true);
-      const response = await fetchGETBookList(page);
+      const pageSize = 10;
+      const response = await fetchGETBookList(page, pageSize);
       setAllBookList((prevBookList) => [...prevBookList, ...response.data]);
       setLoading(false);
 
@@ -28,18 +29,18 @@ const AllBooks = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+      ([entry]) => {
+        if (entry.isIntersecting && !loading && hasMore) {
           setPage((page) => page + 1);
         }
       },
       { threshold: 1 }
     );
-    if (observerRef.current) {
+    if (observerRef.current && !loading && hasMore) {
       observer.observe(observerRef.current);
     }
     return () => observer.disconnect();
-  }, [hasMore]);
+  }, [hasMore, loading]);
 
   return (
     <Style.Container>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { getBookList } from '../../api/testAPI/get/getBookList';
 import { fetchGETBookList } from '../../api/Book/bookListAPI';
 import Style from './AdminBookList.style';
 
@@ -23,17 +22,7 @@ const AdminBookList = () => {
       setBookList(response.data);
     };
     fetchBookList();
-    console.log(bookList);
   }, []);
-
-  // mockdata로 테스트중입니다.
-  // useEffect(() => {
-  //   const fetchBookList = async () => {
-  //     const response = await getBookList();
-  //     setBookList(response);
-  //   };
-  //   fetchBookList();
-  // }, []);
 
   const handleAddBook = (id) => {
     navigate(`/admin/addbook/${id}`);

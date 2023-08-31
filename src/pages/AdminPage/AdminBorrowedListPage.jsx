@@ -25,7 +25,7 @@ const AdminBorrowedListPage = () => {
   return (
     <>
       <Style.Container>
-        <AdminMainHead mainTitle="대여관리" subTitle="대여목록" hide />
+        <AdminMainHead mainTitle="대여관리" subTitle="반납관리" hide />
         <AdminBorrowedBookList book={test} />
       </Style.Container>
     </>

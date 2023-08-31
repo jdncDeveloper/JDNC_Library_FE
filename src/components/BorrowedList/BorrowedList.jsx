@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
-// import { getBookList } from '../../api/testAPI/get/getBookList';
 import Style from '../../assets/commonStyles/BookListContainer.style';
 import BookList from '../../components/BookList/BookList';
 
@@ -12,19 +11,9 @@ const BorrowedList = () => {
     const fetchBorrowedList = async () => {
       const borrowedList = await fetchGETReturnList();
       setBorrowedBookList(borrowedList.data);
-      console.log(borrowedList.data);
     };
     fetchBorrowedList();
   }, []);
-
-  //mockdata로 테스트중입니다.
-  // useEffect(() => {
-  //   const fetchBooks = async () => {
-  //     const books = await getBookList();
-  //     setBorrowedBookList(books);
-  //   };
-  //   fetchBooks();
-  // }, [borrowBook]);
 
   return (
     <>

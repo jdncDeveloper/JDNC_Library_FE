@@ -19,7 +19,7 @@ const BookListTable = styled.table`
     text-align: center;
   }
   & tr:nth-child(even) {
-    background-color: ${({ theme }) => theme.colors.gray1};
+    background-color: #f2f2f2;
   }
 `;
 const ColumnHeader = styled.th`

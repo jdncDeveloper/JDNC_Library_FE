@@ -17,7 +17,6 @@ import AdminAddBookPage from '../pages/AdminPage/AdminAddBookPage';
 import AdminBorrowedListPage from '../pages/AdminPage/AdminBorrowedListPage';
 import AdminReturnListPage from '../pages/AdminPage/AdminReturnListPage';
 import AdminUserListPage from '../pages/AdminPage/AdminUserListPage';
-import AdminBookKeeperPage from '../pages/AdminPage/AdminBookKeeperPage';
 import { navigateUrl } from '../constant/navigateUrl';
 import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
 
@@ -44,7 +43,11 @@ const App = () => {
             element={<AdminLayout children={<AdminBookListPage />} />}
           />
           <Route
-            path={navigateUrl.adminAddBook}
+            path={navigateUrl.adminAddBookUpdate}
+            element={<AdminLayout children={<AdminAddBookPage />} />}
+          />
+          <Route
+            path={navigateUrl.adminAddBookNew}
             element={<AdminLayout children={<AdminAddBookPage />} />}
           />
           <Route
@@ -58,10 +61,6 @@ const App = () => {
           <Route
             path={navigateUrl.adminUserList.search}
             element={<AdminLayout children={<AdminUserListPage />} />}
-          />
-          <Route
-            path={navigateUrl.adminBookKeeper}
-            element={<AdminLayout children={<AdminBookKeeperPage />} />}
           />
           <Route
             path={navigateUrl.adminBorrowedList}
