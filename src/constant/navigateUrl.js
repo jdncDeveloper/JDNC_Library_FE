@@ -9,7 +9,7 @@ export const navigateUrl = {
   returnPage: '/returnpage/qr',
   createQR: '/qr/create',
   adminBookList: '/admin/booklist',
-  adminAddBook: '/admin/addbook/:bookNumber',
+  adminAddBook: '/admin/addbook/:id',
   adminBorrowedList: '/admin/borrowedlist',
   adminReturnList: '/admin/returnlist',
   adminUserList: {

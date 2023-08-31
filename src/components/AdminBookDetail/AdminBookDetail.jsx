@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Style from './AdminBookDetail.style';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
@@ -16,9 +16,7 @@ const INITIAL_BOOK = {
 };
 
 const AdminBookDetail = () => {
-  const path = useLocation().pathname;
-  const pathArray = path.split('/');
-  const id = pathArray[pathArray.length - 1];
+  const { id } = useParams();
   const [selectedBook, setSelectedBook] = useState(INITIAL_BOOK);
   const [newBook, setNewBook] = useState(INITIAL_BOOK);
   const [isEditing, setIsEditing] = useState(false);
@@ -47,13 +45,12 @@ const AdminBookDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    if (selectedBook.id === id) {
-      setSelectedBook(selectedBook);
-    }
+    if (selectedBook.id === id) return;
+    setSelectedBook(selectedBook);
   }, [id, selectedBook]);
 
   const handleTextareaChange = (event) => {
-    setSelectedBook({ ...selectedBook, content: event.target.value });
+    setSelectedBook((selectedBook) => ({ ...selectedBook, content: event.target.value }));
   };
 
   const handleEditOrSave = (event) => {

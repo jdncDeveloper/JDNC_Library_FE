@@ -4,7 +4,7 @@ import Style from './AdminBookDetailForm.style';
 const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupData }) => {
   const handleInputChange = ({ name, value }) => {
     if (selectedBook) {
-      setSelectedBook({ ...selectedBook, [name]: value });
+      setSelectedBook((selectedBook) => ({ ...selectedBook, [name]: value }));
     }
   };
 
@@ -28,7 +28,7 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
               <div>
                 <input
                   type="text"
-                  value={selectedBook?.title || ''}
+                  value={selectedBook?.title ?? ''}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
                 />
@@ -46,14 +46,14 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
                   {groupData.map(({ groupValue, bookGroup }) => {
                     return (
                       <option key={groupValue} value={groupValue}>
-                        {selectedBook?.bookGroup || bookGroup}
+                        {selectedBook?.bookGroup ?? bookGroup}
                       </option>
                     );
                   })}
                 </select>
                 <input
                   type="text"
-                  value={selectedBook?.bookNumber || ''}
+                  value={selectedBook?.bookNumber ?? ''}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
                 />
@@ -66,7 +66,7 @@ const AdminBookDetailInfo = ({ selectedBook, setSelectedBook, labelData, groupDa
             {label} :{''}
             <input
               type="text"
-              value={selectedBook?.[labelValue] || ''}
+              value={selectedBook?.[labelValue] ?? ''}
               placeholder={placeholder}
               onChange={(e) => handleInputChange({ name: 'title', value: e.target.value })}
             />

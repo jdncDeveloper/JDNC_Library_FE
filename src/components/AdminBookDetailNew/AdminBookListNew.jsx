@@ -3,7 +3,7 @@ import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
 const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
   const handleInputChange = ({ name, value }) => {
-    setNewBook({ ...newBook, [name]: value });
+    setNewBook((newBook) => ({ ...newBook, [name]: value }));
   };
 
   const handleImageChange = (event) => {
