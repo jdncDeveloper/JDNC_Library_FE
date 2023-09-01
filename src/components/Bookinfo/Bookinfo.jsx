@@ -33,8 +33,8 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
       showBorrowPage(bookNumber);
     }
   }, [isBorrowPage]);
-  // 책 리스트를 통해 책 상세페이지 진입시
 
+  // 책 리스트를 통해 책 상세페이지 진입시
   useEffect(() => {
     if (!isBookListEnter) return;
     const showBookDetailPage = async (bookId) => {

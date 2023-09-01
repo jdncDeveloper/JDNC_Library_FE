@@ -37,21 +37,22 @@ const BtnNav = () => {
     const allBookData = async () => {
       try {
         const allBookList = await fetchGETBookList();
-        setAllBook(allBookList.data.length);
+        setAllBook(allBookList.data);
       } catch (error) {
         console.log(error);
       }
     };
     allBookData();
   }, []);
-  console.log(allBook);
 
-  // const updateAvailableBookList = () => {
-  //   const availableBookList = allBook.filter((book) => book.available);
-  //   setCurrentNumberOfBook(availableBookList);
-  // };
-
-  // if (!allBook) return updateAvailableBookList();
+  useEffect(() => {
+    const updateAvailableBookList = () => {
+      const availableBookList = allBook.filter((book) => book.available);
+      setCurrentNumberOfBook(availableBookList);
+    };
+    updateAvailableBookList();
+  }, [allBook]);
+  console.log('BtnNav실행');
   useEffect(() => {
     const myBorrowListData = async () => {
       try {
@@ -75,7 +76,7 @@ const BtnNav = () => {
           </Style.BtnNavTitle>
           <Style.BtnNavContents>
             <Style.CurrentNumberOfBook>{currentNumberOfBook.length}</Style.CurrentNumberOfBook>
-            <h2>/{allBook}</h2>
+            <h2>/{allBook.length}</h2>
           </Style.BtnNavContents>
         </Style.BtnNavContainer>
         <Style.BtnNavContainer onClick={moveBorrowedPage}>
