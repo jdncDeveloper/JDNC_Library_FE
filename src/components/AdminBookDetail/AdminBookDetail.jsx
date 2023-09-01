@@ -43,7 +43,7 @@ const AdminBookDetail = () => {
   ];
 
   useEffect(() => {
-    const fetchBookDetailPage = async (id) => {
+    const fetchBookDetailPage = async () => {
       const response = await fetchGETBookDetailPage(id);
       setSelectedBook(response.data);
     };

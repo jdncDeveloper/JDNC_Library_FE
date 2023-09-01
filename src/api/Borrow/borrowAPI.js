@@ -56,7 +56,7 @@ export async function fetchPUTReturnBook(bookNumber, state) {
     const response = await axiosInstance.put(
       `/borrow/return?bookNumber=${bookNumber}&state=${state}`
     );
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error(`Error fetching return book: ${error.message}`);
   }
