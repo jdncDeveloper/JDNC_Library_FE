@@ -1,19 +1,9 @@
 import React from 'react';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
-const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
+const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImageChange }) => {
   const handleInputChange = ({ name, value }) => {
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
-  };
-
-  const handleImageChange = (event) => {
-    const [selectedImage] = event.target.files;
-    const imageUrl = URL.createObjectURL(selectedImage);
-
-    if (newBook.imageUrl) {
-      URL.revokeObjectURL(newBook.imageUrl);
-    }
-    setNewBook((newBook) => ({ ...newBook, imageUrl }));
   };
 
   return (
@@ -78,7 +68,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData }) => {
         );
       })}
       <span>책 이미지 :</span>
-      <input type="file" onChange={handleImageChange} accept="image/*" />
+      <input type="file" onChange={onImageChange} accept="image/*" />
     </Style.BookDetailInfo>
   );
 };

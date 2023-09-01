@@ -6,7 +6,7 @@ export const navigateUrl = {
   bookDetail: '/bookdetail/:bookId',
   borrowBook: '/borrowbook/qr/:bookNumber',
   borrowedList: '/borrowedlist',
-  returnPage: '/returnpage/qr',
+  returnPage: '/returnpage/qr/:state',
   createQR: '/qr/create',
   adminBookList: '/admin/booklist',
   adminAddBookNew: '/admin/addbook/new',
