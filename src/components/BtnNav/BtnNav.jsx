@@ -19,20 +19,7 @@ const BtnNav = () => {
     navigate(navigateUrl.borrowedList);
   }
 
-  // useEffect(() => {
-  //   const allBookData = async () => {
-  //     try {
-  //       const allBookList = await fetchGETBookList();
-  //       setAllBook(allBookList.data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   allBookData();
-  //   const availableBookList = allBook.filter((book) => book.available);
-  //   setCurrentNumberOfBook(availableBookList);
-  // }, []);
-
+  //전체 도서 개수를 불러옵니다.
   useEffect(() => {
     const allBookData = async () => {
       try {
@@ -45,6 +32,7 @@ const BtnNav = () => {
     allBookData();
   }, []);
 
+  //전체 도서 개수를 불러온 후 대여 가능한 도서 개수를 정렬합니다.
   useEffect(() => {
     const updateAvailableBookList = () => {
       const availableBookList = allBook.filter((book) => book.available);
@@ -52,7 +40,6 @@ const BtnNav = () => {
     };
     updateAvailableBookList();
   }, [allBook]);
-  console.log('BtnNav실행');
   useEffect(() => {
     const myBorrowListData = async () => {
       try {
