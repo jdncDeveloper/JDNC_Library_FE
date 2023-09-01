@@ -13,12 +13,9 @@ const AllBooks = () => {
   useEffect(() => {
     const fetchBookList = async () => {
       setLoading(true);
-      const size = 5;
+      const size = 10;
       const response = await fetchGETBookList(page, size);
-      setAllBookList((prevBookList) => {
-        const newBookList = [...prevBookList, ...response.data];
-        return newBookList;
-      });
+      setAllBookList((prevBookList) => [...prevBookList, ...response.data]);
 
       setLoading(false);
 
@@ -29,8 +26,6 @@ const AllBooks = () => {
       }
     };
     fetchBookList();
-    console.log('page', page);
-    console.log('allBookList', allBookList);
   }, [page]);
 
   useEffect(() => {

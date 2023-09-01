@@ -16,6 +16,7 @@ const INITIAL_BOOK = {
   title: '',
   author: '',
   publisher: '',
+  bookGroup: '',
   bookNumbers: '',
   image: '',
   content: '',
@@ -35,11 +36,11 @@ const AdminBookDetail = () => {
   ];
 
   const groupData = [
-    { groupValue: 'T', bookGroup: 'T' },
-    { groupValue: 'A', bookGroup: 'A' },
-    { groupValue: 'M', bookGroup: 'M' },
-    { groupValue: 'N', bookGroup: 'N' },
-    { groupValue: 'a', bookGroup: 'a' },
+    { groupValue: 'GROUP_T', bookGroup: 'T' },
+    { groupValue: 'GROUP_A', bookGroup: 'A' },
+    { groupValue: 'GROUP_M', bookGroup: 'M' },
+    { groupValue: 'GROUP_N', bookGroup: 'N' },
+    { groupValue: 'GROUP_A2', bookGroup: 'a' },
   ];
 
   useEffect(() => {
@@ -129,7 +130,11 @@ const AdminBookDetail = () => {
   };
 
   const handleTextareaChange = (event) => {
-    setSelectedBook((selectedBook) => ({ ...selectedBook, content: event.target.value }));
+    if (isEditing) {
+      setSelectedBook((book) => ({ ...book, content: event.target.value }));
+    } else {
+      setNewBook((book) => ({ ...book, content: event.target.value }));
+    }
   };
 
   const handleReset = (event) => {
@@ -168,7 +173,10 @@ const AdminBookDetail = () => {
         </Style.BookDetailWrapper>
         <Style.BookDetailContent>
           <h3>책 소개 :</h3>
-          {selectedBook && (
+          {!id && newBook && (
+            <textarea value={newBook?.content} onChange={handleTextareaChange}></textarea>
+          )}
+          {id && selectedBook && (
             <textarea value={selectedBook?.content} onChange={handleTextareaChange}></textarea>
           )}
         </Style.BookDetailContent>
