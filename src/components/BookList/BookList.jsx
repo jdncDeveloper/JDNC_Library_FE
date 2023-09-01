@@ -27,7 +27,8 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
     }
   };
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClick = (event) => {
+    event.stopPropagation();
     if (window.confirm('반납하시겠습니까?')) {
       onBookReturn(book.bookNumber);
     } else {

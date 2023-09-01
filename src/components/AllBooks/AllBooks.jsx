@@ -5,6 +5,7 @@ import Style from '../../assets/commonStyles/BookListContainer.style';
 
 const AllBooks = () => {
   const [allBookList, setAllBookList] = useState([]);
+  const [initialLoading, setInitialLoading] = useState(true);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [page, setPage] = useState(0);
@@ -18,28 +19,38 @@ const AllBooks = () => {
       setAllBookList((prevBookList) => [...prevBookList, ...response.data]);
       setLoading(false);
 
-      if (response.data.length === 0) {
+      if (response.data.length < pageSize) {
         setHasMore(false);
       } else {
         setHasMore(true);
+        if (initialLoading) {
+          setInitialLoading(false);
+        }
       }
     };
     fetchBookList();
+    console.log('page', page);
+    console.log('allBookList', allBookList);
   }, [page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !loading && hasMore) {
+        if (!initialLoading && entry.isIntersecting && !loading && hasMore) {
           setPage((page) => page + 1);
         }
       },
       { threshold: 1 }
     );
-    if (observerRef.current && !loading && hasMore) {
-      observer.observe(observerRef.current);
-    }
-    return () => observer.disconnect();
+    const timer = setTimeout(() => {
+      if (observerRef.current && !loading && hasMore) {
+        observer.observe(observerRef.current);
+      }
+    }, 500);
+    return () => {
+      clearTimeout(timer);
+      observer.disconnect();
+    };
   }, [hasMore, loading]);
 
   return (
