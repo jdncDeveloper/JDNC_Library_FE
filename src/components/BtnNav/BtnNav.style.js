@@ -58,8 +58,7 @@ const CurrentNumberOfBook = styled.h1`
 `;
 
 const MyBorrowedBookNumber = styled.h1`
-  color: ${({ $myBorrowedBook }) =>
-    $myBorrowedBook == 3 ? theme.colors.red3 : theme.colors.blue2};
+  color: ${({ $myBorrowedBook }) => ($myBorrowedBook > 2 ? theme.colors.red3 : theme.colors.blue2)};
 `;
 
 export default {

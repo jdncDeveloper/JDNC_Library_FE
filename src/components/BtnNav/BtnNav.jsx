@@ -73,7 +73,7 @@ const BtnNav = () => {
             <Style.ArrowIcon icon="fa-solid fa-arrow-right" />
           </Style.BtnNavTitle>
           <Style.BtnNavContents>
-            <Style.MyBorrowedBookNumber $myBorrowedBook={myBorrowedBook}>
+            <Style.MyBorrowedBookNumber $myBorrowedBook={myBorrowedBook.length}>
               {myBorrowedBook.length}
             </Style.MyBorrowedBookNumber>
             <h2>/3</h2>

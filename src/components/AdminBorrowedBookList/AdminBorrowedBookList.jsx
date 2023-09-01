@@ -1,7 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { fetchGETAllBorrowedBookList } from '../../api/AdminBook/AdminBookAPI';
+import {
+  fetchGETAllBorrowedBookList,
+  fetchGETBookListOfMonth,
+} from '../../api/AdminBook/AdminBookAPI';
 import AdminBookListButtons from '../AdminBookListButtons/AdminBookListButtons';
 import AdminBorrowedBookContents from '../AdminBorrowedBookContents/AdminBorrowedBookContents';
 import Style from './AdminBorrowedBookList.style';
@@ -12,7 +15,7 @@ const AdminBorrowedBookList = () => {
   useEffect(() => {
     const allBorrowedBookData = async () => {
       try {
-        const allBorrowedBookList = await fetchGETAllBorrowedBookList();
+        const allBorrowedBookList = await fetchGETBookListOfMonth();
         setBookList(allBorrowedBookList.data);
       } catch (error) {
         alert('오류발생');
