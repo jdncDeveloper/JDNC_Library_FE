@@ -19,6 +19,8 @@ import AdminReturnListPage from '../pages/AdminPage/AdminReturnListPage';
 import AdminUserListPage from '../pages/AdminPage/AdminUserListPage';
 import { navigateUrl } from '../constant/navigateUrl';
 import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
+import BookKeeperMainPage from '../pages/BookKeeperMainPage/BookKeeperMainPage';
+import BookKeeperBorrowedListPage from '../pages/BookKeeperBorrowedListPage/BookKeeperBorrowedListPage';
 
 const App = () => {
   return (
@@ -35,9 +37,10 @@ const App = () => {
           {/* path= /bookDetail bookDetailPage */}
           <Route path={navigateUrl.search} element={<Layout children={<SearchPage />} />} />
           <Route path={navigateUrl.returnPage} element={<Layout children={<ReturnBookPage />} />} />
-          <Route path={navigateUrl.createQR} element={<Layout children={<CreateQR />} />} />
           <Route path={navigateUrl.borrowBook} element={<Layout children={<BorrowBook />} />} />
           <Route path={navigateUrl.bookDetail} element={<Layout children={<BookDetailPage />} />} />
+          <Route path={navigateUrl.bookKeeperMain} element={<Layout children={<BookKeeperMainPage />} />} />
+          <Route path={navigateUrl.bookKeeperBorrowedList} element={<Layout children={<BookKeeperBorrowedListPage />} />} />
           <Route
             path={navigateUrl.adminBookList}
             element={<AdminLayout children={<AdminBookListPage />} />}

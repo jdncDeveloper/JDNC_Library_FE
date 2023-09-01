@@ -106,9 +106,14 @@ const ToAdminPage = styled.li`
   margin: 10px 0;
   padding: 16px;
   border-radius: 6px;
-  background-color: ${({ theme }) => theme.colors.gray1};
+  background-color: ${({ theme }) => theme.colors.red1};
   color: ${({ theme }) => theme.colors.white};
   font-size: 20px;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.red2};
+    transition: all 0.3s ease-out;
+  }
 `;
 const Buttons = styled.div`
   display: flex;

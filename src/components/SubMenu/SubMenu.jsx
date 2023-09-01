@@ -23,6 +23,10 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
     navigate(navigateUrl.borrowedList);
     setIsSubMenuOpen(false);
   };
+  const navigateToBookkeeperMainPage = () => {
+    navigate(navigateUrl.bookKeeperMain);
+    setIsSubMenuOpen(false);
+  }
 
   //관리자 페이지 생성시 사용예정
 
@@ -30,7 +34,6 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
   //   navigate(navigateUrl.bookManagement);
   //   setIsSubMenuOpen(false);
   // };
-
   const handleLogout = () => {
     localStorage.setItem('jdncLibAccessToken', '');
     localStorage.setItem('jdncLibRefreshToken', '');
@@ -62,7 +65,11 @@ const SubMenu = ({ setIsSubMenuOpen, username, slideOpen, hide }) => {
       <Style.MenuBox>
         <Style.NavigateTo onClick={navigateToBookListPage}>도서 목록</Style.NavigateTo>
         <Style.NavigateTo onClick={navigateToBorrowedListPage}>대여 현황</Style.NavigateTo>
-        {userRole.role === 'ROLE_BOOKKEEKPER'? <Style.ToAdminPage>도서 관리</Style.ToAdminPage>: <></>}
+        {
+        userRole.role === 'ROLE_BOOKKEEPER'
+        ? <Style.ToAdminPage onClick={navigateToBookkeeperMainPage}>도서 관리</Style.ToAdminPage>
+        : <></>
+        }
       </Style.MenuBox>
       <Style.Buttons>
         <button onClick={() => handleLogout()}>로그아웃</button>
