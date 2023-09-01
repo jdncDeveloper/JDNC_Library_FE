@@ -4,10 +4,13 @@ import axiosInstance from '../axiosConfig';
  * 보유중인 책 정보의 책 번호를 부여하여 새로 생성합니다.
  *
  * @param {number} bookNumber - 책 번호
+ * @param {number} bookId - 책 아이디
  */
-export async function fetchPOSTAddBookList(bookNumber) {
+export async function fetchPOSTAddBookList(bookNumber, bookId) {
   try {
-    const response = await axiosInstance.post(`/book/addnumber?bookNumber=${bookNumber}`);
+    const response = await axiosInstance.post(
+      `admin/book/collection?bookNumber=${bookNumber}&bookId=${bookId}`
+    );
 
     return response;
   } catch (error) {
@@ -17,7 +20,7 @@ export async function fetchPOSTAddBookList(bookNumber) {
 
 export async function fetchPOSTCreateBook(book) {
   try {
-    const response = await axiosInstance.post('/book', book);
+    const response = await axiosInstance.post('admin/book', book);
 
     return response;
   } catch (error) {
@@ -27,7 +30,7 @@ export async function fetchPOSTCreateBook(book) {
 
 export async function fetchPUTUpdateBook(id, book) {
   try {
-    const response = await axiosInstance.put(`/book?id=${id}`, book);
+    const response = await axiosInstance.put(`admin/book/${id}`, book);
 
     return response;
   } catch (error) {
