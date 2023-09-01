@@ -40,12 +40,13 @@ const BtnNav = () => {
     };
     updateAvailableBookList();
   }, [allBook]);
+
+  //내 대출중인 도서 개수를 불러옵니다.
   useEffect(() => {
     const myBorrowListData = async () => {
       try {
         const myBookData = await fetchGETReturnList();
         setMyBorrowedBook(myBookData.data);
-        console.log(myBorrowedBook);
       } catch (error) {
         console.log(error);
       }
