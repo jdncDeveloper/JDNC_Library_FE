@@ -1,8 +1,19 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { fetchGETBookListOfMonth } from '../../api/AdminBook/AdminBookAPI';
 
 const AdminBorrowedRecord = () => {
   const [record, setRecord] = useState([]);
+
+  async function showMonthRecord(year, month) {
+    try {
+      const MonthRecordData = await fetchGETBookListOfMonth(year, month);
+      setRecord(MonthRecordData);
+    } catch (error) {
+      alert('오류발생');
+    }
+  }
   return (
     <>
       <tbody>

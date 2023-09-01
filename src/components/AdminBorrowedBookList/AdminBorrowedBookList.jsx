@@ -1,11 +1,28 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
+import { fetchGETAllBorrowedBookList } from '../../api/AdminBook/AdminBookAPI';
 import AdminBookListButtons from '../AdminBookListButtons/AdminBookListButtons';
 import AdminBorrowedBookContents from '../AdminBorrowedBookContents/AdminBorrowedBookContents';
 import Style from './AdminBorrowedBookList.style';
 
-const AdminBorrowedBookList = ({ book }) => {
+const AdminBorrowedBookList = () => {
+  const [bookList, setBookList] = useState({});
   const [selectedBooks, setSelectedBooks] = useState([]);
+  useEffect(() => {
+    const allBorrowedBookData = async () => {
+      try {
+        const allBorrowedBookList = await fetchGETAllBorrowedBookList();
+        setBookList(allBorrowedBookList.data);
+      } catch (error) {
+        alert('오류발생');
+      }
+      allBorrowedBookData();
+    };
+  }, []);
+  console.log(bookList);
+
+  if (!bookList) return <></>;
 
   return (
     <>
@@ -22,7 +39,7 @@ const AdminBorrowedBookList = ({ book }) => {
           </tr>
         </Style.Thead>
         <AdminBorrowedBookContents
-          book={book}
+          bookList={bookList}
           selectedBooks={selectedBooks}
           setSelectedBooks={setSelectedBooks}
         />

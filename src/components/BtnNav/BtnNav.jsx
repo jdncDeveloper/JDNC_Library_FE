@@ -19,25 +19,45 @@ const BtnNav = () => {
     navigate(navigateUrl.borrowedList);
   }
 
+  // useEffect(() => {
+  //   const allBookData = async () => {
+  //     try {
+  //       const allBookList = await fetchGETBookList();
+  //       setAllBook(allBookList.data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   allBookData();
+  //   const availableBookList = allBook.filter((book) => book.available);
+  //   setCurrentNumberOfBook(availableBookList);
+  // }, []);
+
   useEffect(() => {
     const allBookData = async () => {
       try {
         const allBookList = await fetchGETBookList();
-        setAllBook(allBookList.data);
+        setAllBook(allBookList.data.length);
       } catch (error) {
         console.log(error);
       }
     };
     allBookData();
-    const availableBookList = allBook.filter((book) => book.available);
-    setCurrentNumberOfBook(availableBookList);
-  }, [allBook]);
+  }, []);
+  console.log(allBook);
 
+  // const updateAvailableBookList = () => {
+  //   const availableBookList = allBook.filter((book) => book.available);
+  //   setCurrentNumberOfBook(availableBookList);
+  // };
+
+  // if (!allBook) return updateAvailableBookList();
   useEffect(() => {
     const myBorrowListData = async () => {
       try {
         const myBookData = await fetchGETReturnList();
         setMyBorrowedBook(myBookData.data);
+        console.log(myBorrowedBook);
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +75,7 @@ const BtnNav = () => {
           </Style.BtnNavTitle>
           <Style.BtnNavContents>
             <Style.CurrentNumberOfBook>{currentNumberOfBook.length}</Style.CurrentNumberOfBook>
-            <h2>/{allBook.length}</h2>
+            <h2>/{allBook}</h2>
           </Style.BtnNavContents>
         </Style.BtnNavContainer>
         <Style.BtnNavContainer onClick={moveBorrowedPage}>
