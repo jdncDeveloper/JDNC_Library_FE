@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Style from './AdminBorrowedBookContents.style';
 
-const AdminBorrowedBookContents = ({ book, setSelectedBooks, selectedBooks }) => {
+const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }) => {
   const handleCheckboxChange = (id) => {
     if (selectedBooks.includes(id)) {
       setSelectedBooks(selectedBooks.filter((item) => item !== id));
@@ -15,7 +15,7 @@ const AdminBorrowedBookContents = ({ book, setSelectedBooks, selectedBooks }) =>
   return (
     <>
       <Style.Tbody>
-        {book.map(({ id, group, title, borrower, date, status }) => {
+        {/* {bookList.map(({ id, group, title, borrower, date, status }) => {
           return (
             <tr key={id}>
               <td>
@@ -35,7 +35,7 @@ const AdminBorrowedBookContents = ({ book, setSelectedBooks, selectedBooks }) =>
               </td>
             </tr>
           );
-        })}
+        })} */}
       </Style.Tbody>
     </>
   );

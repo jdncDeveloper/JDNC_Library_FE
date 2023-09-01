@@ -12,10 +12,9 @@ const BorrowBtn = ({ bookNumber, btnStatus }) => {
       if (borrowBookData.status == '201') {
         alert('대여 완료!');
         navigate(navigateUrl.borrowedList);
-      } else {
-        alert('대여 실패!');
       }
     } catch (err) {
+      alert('대여 실패!');
       console.log(err);
     }
   }

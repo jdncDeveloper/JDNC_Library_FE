@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchGETBookList } from '../../api/Book/bookListAPI';
 import Style from './AdminBookList.style';
 
@@ -15,16 +15,31 @@ const theadWidthData = [
 const AdminBookList = () => {
   const [bookList, setBookList] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const searchValue = searchParams.get('search');
 
   useEffect(() => {
     const fetchBookList = async () => {
       const response = await fetchGETBookList();
       setBookList(response.data);
     };
-    fetchBookList();
-  }, []);
 
-  const handleAddBook = (id) => {
+    const fetchBookListSearch = async () => {
+      const response = await fetchGETBookList();
+      const searchBookList = response.data.filter((book) => {
+        return book.title.includes(searchValue);
+      });
+      setBookList(searchBookList);
+    };
+    if (searchValue) {
+      fetchBookListSearch();
+    } else {
+      fetchBookList();
+    }
+  }, [searchValue]);
+
+  const handleBookDetail = (id) => {
     navigate(`/admin/addbook/${id}`);
   };
 
@@ -55,7 +70,7 @@ const AdminBookList = () => {
                 <Style.BookStatus>{available ? '대여가능' : '대여중'}</Style.BookStatus>
               </td>
               <td>
-                <Style.EditButton onClick={() => handleAddBook(id)}>수정</Style.EditButton>
+                <Style.EditButton onClick={() => handleBookDetail(id)}>수정</Style.EditButton>
               </td>
             </tr>
           );

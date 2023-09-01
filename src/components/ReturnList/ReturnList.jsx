@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import { getBookList } from '../../api/testAPI/get/getBookList';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import { fetchPUTReturnBook } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContainer.style';
@@ -8,7 +7,6 @@ import BookList from '../BookList/BookList';
 const ReturnList = () => {
   const [returnBookList, setReturnBookList] = useState([]);
 
-  // API 연결 후 사용할 예정입니다.
   useEffect(() => {
     async function fetchReturnList() {
       try {
@@ -22,23 +20,19 @@ const ReturnList = () => {
   }, []);
 
   const handleBookReturn = async (bookNumber, state) => {
-    const updatedBookList = await fetchPUTReturnBook(bookNumber, state);
-    setReturnBookList(updatedBookList);
+    try {
+      const updatedBookList = await fetchPUTReturnBook(bookNumber, state);
+      if (updatedBookList.status === 204) {
+        alert('반납이 완료되었습니다.');
+        const returnList = await fetchGETReturnList();
+        setReturnBookList(returnList.data);
+      } else {
+        alert('반납에 실패하였습니다.');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  //mockdata로 테스트중입니다.
-  // useEffect(() => {
-  //   async function fetchBooks() {
-  //     const books = await getBookList();
-  //     setReturnBookList(books);
-  //   }
-  //   fetchBooks();
-  // }, []);
-
-  // const handleBookReturn = (returnedBookId) => {
-  //   const updatedBookList = returnBookList.filter((book) => book.borrowId !== returnedBookId);
-  //   setReturnBookList(updatedBookList);
-  // };
 
   return (
     <Style.Container>

@@ -24,8 +24,7 @@ export async function fetchGETQrBorrowBookInfo(bookNumber) {
  */
 export async function fetchPOSTBorrowBook(bookNumber) {
   try {
-    await axiosInstance.post(`/borrow?bookNumber=${bookNumber}`);
-    return response;
+    return await axiosInstance.post(`/borrow?bookNumber=${bookNumber}`);
   } catch (error) {
     throw new Error(`Error fetching Book Borrow: ${error.message}`);
   }

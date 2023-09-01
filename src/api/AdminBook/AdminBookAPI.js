@@ -2,14 +2,15 @@ import axiosInstance from '../axiosConfig';
 
 /**
  * 반납 처리 페이지 / 대출중인 모든 책 리스트를 불러옵니다.
+ *        (현재 미반납된 도서 목록을 불러옵니다. 추후에 변경해야 합니다.)
  *
  * @param {Number} id 책 고유 아이디
  * @returns {Promise<array>} 대출 중인 모든 리스트를 담은 배열
  */
 export async function fetchGETAllBorrowedBookList() {
   try {
-    const response = await axiosInstance.get(`/`);
-    return response.data;
+    const { data } = await axiosInstance.get(`/admin/book/overdue`);
+    return data;
   } catch (error) {
     throw new Error(`Error fetching AllBorrowedBookList: ${error.message}`);
   }
@@ -24,9 +25,24 @@ export async function fetchGETAllBorrowedBookList() {
 
 export async function fetchPUTAdminReturnBookRequest(IdArray) {
   try {
-    const response = await axiosInstance.get(`/book/admincheck`, IdArray);
-    return response;
+    return await axiosInstance.put(`/admin/book/collection/return`, IdArray);
   } catch (error) {
     throw new Error(`Error fetching book ReturnRequest: ${error.message}`);
+  }
+}
+
+/**
+ * 월간 도서 대출 리스트를 불러옵니다. (추후 월별 대출 기록으로 받아와야함)
+ *
+ * @param {Number} year 선택한 년도
+ * @param {Number} month 선택한 월
+ */
+
+export async function fetchGETBookListOfMonth(year, month) {
+  try {
+    const { data } = await axiosInstance.get(`/admin/book/monthly?year=${year}?month=${month}`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching BookList Of Month: ${error.message}`);
   }
 }
