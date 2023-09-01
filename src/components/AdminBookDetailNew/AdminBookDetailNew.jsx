@@ -32,7 +32,10 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
             <label key={labelValue}>
               {label} :{''}
               <div>
-                <select name="group">
+                <select
+                  name="group"
+                  onChange={(e) => handleInputChange({ name: 'bookGroup', value: e.target.value })}
+                >
                   {groupData.map(({ groupValue, bookGroup }) => {
                     return (
                       <option key={groupValue} value={groupValue}>

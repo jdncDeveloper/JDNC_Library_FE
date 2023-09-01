@@ -19,8 +19,10 @@ export async function fetchPOSTAddBookList(bookNumber, bookId) {
 }
 
 export async function fetchPOSTCreateBook(book) {
+  const bookToSend = { ...book };
+  delete bookToSend.bookNumbers;
   try {
-    const response = await axiosInstance.post('admin/book', book);
+    const response = await axiosInstance.post('admin/book', bookToSend);
 
     return response;
   } catch (error) {

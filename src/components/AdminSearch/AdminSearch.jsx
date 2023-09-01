@@ -5,14 +5,14 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const AdminSearch = ({ hide, placeholder = '도서 검색'}) => {
+const AdminSearch = ({ hide, placeholder = '도서 검색' }) => {
   const $search = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const originUrl = window.location.origin;
   const pathWithoutUrl = location.pathname.replace(originUrl, '');
   const searchParam = new URLSearchParams(location.search);
-  
+
   const display = hide ? 'none' : 'flex';
 
   const searchHandler = (e) => {
@@ -22,17 +22,17 @@ const AdminSearch = ({ hide, placeholder = '도서 검색'}) => {
 
     if (searchValue === '') {
       navigate(pathWithoutUrl);
-      return
+      return;
     }
 
     navigate(`${pathWithoutUrl}?search=${searchValue}`);
-  }
+  };
 
   useEffect(() => {
-    if(searchParam.get('search')) {
+    if (searchParam.get('search')) {
       $search.current.value = searchParam.get('search');
     }
-  }, [])
+  }, []);
 
   return (
     <Style.SearchContainer $display={display}>

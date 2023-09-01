@@ -36,8 +36,7 @@ const AdminAddBookList = ({ selectedBook }) => {
             </tr>
           </thead>
           <tbody>
-            {selectedBook &&
-              selectedBook.bookNumbers &&
+            {selectedBook && selectedBook.bookNumbers ? (
               selectedBook.bookNumbers.map((number) => (
                 <tr key={number}>
                   <td>{selectedBook.id}</td>
@@ -55,7 +54,10 @@ const AdminAddBookList = ({ selectedBook }) => {
                     )}
                   </td>
                 </tr>
-              ))}
+              ))
+            ) : (
+              <></>
+            )}
           </tbody>
         </Style.AddedBookList>
       </Style.CreatedBookList>
