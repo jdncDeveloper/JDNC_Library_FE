@@ -38,7 +38,10 @@ const AdminBookDetailInfo = ({
             <label key={labelValue}>
               {label} :{''}
               <div>
-                <select name="group">
+                <select
+                  name="group"
+                  onChange={(e) => handleInputChange({ name: 'bookGroup', value: e.target.value })}
+                >
                   {groupData.map(({ groupValue, bookGroup }) => {
                     return (
                       <option key={groupValue} value={groupValue}>
@@ -51,7 +54,7 @@ const AdminBookDetailInfo = ({
                   type="text"
                   value={selectedBook?.bookNumber ?? ''}
                   placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
+                  onChange={(e) => handleInputChange({ name: 'bookNumber', value: e.target.value })}
                 />
               </div>
             </label>
