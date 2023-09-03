@@ -6,18 +6,15 @@ import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
 import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookDetailNew';
 import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
-import {
-  fetchPOSTAddBookList,
-  fetchPOSTCreateBook,
-  fetchPUTUpdateBook,
-} from '../../api/AdminBook/AdminBookDetailAPI';
+import { fetchPOSTAddBookList } from '../../api/AdminBook/AdminBookDetailAPI';
+import EditOrSaveButton from './EditOrSaveButton';
 
-const INITIAL_BOOK = {
+export const INITIAL_BOOK = {
   title: '',
   author: '',
   publisher: '',
   bookGroup: '',
-  bookNumbers: '',
+  bookNumber: '',
   image: '',
   content: '',
 };
@@ -36,11 +33,11 @@ const AdminBookDetail = () => {
   ];
 
   const groupData = [
-    { groupValue: 'GROUP_T', bookGroup: 'T' },
-    { groupValue: 'GROUP_A', bookGroup: 'A' },
-    { groupValue: 'GROUP_M', bookGroup: 'M' },
-    { groupValue: 'GROUP_N', bookGroup: 'N' },
-    { groupValue: 'GROUP_A2', bookGroup: 'a' },
+    { groupValue: 'GROUP_T', bookGroup: 'GROUP_T' },
+    { groupValue: 'GROUP_A', bookGroup: 'GROUP_A' },
+    { groupValue: 'GROUP_M', bookGroup: 'GROUP_M' },
+    { groupValue: 'GROUP_N', bookGroup: 'GROUP_N' },
+    { groupValue: 'GROUP_A2', bookGroup: 'GROUP_A2' },
   ];
 
   useEffect(() => {
@@ -66,13 +63,17 @@ const AdminBookDetail = () => {
   const handleAddBook = async (event) => {
     event.preventDefault();
     try {
-      const bookNumber = newBook.bookNumbers;
-      const response = await fetchPOSTAddBookList(bookNumber);
+      const bookNumber = selectedBook.bookNumber;
+      const response = await fetchPOSTAddBookList(bookNumber, id);
       if (response.status === 201) {
         setSelectedBook({
           ...selectedBook,
-          bookNumbers: [...selectedBook.bookNumbers, bookNumber],
+          bookNumber: bookNumber,
         });
+
+        const newBookList = await fetchGETBookDetailPage(id);
+        setSelectedBook(newBookList.data);
+
         alert('책이 추가되었습니다.');
       } else {
         alert('책 추가에 실패했습니다.');
@@ -80,38 +81,6 @@ const AdminBookDetail = () => {
       console.log(response);
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleEditOrSave = async (event) => {
-    event.preventDefault();
-    if (isEditing) {
-      // 수정 updateBook.api
-      try {
-        const response = await fetchPUTUpdateBook(id, selectedBook);
-        if (response.status === 204) {
-          alert('책 정보가 수정 되었습니다.');
-          setIsEditing(false);
-        } else {
-          alert('책 정보 수정에 실패했습니다.');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      // 저장 createBook.api
-      try {
-        const response = await fetchPOSTCreateBook(newBook);
-        if (response.status === 201) {
-          alert('책 정보가 등록 되었습니다.');
-          setNewBook(INITIAL_BOOK);
-          navigate(navigateUrl.adminAddBookNew);
-        } else {
-          alert('책 정보 등록에 실패했습니다.');
-        }
-      } catch (error) {
-        console.log(error);
-      }
     }
   };
 
@@ -188,9 +157,15 @@ const AdminBookDetail = () => {
             <button type="submit" onClick={handleAddBook}>
               책 추가
             </button>
-            <button type="submit" onClick={handleEditOrSave}>
-              {isEditing ? '수정' : '저장'}
-            </button>
+            <EditOrSaveButton
+              id={id}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
+              selectedBook={selectedBook}
+              newBook={newBook}
+              setNewBook={setNewBook}
+              INITIAL_BOOK={INITIAL_BOOK}
+            />
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
