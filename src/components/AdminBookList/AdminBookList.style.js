@@ -11,6 +11,8 @@ const BookListTable = styled.table`
     padding: 10px;
   }
   & th {
+    position: sticky;
+    top: -32px;
     background-color: ${({ theme }) => theme.colors.gray2};
     color: ${({ theme }) => theme.colors.black};
     font-weight: bold;

@@ -68,8 +68,12 @@ const AdminBookDetail = () => {
       if (response.status === 201) {
         setSelectedBook({
           ...selectedBook,
-          bookNumber: [...selectedBook.bookNumber, bookNumber],
+          bookNumber: bookNumber,
         });
+
+        const newBookList = await fetchGETBookDetailPage(id);
+        setSelectedBook(newBookList.data);
+
         alert('책이 추가되었습니다.');
       } else {
         alert('책 추가에 실패했습니다.');
