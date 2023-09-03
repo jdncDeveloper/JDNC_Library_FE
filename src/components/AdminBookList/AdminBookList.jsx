@@ -15,6 +15,7 @@ const theadWidthData = [
 const AdminBookList = () => {
   const [bookList, setBookList] = useState([]);
   const [page, setPage] = useState(0);
+  const [hasMoreData, setHasMoreData] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   const lastBookRef = useRef();
@@ -25,6 +26,7 @@ const AdminBookList = () => {
     const fetchBookList = async () => {
       const size = 20;
       const response = await fetchGETBookList(page, size);
+      setHasMoreData(response.data.length > 0);
       setBookList((prevBookList) => [...prevBookList, ...response.data]);
     };
 
@@ -34,6 +36,8 @@ const AdminBookList = () => {
       const searchBookList = response.data.filter((book) => {
         return book.title.includes(searchValue);
       });
+
+      setHasMoreData(searchBookList.length > 0);
 
       if (page === 0) {
         setBookList(searchBookList);
@@ -47,12 +51,18 @@ const AdminBookList = () => {
     } else {
       fetchBookList();
     }
+
+    return () => {
+      setHasMoreData(true);
+    };
   }, [searchValue, page]);
 
   useEffect(() => {
+    if (!hasMoreData) return;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setPage((page) => page + 1);
+        if (entry.isIntersecting && hasMoreData) setPage((page) => page + 1);
       },
       { threshold: 1 }
     );
@@ -66,7 +76,7 @@ const AdminBookList = () => {
       clearTimeout(timer);
       observer.disconnect();
     };
-  }, [bookList]);
+  }, [bookList, hasMoreData]);
 
   useEffect(() => {
     setPage(0);
