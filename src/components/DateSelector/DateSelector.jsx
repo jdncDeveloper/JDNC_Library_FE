@@ -21,15 +21,15 @@ const DateSelector = ({ hide }) => {
   };
   const submitButton = (event) => {
     event.preventDefault();
-    const showMonthRecord = async (year, month) => {
+    const showMonthRecord = async (year, month, page) => {
       try {
-        const monthRecordData = await fetchGETBookListOfMonth(year, month);
+        const monthRecordData = await fetchGETBookListOfMonth(year, month, page);
         dispatch(setData(monthRecordData.data));
       } catch (error) {
         console.log(error);
       }
     };
-    showMonthRecord(year, month);
+    showMonthRecord(year, month, 0);
   };
 
   const [yearOptions] = useState(
