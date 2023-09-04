@@ -33,6 +33,7 @@ const AdminBookDetail = () => {
   ];
 
   const groupData = [
+    { groupValue: '그룹', bookGroup: '' },
     { groupValue: 'GROUP_T', bookGroup: 'GROUP_T' },
     { groupValue: 'GROUP_A', bookGroup: 'GROUP_A' },
     { groupValue: 'GROUP_M', bookGroup: 'GROUP_M' },
@@ -169,7 +170,7 @@ const AdminBookDetail = () => {
           </div>
         </Style.BookDetailButtonWrapper>
       </Style.BookDetailContainer>
-      <AdminAddBookList selectedBook={selectedBook} />
+      <AdminAddBookList selectedBook={selectedBook} setSelectedBook={setSelectedBook} id={id} />
     </Style.Container>
   );
 };

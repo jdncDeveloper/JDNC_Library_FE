@@ -70,6 +70,7 @@ const AddedBookList = styled.table`
   }
   & td {
     text-align: center;
+    text-decoration: ${({ disabled }) => (disabled ? 'line-through' : 'none')};
   }
   & button {
     padding: 4px 9px;
