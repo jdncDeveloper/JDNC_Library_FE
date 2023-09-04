@@ -70,7 +70,6 @@ const AddedBookList = styled.table`
   }
   & td {
     text-align: center;
-    text-decoration: ${({ disabled }) => (disabled ? 'line-through' : 'none')};
   }
   & button {
     padding: 4px 9px;
@@ -89,6 +88,10 @@ const AddedBookList = styled.table`
     }
   }
 `;
+const TableRow = styled.tr`
+  color: ${({ theme, isLost }) => (isLost ? theme.colors.gray2 : theme.colors.black)};
+  text-decoration: ${({ isLost }) => (isLost ? 'line-through' : 'none')};
+`;
 const ColumnHeader = styled.th`
   width: ${({ width }) => width};
 `;
@@ -98,5 +101,6 @@ export default {
   CreatedBookList,
   CreatedBookListTitle,
   AddedBookList,
+  TableRow,
   ColumnHeader,
 };

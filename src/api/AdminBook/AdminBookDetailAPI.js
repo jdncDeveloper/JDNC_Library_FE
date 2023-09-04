@@ -8,9 +8,7 @@ import axiosInstance from '../axiosConfig';
  */
 export async function fetchPOSTAddBookList(bookNumber, bookId) {
   try {
-    const response = await axiosInstance.post(
-      `admin/book/collection?bookNumber=${bookNumber}&bookId=${bookId}`
-    );
+    const response = await axiosInstance.post(`admin/book/collection`, { bookNumber, bookId });
 
     return response;
   } catch (error) {
@@ -44,7 +42,7 @@ export async function fetchPUTUpdateBook(id, book) {
 
 export async function fetchPUTLostBook(bookNumber) {
   try {
-    const response = await axiosInstance.put(`admin/book/collection/lost?bookNumber=${bookNumber}`);
+    const response = await axiosInstance.put(`admin/book/collection/lost`, bookNumber);
 
     return response;
   } catch (error) {

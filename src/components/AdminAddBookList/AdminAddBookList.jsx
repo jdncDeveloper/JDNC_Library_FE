@@ -23,20 +23,21 @@ const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
     try {
       if (!lostBook[number]) {
         const response = await fetchPUTLostBook(number);
-        if (response.status === 204) {
+        if (window.confirm('소실 처리 하시겠습니까?') && response.status === 204) {
           const newBookList = await fetchGETBookDetailPage(id);
           setSelectedBook(newBookList.data);
+          console.log(response);
 
           setLostBook((lostBook) => ({ ...lostBook, [number]: true }));
           alert('책이 소실되었습니다.');
         } else {
           alert('책 소실에 실패했습니다.');
+          return false;
         }
-      } else {
+      } else if (window.confirm('복구 처리 하시겠습니까?')) {
         alert('책이 복구되었습니다.');
         setLostBook((lostBook) => ({ ...lostBook, [number]: false }));
       }
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
@@ -68,7 +69,7 @@ const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
                   ? selectedBook.bookGroup.replace('GROUP_', '')
                   : '';
                 return (
-                  <tr key={number}>
+                  <Style.TableRow key={number} isLost={lostBook[number]}>
                     <td>{selectedBook.id}</td>
                     <td>
                       {displayGroup}
@@ -80,18 +81,14 @@ const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
                     <td>
                       {disappear && (
                         <div>
-                          <button
-                            type="button"
-                            onClick={() => handleLostBook(number)}
-                            disabled={lostBook[number]}
-                          >
+                          <button type="button" onClick={() => handleLostBook(number)}>
                             {lostBook[number] ? '복구' : '소실'}
                           </button>
                           <button>삭제</button>
                         </div>
                       )}
                     </td>
-                  </tr>
+                  </Style.TableRow>
                 );
               })
             ) : (

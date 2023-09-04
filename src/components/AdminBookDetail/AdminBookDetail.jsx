@@ -6,8 +6,8 @@ import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
 import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookDetailNew';
 import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
-import { fetchPOSTAddBookList } from '../../api/AdminBook/AdminBookDetailAPI';
 import EditOrSaveButton from './EditOrSaveButton';
+import AddBookButton from './AddBookButton';
 
 export const INITIAL_BOOK = {
   title: '',
@@ -60,30 +60,6 @@ const AdminBookDetail = () => {
   useEffect(() => {
     setNewBook(newBook);
   }, [newBook]);
-
-  const handleAddBook = async (event) => {
-    event.preventDefault();
-    try {
-      const bookNumber = selectedBook.bookNumber;
-      const response = await fetchPOSTAddBookList(bookNumber, id);
-      if (response.status === 201) {
-        setSelectedBook({
-          ...selectedBook,
-          bookNumber: bookNumber,
-        });
-
-        const newBookList = await fetchGETBookDetailPage(id);
-        setSelectedBook(newBookList.data);
-
-        alert('책이 추가되었습니다.');
-      } else {
-        alert('책 추가에 실패했습니다.');
-      }
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const handleImageChange = (event) => {
     const [selectedImage] = event.target.files;
@@ -155,17 +131,13 @@ const AdminBookDetail = () => {
             초기화
           </button>
           <div>
-            <button type="submit" onClick={handleAddBook}>
-              책 추가
-            </button>
+            <AddBookButton id={id} selectedBook={selectedBook} setSelectedBook={setSelectedBook} />
             <EditOrSaveButton
               id={id}
               isEditing={isEditing}
-              setIsEditing={setIsEditing}
               selectedBook={selectedBook}
               newBook={newBook}
               setNewBook={setNewBook}
-              INITIAL_BOOK={INITIAL_BOOK}
             />
           </div>
         </Style.BookDetailButtonWrapper>

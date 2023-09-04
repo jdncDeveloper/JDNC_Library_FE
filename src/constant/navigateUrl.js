@@ -6,7 +6,7 @@ export const navigateUrl = {
   bookDetail: '/bookdetail/:bookId',
   borrowBook: '/borrowbook/qr/:bookNumber',
   borrowedList: '/borrowedlist',
-  returnPage: '/returnpage/qr/:state',
+  returnPage: '/returnpage/qr/:floor',
   bookKeeperMain: '/bookkeeper',
   bookKeeperBorrowedList: '/bookkeeper/borrowedlist',
   adminBookList: '/admin/booklist',

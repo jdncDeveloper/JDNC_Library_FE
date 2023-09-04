@@ -4,7 +4,7 @@ import { navigateUrl } from '../../constant/navigateUrl';
 import { fetchPOSTCreateBook, fetchPUTUpdateBook } from '../../api/AdminBook/AdminBookDetailAPI';
 import { INITIAL_BOOK } from './AdminBookDetail';
 
-const EditOrSaveButton = ({ id, isEditing, setIsEditing, selectedBook, newBook, setNewBook }) => {
+const EditOrSaveButton = ({ id, isEditing, selectedBook, newBook, setNewBook }) => {
   const navigate = useNavigate();
 
   const handleEditOrSave = async (event) => {
