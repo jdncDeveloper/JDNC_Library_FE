@@ -28,15 +28,28 @@ const Container = styled.div`
   & button {
     grid-column: 3 / 4;
     grid-row: 2 / 3;
-    cursor: pointer;
     border-radius: 8px;
     background-color: #EF755D;
-    height: 18px;
+    height: 40px;
+    line-height: 40px;
     font-size: 12px;
     color: white;
     width: 54px;
     box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
   }
+`;
+const ReturnButton = styled.button`
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #4AA7DE;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  color: white;
+  width: 54px;
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -47,4 +60,5 @@ const ButtonContainer = styled.div`
 export default {
   Container,
   ButtonContainer,
+  ReturnButton,
 }
