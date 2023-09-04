@@ -25,7 +25,7 @@ const AsideMenu = () => {
       label: '대여관리',
       subMenu: [
         { label: '반납관리', route: navigateUrl.adminBorrowedList },
-        { label: '대여기록', route: navigateUrl.adminReturnList },
+        { label: '대여기록', route: navigateUrl.adminBorrowedRecord },
       ],
       route: navigateUrl.adminBorrowedList,
     },

@@ -12,30 +12,37 @@ const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }
     }
   };
 
+  const sendMail = (id) => {
+    alert(`${id}`);
+  };
+
   return (
     <>
       <Style.Tbody>
-        {/* {bookList.map(({ id, group, title, borrower, date, status }) => {
+        {bookList.map((item) => {
           return (
-            <tr key={id}>
+            <tr key={item.borrowId}>
               <td>
                 <input
                   type="checkbox"
-                  checked={selectedBooks.includes(id)}
-                  onChange={() => handleCheckboxChange(id)}
+                  checked={selectedBooks.includes(item.borrowId)}
+                  onChange={() => handleCheckboxChange(item.borrowId)}
                 />
               </td>
-              <td>{id}</td>
-              <td>{group}</td>
-              <td>{title}</td>
-              <td>{borrower}</td>
-              <td>{date}</td>
+              <td>{item.bookId}</td>
+              <td>{item.title}</td>
+              <td>{item.borrowerName}</td>
+              <td>{item.borrowDate}</td>
+              <td>{item.returnDate}</td>
               <td>
-                <Style.BookStatus>{status}</Style.BookStatus>
+                <Style.BookStatus>{item.status}</Style.BookStatus>
+              </td>
+              <td>
+                <input type="button" onClick={sendMail} value="메일 보내기" />
               </td>
             </tr>
           );
-        })} */}
+        })}
       </Style.Tbody>
     </>
   );

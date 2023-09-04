@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import userInfoReducer from './userInfoSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import userInfoReducer from './userInfoSlice';
+import dateSelectReducer from './dateSelectSlice';
+import dateRecordReducer from './dateRecordSlice';
 
 export default configureStore({
   reducer: {
-    userInfo: userInfoReducer
+    userInfo: userInfoReducer,
+    dateSelect: dateSelectReducer,
+    dateRecord: dateRecordReducer,
   },
-})
+});

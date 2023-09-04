@@ -40,7 +40,12 @@ export async function fetchPUTAdminReturnBookRequest(IdArray) {
 
 export async function fetchGETBookListOfMonth(year, month) {
   try {
-    const { data } = await axiosInstance.get(`/admin/book/monthly?year=${year}?month=${month}`);
+    const { data } = await axiosInstance.get(`/admin/book/monthly`, {
+      params: {
+        year,
+        month,
+      },
+    });
     return data;
   } catch (error) {
     throw new Error(`Error fetching BookList Of Month: ${error.message}`);

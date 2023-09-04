@@ -7,8 +7,17 @@ import AdminBorrowedBookContents from '../AdminBorrowedBookContents/AdminBorrowe
 import Style from './AdminBorrowedBookList.style';
 
 const AdminBorrowedBookList = () => {
-  const [bookList, setBookList] = useState({});
+  const [bookList, setBookList] = useState(null);
   const [selectedBooks, setSelectedBooks] = useState([]);
+
+  const showBorrowedList = async () => {
+    try {
+      const borrowedData = await fetchGETAllBorrowedBookList();
+      setBookList(borrowedData.data);
+    } catch (error) {
+      alert('오류발생!');
+    }
+  };
   useEffect(() => {
     const allBorrowedBookData = async () => {
       try {

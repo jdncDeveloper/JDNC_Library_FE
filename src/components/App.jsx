@@ -8,13 +8,14 @@ import BorrowedListPage from '../pages/BorrowedListPage/BorrowedListPage';
 import ReturnBookPage from '../pages/ReturnBookPage/ReturnBookPage';
 import BookListPage from '../pages/BookListPage/BookListPage';
 import SearchPage from '../pages/SearchPage/SearchPage';
+import CreateQR from './CreateQR/CreateQR';
 import Login from '../pages/Login/Login';
 import Main from '../pages/Main/Main';
 import BorrowBook from '../pages/BorrowBook/BorrowBook';
 import AdminBookListPage from '../pages/AdminPage/AdminBookListPage';
 import AdminAddBookPage from '../pages/AdminPage/AdminAddBookPage';
 import AdminBorrowedListPage from '../pages/AdminPage/AdminBorrowedListPage';
-import AdminReturnListPage from '../pages/AdminPage/AdminReturnListPage';
+import AdminBorrowedRecordPage from '../pages/AdminPage/AdminBorrowedRecordPage';
 import AdminUserListPage from '../pages/AdminPage/AdminUserListPage';
 import { navigateUrl } from '../constant/navigateUrl';
 import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
@@ -63,17 +64,17 @@ const App = () => {
             element={<AdminLayout children={<AdminBorrowedListPage />} />}
           />
           <Route
-            path={navigateUrl.adminReturnList}
-            element={<AdminLayout children={<AdminReturnListPage />} />}
+            path={navigateUrl.adminBorrowedRecord}
+            element={<AdminLayout children={<AdminBorrowedRecordPage />} />}
           />
           <Route
             path={navigateUrl.adminUserList.search}
             element={<AdminLayout children={<AdminUserListPage />} />}
           />
-          <Route
+          {/* <Route
             path={navigateUrl.adminBorrowedList}
             element={<AdminLayout children={<AdminBorrowedListPage />} />}
-          />
+          /> */}
         </Routes>
       </ThemeProvider>
     </BrowserRouter>
