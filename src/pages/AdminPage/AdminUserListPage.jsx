@@ -12,7 +12,7 @@ import { fetchGETUserInfo } from '../../api/user/userInfo';
 import { updateUserInfo } from '../../store/userInfoSlice';
 import PageNationButton from '../../components/PageNationButton/PageNationButton';
 
-const TEST = [
+const ROW_TITLE = [
   '연번',
   '기수',
   '인재번호',
@@ -30,6 +30,7 @@ const AdminUserListPage = () => {
   const [ currentPage, setCurrentPage ] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const searchParams = new URLSearchParams(window.location.search);
 
   const getUsers = async () => {
     try {
@@ -86,7 +87,7 @@ const AdminUserListPage = () => {
         placeholder="인재 검색"
         url={navigateUrl.adminUserList.base}
       />
-      <AdminThead rowTitleData={TEST}>
+      <AdminThead rowTitleData={ROW_TITLE}>
         <AdminTbody 
           searchAxios={fetchGetBookKeeperList} 
           TbodyData={bookKeeperList}
@@ -94,7 +95,7 @@ const AdminUserListPage = () => {
           isActiveSearch={false}
         />
       </AdminThead>
-      <AdminThead rowTitleData={TEST}>
+      <AdminThead rowTitleData={ROW_TITLE}>
         <AdminTbody 
           searchAxios={fetchGetSearchUserList} 
           TbodyData={userList}
@@ -102,7 +103,10 @@ const AdminUserListPage = () => {
           isActiveSearch={true}
         />
       </AdminThead>
-      <PageNationButton totalPage={totalPage} setCurrentPage={setCurrentPage}/>
+      {
+        searchParams.get('search') ? <></> :<PageNationButton totalPage={totalPage} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+      }
+      
     </Style.Container>
     
   );

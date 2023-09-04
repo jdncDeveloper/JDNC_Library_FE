@@ -34,7 +34,9 @@ const BookListItem = ({
       </div>
       <Style.ButtonContainer>
         {
-          returnDate ? <button onClick={() => handleReturnBook(borrowId)}>반납확인</button> : <button disabled>미반납</button>
+          returnDate ? 
+          <Style.ReturnButton onClick={() => handleReturnBook(borrowId)}>반납확인</Style.ReturnButton> 
+          : <button disabled>미반납</button>
         }
         
       </Style.ButtonContainer>

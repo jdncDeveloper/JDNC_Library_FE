@@ -8,12 +8,12 @@ const BookKeeperMainPage = () => {
         <Style.Container>
             <StatisticsNavBox 
                 title={'총 대출현황'} 
-                fontColor={'blue'} 
+                fontColor={'#548FDB'} 
                 navTo={navigateUrl.bookKeeperMain}
             />
             <StatisticsNavBox 
                 title={'반납현황'} 
-                fontColor={'blue'} 
+                fontColor={'#548FDB'} 
                 navTo={navigateUrl.bookKeeperBorrowedList}
             />
         </Style.Container>
