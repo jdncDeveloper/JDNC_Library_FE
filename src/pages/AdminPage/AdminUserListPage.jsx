@@ -7,9 +7,10 @@ import AdminThead from '../../components/AdminThead/AdminThead';
 import { navigateUrl } from '../../constant/navigateUrl';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { fetchGETUserInfo } from '../../api/user/userInfo';
 import { updateUserInfo } from '../../store/userInfoSlice';
+import PageNationButton from '../../components/PageNationButton/PageNationButton';
 
 const TEST = [
   '연번',
@@ -25,14 +26,16 @@ const AdminUserListPage = () => {
   const [ userList, setUserList ] = useState([]);
   const [ bookKeeperList, setBookKeeperList ] = useState([]);
   const [ refreshTable, setRefreshTable ] = useState(false);
+  const [ totalPage, setTotalPage ] = useState(1);
+  const [ currentPage, setCurrentPage ] = useState(1);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userRole =  useSelector(state => state.userInfo);
 
   const getUsers = async () => {
     try {
-      const response = await fetchGetAllMemberList();
-      setUserList(response);
+      const { memberDTOList, totalPage } = await fetchGetAllMemberList(currentPage);
+      setTotalPage(totalPage);
+      setUserList(memberDTOList);
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +71,9 @@ const AdminUserListPage = () => {
     getUserInfo();
     getBookKeeper();
     getUsers();
-  }, [refreshTable]);
+  }, [refreshTable, currentPage]);
+
+  //TODO: 페이지 네이션 버튼 구현 
 
   return (
     <Style.Container>
@@ -97,6 +102,7 @@ const AdminUserListPage = () => {
           isActiveSearch={true}
         />
       </AdminThead>
+      <PageNationButton totalPage={totalPage} setCurrentPage={setCurrentPage}/>
     </Style.Container>
     
   );
