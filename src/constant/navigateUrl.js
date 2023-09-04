@@ -13,7 +13,7 @@ export const navigateUrl = {
   adminAddBookNew: '/admin/addbook/new',
   adminAddBookUpdate: '/admin/addbook/:id',
   adminBorrowedList: '/admin/borrowedlist',
-  adminReturnList: '/admin/returnlist',
+  adminBorrowedRecord: '/admin/borrowedrecord',
   adminUserList: {
     base: '/admin/userlist',
     search: '/admin/:userlist',

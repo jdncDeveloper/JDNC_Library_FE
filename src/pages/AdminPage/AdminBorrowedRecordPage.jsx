@@ -1,12 +1,14 @@
-import React from 'react';
+import Style from '../../assets/commonStyles/AdminContainer.style';
 import AdminBorrowedRecord from '../../components/AdminBorrowedRecord/AdminBorrowedRecord';
+import AdminMainHead from '../../components/AdminMainHead/AdminMainHead';
 
-const AdminBorrowedRecordPage = () => {
+const AdminReturnListPage = () => {
   return (
-    <>
+    <Style.Container>
+      <AdminMainHead mainTitle="대여관리" subTitle="대여기록" />
       <AdminBorrowedRecord />
-    </>
+    </Style.Container>
   );
 };
 
-export default AdminBorrowedRecordPage;
+export default AdminReturnListPage;
