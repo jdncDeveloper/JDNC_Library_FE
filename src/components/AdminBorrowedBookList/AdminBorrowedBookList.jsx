@@ -10,24 +10,16 @@ const AdminBorrowedBookList = () => {
   const [bookList, setBookList] = useState(null);
   const [selectedBooks, setSelectedBooks] = useState([]);
 
-  const showBorrowedList = async () => {
+  const showBorrowedList = async (page) => {
     try {
-      const borrowedData = await fetchGETAllBorrowedBookList();
+      const borrowedData = await fetchGETAllBorrowedBookList(page);
       setBookList(borrowedData.data);
     } catch (error) {
       alert('오류발생!');
     }
   };
   useEffect(() => {
-    const allBorrowedBookData = async () => {
-      try {
-        const allBorrowedBookList = await fetchGETAllBorrowedBookList();
-        setBookList(allBorrowedBookList.data);
-      } catch (error) {
-        alert('오류발생');
-      }
-      allBorrowedBookData();
-    };
+    showBorrowedList(0);
   }, []);
   console.log(bookList);
 
