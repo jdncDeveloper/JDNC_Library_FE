@@ -4,12 +4,12 @@ import axiosInstance from "../axiosConfig";
  * @param {page, size}
  * @returns 
  */
-export const fetchGetAllMemberList = async () => {
+export const fetchGetAllMemberList = async (currentPage) => {
   try {
-    const response = await axiosInstance.get(`/member/list`);
+    const response = await axiosInstance.get(`/member/list/${currentPage}`);
     return response.data;
   } catch (error) {
-    console.log(error.response.status);
+    console.error(error.response.status);
   }
 }
 /**
@@ -21,7 +21,7 @@ export const fetchGetBookKeeperList = async () => {
     const response = await axiosInstance.get(`/manager/book-keeper`);
     return response.data;
   } catch (error) {
-    console.log(error.response.status);
+    console.error(error.response.status);
   }
 }
 /**
@@ -38,7 +38,7 @@ export const fetchGetSearchUserList = async (searchWord) => {
     });
     return response.data;
   } catch (error) {
-    console.log(error.response.status);
+    console.error(error.response.status);
   }
 }
 /**
@@ -55,7 +55,7 @@ export const fetchDeleteBookKeeper = async (bookKeeperMbNumber) => {
     });
     return response;
   } catch (error) {
-    console.log(error.response.status);
+    console.error(error.response.status);
   }
 }
 /**
@@ -70,6 +70,6 @@ export const fetchPostBookKeeper = async (bookKeeperMbNumber) => {
     });
     return response;
   } catch (error) {
-    console.log(error.response.status);
+    console.error(error.response.status);
   }
 }
