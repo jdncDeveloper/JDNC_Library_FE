@@ -7,7 +7,7 @@ import BookList from '../BookList/BookList';
 
 const ReturnList = () => {
   const [returnBookList, setReturnBookList] = useState([]);
-  const { state } = useParams();
+  const { floor } = useParams();
 
   useEffect(() => {
     async function fetchReturnList() {
@@ -19,11 +19,11 @@ const ReturnList = () => {
       }
     }
     fetchReturnList();
-  }, [state]);
+  }, [floor]);
 
   const handleBookReturn = async (bookNumber) => {
     try {
-      const updatedBookList = await fetchPUTReturnBook(bookNumber, state);
+      const updatedBookList = await fetchPUTReturnBook(bookNumber, floor);
       if (updatedBookList.status === 204) {
         alert('반납이 완료되었습니다.');
         const returnList = await fetchGETReturnList();

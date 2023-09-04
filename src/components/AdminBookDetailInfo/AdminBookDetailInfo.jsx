@@ -40,13 +40,12 @@ const AdminBookDetailInfo = ({
               <div>
                 <select
                   name="group"
-                  value={selectedBook?.bookGroup ?? ''}
                   onChange={(e) => handleInputChange({ name: 'bookGroup', value: e.target.value })}
                 >
-                  {groupData.map((item) => {
+                  {groupData.map(({ groupValue, bookGroup }) => {
                     return (
-                      <option key={item.groupValue} value={item.groupValue}>
-                        {item.bookGroup}
+                      <option key={groupValue} value={bookGroup}>
+                        {bookGroup}
                       </option>
                     );
                   })}

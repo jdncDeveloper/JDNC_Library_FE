@@ -4,7 +4,7 @@ import { navigateUrl } from '../../constant/navigateUrl';
 import { fetchPOSTCreateBook, fetchPUTUpdateBook } from '../../api/AdminBook/AdminBookDetailAPI';
 import { INITIAL_BOOK } from './AdminBookDetail';
 
-const EditOrSaveButton = ({ id, isEditing, setIsEditing, selectedBook, newBook, setNewBook }) => {
+const EditOrSaveButton = ({ id, isEditing, selectedBook, newBook, setNewBook }) => {
   const navigate = useNavigate();
 
   const handleEditOrSave = async (event) => {
@@ -16,7 +16,6 @@ const EditOrSaveButton = ({ id, isEditing, setIsEditing, selectedBook, newBook, 
         const response = await fetchPUTUpdateBook(id, bookWithoutIdAndAvailable);
         if (response.status === 204) {
           alert('책 정보가 수정 되었습니다.');
-          setIsEditing(false);
         } else {
           alert('책 정보 수정에 실패했습니다.');
         }
