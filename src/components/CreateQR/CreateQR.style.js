@@ -3,8 +3,8 @@ import { styled } from 'styled-components';
 const QRInput = styled.input`
   width: 220px;
   height: 40px;
-  border: none;
-  background-color: #d9d9d9;
+  border: 1px solid ${({ theme }) => theme.colors.gray1};
+  background-color: #f5f5f5;
   border-radius: 10px;
   padding: 0 10px;
   margin-bottom: 10px;

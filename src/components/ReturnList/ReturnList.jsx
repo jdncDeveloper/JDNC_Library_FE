@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
-import { fetchPUTReturnBook } from '../../api/Borrow/borrowAPI';
+import { fetchGETReturnList, fetchPUTReturnBook } from '../../api/Borrow/borrowAPI';
 import Style from '../../assets/commonStyles/BookListContainer.style';
 import BookList from '../BookList/BookList';
 

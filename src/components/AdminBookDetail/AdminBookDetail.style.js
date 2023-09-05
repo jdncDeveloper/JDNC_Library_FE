@@ -3,8 +3,8 @@ import defaultImage from '../../assets/images/book_image.jpg';
 
 const Container = styled.section`
   width: 84%;
-  min-width: 1144px;
-  height: 680px;
+  min-width: 1240px;
+  height: 720px;
   margin-top: 10px;
   padding: 20px;
   display: flex;
