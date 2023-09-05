@@ -47,6 +47,7 @@ const BookDetailInfo = styled.div`
       border: none;
       border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
       outline: none;
+      font-weight: 400;
       transition: all 0.3s ease-out;
       &:focus {
         border-bottom: 1px solid ${({ theme }) => theme.colors.blue3};
@@ -59,11 +60,45 @@ const BookDetailInfo = styled.div`
       }
     }
   }
-  & span {
-    font-weight: bold;
+`;
+const ImageInputWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  & div {
+    display: flex;
+    & input {
+      width: 100%;
+      height: 30px;
+      border: none;
+      border-bottom: 1px solid ${({ theme }) => theme.colors.gray2};
+      outline: none;
+      transition: all 0.3s ease-out;
+      &:focus {
+        border-bottom: 1px solid ${({ theme }) => theme.colors.blue3};
+        transition: all 0.3s ease-out;
+      }
+      &::placeholder {
+        color: ${({ theme }) => theme.colors.gray1};
+        font-weight: 400;
+        font-size: 14px;
+      }
+      &::file-selector-button {
+        width: 80px;
+        height: 22px;
+        border: none;
+        background-color: ${({ theme }) => theme.colors.gray2};
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
   }
 `;
 
 export default {
   BookDetailInfo,
+  ImageInputWrapper,
 };

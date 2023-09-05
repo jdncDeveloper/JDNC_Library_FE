@@ -23,7 +23,7 @@ const BookDetailContainer = styled.form`
 `;
 const BookDetailWrapper = styled.div`
   width: 100%;
-  height: 50%;
+  height: 55%;
   display: flex;
   gap: 20px;
 `;
@@ -46,7 +46,7 @@ const BookDetailImage = styled.div`
 
 const BookDetailContent = styled.div`
   width: 100%;
-  height: 40%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   gap: 10px;

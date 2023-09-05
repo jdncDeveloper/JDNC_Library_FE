@@ -30,10 +30,15 @@ const AdminBookDetail = () => {
     { labelValue: 'author', label: '저자', placeholder: '저자를 입력하세요.' },
     { labelValue: 'publisher', label: '출판사', placeholder: '출판사를 입력하세요.' },
     { labelValue: 'bookNumber', label: '책번호', placeholder: '책번호를 기입하세요' },
+    {
+      labelValue: 'image',
+      label: '책이미지',
+      placeholder: '이미지URL 또는 파일선택 한가지만 가능합니다.',
+    },
   ];
 
   const groupData = [
-    { groupValue: '그룹', bookGroup: '' },
+    { groupValue: 'select', bookGroup: '그룹선택' },
     { groupValue: 'GROUP_T', bookGroup: 'GROUP_T' },
     { groupValue: 'GROUP_A', bookGroup: 'GROUP_A' },
     { groupValue: 'GROUP_M', bookGroup: 'GROUP_M' },
