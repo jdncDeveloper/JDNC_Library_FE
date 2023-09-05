@@ -23,7 +23,7 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
 
   const handleBookClick = () => {
     if (window.location.pathname !== '/borrowedlist' && !isButtonEnabled) {
-      navigate(`/borrowBook/qr/${book.bookNumber}`);
+      navigate(`/bookdetail/${book.id}`);
     }
   };
 
