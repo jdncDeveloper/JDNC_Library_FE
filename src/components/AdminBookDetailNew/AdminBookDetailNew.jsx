@@ -3,16 +3,20 @@ import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
 const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImageChange }) => {
   const [fileValue, setFileValue] = useState(null);
+  const [previousUrl, setPreviousUrl] = useState(newBook?.image);
+
   const handleInputChange = ({ name, value }) => {
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
   };
 
   const handleFileChange = (e) => {
     onImageChange(e);
+    setPreviousUrl(newBook?.image);
     setFileValue(e.target.value[0]);
   };
 
   const clearFileSelection = () => {
+    handleInputChange({ name: 'image', value: previousUrl });
     setFileValue(null);
   };
 
