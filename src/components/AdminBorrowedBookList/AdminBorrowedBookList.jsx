@@ -9,6 +9,7 @@ import Style from './AdminBorrowedBookList.style';
 const AdminBorrowedBookList = () => {
   const [bookList, setBookList] = useState(null);
   const [selectedBooks, setSelectedBooks] = useState([]);
+  const [reload, setReload] = useState(false);
 
   const showBorrowedList = async (page) => {
     try {
@@ -20,8 +21,7 @@ const AdminBorrowedBookList = () => {
   };
   useEffect(() => {
     showBorrowedList(0);
-  }, []);
-  console.log(bookList);
+  }, [reload]);
 
   if (!bookList) return <></>;
 
@@ -45,7 +45,7 @@ const AdminBorrowedBookList = () => {
           setSelectedBooks={setSelectedBooks}
         />
       </Style.Table>
-      <AdminBookListButtons selectedBooks={selectedBooks} />
+      <AdminBookListButtons selectedBooks={selectedBooks} reload={setReload} />
     </>
   );
 };
