@@ -21,6 +21,7 @@ import { navigateUrl } from '../constant/navigateUrl';
 import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
 import BookKeeperMainPage from '../pages/BookKeeperMainPage/BookKeeperMainPage';
 import BookKeeperBorrowedListPage from '../pages/BookKeeperBorrowedListPage/BookKeeperBorrowedListPage';
+import BookKeeperMonthlyPage from '../pages/BookKeeperMonthlyPage/BookKeeperMonthlyPage';
 
 const App = () => {
   return (
@@ -42,6 +43,10 @@ const App = () => {
           <Route
             path={navigateUrl.bookKeeperMain}
             element={<Layout children={<BookKeeperMainPage />} />}
+          />
+          <Route 
+            path={navigateUrl.bookKeeperMonthly}
+            element={<Layout children={<BookKeeperMonthlyPage />} />}
           />
           <Route
             path={navigateUrl.bookKeeperBorrowedList}

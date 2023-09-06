@@ -1,7 +1,5 @@
 import { Link } from 'react-router-dom';
 import Style from './StatisticsNavBox.style';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
 const StatisticsNavBox = ({ title, fontColor, navTo, totalCount, currentCount }) => {
   return (

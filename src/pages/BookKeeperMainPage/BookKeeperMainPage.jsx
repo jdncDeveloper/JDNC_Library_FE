@@ -36,7 +36,7 @@ const BookKeeperMainPage = () => {
             console.error(error);
         }
     }
-    
+
     useEffect(() => {
         getReturnCount();
         getNotChecked();
@@ -47,7 +47,7 @@ const BookKeeperMainPage = () => {
             <StatisticsNavBox 
                 title={'총 대출현황'} 
                 fontColor={'#548FDB'} 
-                navTo={navigateUrl.bookKeeperMain}
+                navTo={navigateUrl.bookKeeperMonthly}
                 currentCount={returnCount}
                 totalCount={totalCount}
             />

@@ -55,6 +55,10 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: end;
+
+  & button {
+    display: ${({ $disabled }) => $disabled ? 'none' : 'block'};
+  }
 `;
 
 export default {

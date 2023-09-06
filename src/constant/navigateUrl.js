@@ -8,6 +8,7 @@ export const navigateUrl = {
   borrowedList: '/borrowedlist',
   returnPage: '/returnpage/qr/:floor',
   bookKeeperMain: '/bookkeeper',
+  bookKeeperMonthly: '/bookkeeper/monthly',
   bookKeeperBorrowedList: '/bookkeeper/borrowedlist',
   adminBookList: '/admin/booklist',
   adminAddBookNew: '/admin/addbook/new',
