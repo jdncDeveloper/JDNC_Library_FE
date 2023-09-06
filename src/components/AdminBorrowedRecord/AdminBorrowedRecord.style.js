@@ -43,4 +43,16 @@ const Table = styled.table`
   }
 `;
 
-export default { Container, NoBooksImg, Table };
+const BookStatus = styled.span`
+  background-color: ${({ $isReturn, $isAdminCheck, theme }) =>
+    $isReturn ? theme.colors.red2 : $isAdminCheck ? theme.colors.blue1 : theme.colors.red2};
+  color: ${({ theme }) => theme.colors.white};
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  box-shadow: 0px 1px 5px ${({ theme }) => theme.colors.gray2};
+  border-style: double;
+  font-weight: 500;
+`;
+
+export default { Container, NoBooksImg, Table, BookStatus };
