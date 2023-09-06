@@ -29,7 +29,10 @@ const App = () => {
         <Routes>
           <Route path={navigateUrl.main} element={<Layout children={<Main />} />} />
           <Route path={navigateUrl.login} element={<Login />} />
-          <Route path={navigateUrl.bookList} element={<Layout children={<BookListPage />} />} />
+          <Route
+            path={navigateUrl.bookList.search}
+            element={<Layout children={<BookListPage />} />}
+          />
           <Route
             path={navigateUrl.borrowedList}
             element={<Layout children={<BorrowedListPage />} />}

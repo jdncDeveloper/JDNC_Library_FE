@@ -2,7 +2,10 @@ export const navigateUrl = {
   main: '/',
   login: '/login',
   search: '/search/:string',
-  bookList: '/booklist',
+  bookList: {
+    base: '/booklist',
+    search: '/:booklist',
+  },
   bookDetail: '/bookdetail/:bookId',
   borrowBook: '/borrowbook/qr/:bookNumber',
   borrowedList: '/borrowedlist',
