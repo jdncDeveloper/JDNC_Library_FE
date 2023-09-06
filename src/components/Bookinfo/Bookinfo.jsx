@@ -56,10 +56,12 @@ const BookInfo = ({ isBorrowPage, isBookListEnter }) => {
       setBookLocation([bookNumber]);
     }
     if (isBookListEnter) {
-      const availableBookNumbers = book?.bookNumbers;
+      const availableBookNumbers = book?.availableList
+        .filter((item) => item.available === true)
+        .map((item) => item.bookNumber);
       setBookLocation(availableBookNumbers);
     }
-  }, [book?.bookNumbers]);
+  }, [book]);
   if (!book) return <></>;
 
   return (
