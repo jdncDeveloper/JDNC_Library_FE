@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Style from './ModalSearchList.style';
 
-const ModalSearchList = ({ book, setNewBook }) => {
+const ModalSearchList = forwardRef(({ book, setNewBook }, ref) => {
   const handleSelect = () => {
     const mappedData = {
       title: book.title,
@@ -15,7 +15,7 @@ const ModalSearchList = ({ book, setNewBook }) => {
   };
 
   return (
-    <Style.Container>
+    <Style.Container ref={ref}>
       <img src={book.image} alt="bookImage" />
       <Style.BookInfo>
         <h3>{book.title}</h3>
@@ -29,6 +29,6 @@ const ModalSearchList = ({ book, setNewBook }) => {
       </Style.BookButtonWrapper>
     </Style.Container>
   );
-};
+});
 
 export default ModalSearchList;

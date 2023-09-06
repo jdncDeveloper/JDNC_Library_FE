@@ -22,7 +22,7 @@ const AllBooks = () => {
   useEffect(() => {
     const fetchBookList = async () => {
       setLoading(true);
-      const size = 10;
+      const size = 20;
       const response = await fetchGETBookList(page, size);
       setHasMore(response.data.length > 0);
       setAllBookList((prevBookList) => [...prevBookList, ...response.data]);
@@ -31,7 +31,7 @@ const AllBooks = () => {
 
     const fetchBookListSearch = async () => {
       setLoading(true);
-      const size = 10;
+      const size = 20;
       const response = await fetchGETBookList(page, size);
       const searchBookList = response.data.filter((book) => {
         return book.title.includes(searchValue);
