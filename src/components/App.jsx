@@ -30,10 +30,7 @@ const App = () => {
         <Routes>
           <Route path={navigateUrl.main} element={<Layout children={<Main />} />} />
           <Route path={navigateUrl.login} element={<Login />} />
-          <Route
-            path={navigateUrl.bookList.search}
-            element={<Layout children={<BookListPage />} />}
-          />
+          <Route path={navigateUrl.bookList} element={<Layout children={<BookListPage />} />} />
           <Route
             path={navigateUrl.borrowedList}
             element={<Layout children={<BorrowedListPage />} />}
@@ -47,7 +44,7 @@ const App = () => {
             path={navigateUrl.bookKeeperMain}
             element={<Layout children={<BookKeeperMainPage />} />}
           />
-          <Route 
+          <Route
             path={navigateUrl.bookKeeperMonthly}
             element={<Layout children={<BookKeeperMonthlyPage />} />}
           />
