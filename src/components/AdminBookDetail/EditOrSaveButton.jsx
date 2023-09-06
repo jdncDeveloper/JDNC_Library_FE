@@ -41,7 +41,7 @@ const EditOrSaveButton = ({ id, isEditing, selectedBook, newBook, setNewBook }) 
 
   return (
     <button type="submit" onClick={handleEditOrSave}>
-      {isEditing ? '수정' : '저장'}
+      {isEditing ? '도서수정' : '도서등록'}
     </button>
   );
 };

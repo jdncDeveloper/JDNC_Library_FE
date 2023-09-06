@@ -9,7 +9,7 @@ const theadWidthData = [
   { width: '14%', label: '저자' },
   { width: '14%', label: '출판사' },
   { width: '8%', label: '상태' },
-  { width: '8%', label: '수정' },
+  { width: '8%', label: '상세정보' },
 ];
 
 const AdminBookList = () => {
@@ -111,7 +111,9 @@ const AdminBookList = () => {
               <td>{author}</td>
               <td>{publisher}</td>
               <td>
-                <Style.BookStatus>{available ? '대여가능' : '대여중'}</Style.BookStatus>
+                <Style.BookStatus available={available}>
+                  {available ? '대여가능' : '대여중'}
+                </Style.BookStatus>
               </td>
               <td>
                 <Style.EditButton onClick={() => handleBookDetail(id)}>수정</Style.EditButton>
