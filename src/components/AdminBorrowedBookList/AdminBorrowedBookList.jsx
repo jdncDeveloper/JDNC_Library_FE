@@ -23,22 +23,36 @@ const AdminBorrowedBookList = () => {
     showBorrowedList(0);
   }, [reload]);
 
-  if (!bookList) return <></>;
+  console.log(bookList);
+  if (!bookList)
+    return (
+      <>
+        <Style.Container>
+          <Style.NoBooksImg
+            src="https://img.freepik.com/free-vector/man-doubting-design_1133-263.jpg?w=900&t=st=1692711479~exp=1692712079~hmac=d2a39e1cf40b91c0367062b38c8eb1f5d10d952bbdaafd3a396e53bff2b734cb"
+            alt="대여중인 도서가 없습니다."
+          />
+          <span>대여중인 도서가 없습니다.</span>
+        </Style.Container>
+      </>
+    );
 
   return (
     <>
       <Style.Table>
-        <Style.Thead>
+        <thead>
           <tr>
-            <th scope="col"> </th>
-            <th scope="col">연번</th>
-            <th scope="col">구분</th>
-            <th scope="col">제목</th>
-            <th scope="col">대출자</th>
-            <th scope="col">대출일</th>
-            <th scope="col">상태</th>
+            <th> </th>
+            <th>연번</th>
+            <th>제목</th>
+            <th>대출자</th>
+            <th>대출일</th>
+            <th>반납일</th>
+            <th>반납장소</th>
+            <th>상태</th>
+            <th>메일</th>
           </tr>
-        </Style.Thead>
+        </thead>
         <AdminBorrowedBookContents
           bookList={bookList}
           selectedBooks={selectedBooks}
