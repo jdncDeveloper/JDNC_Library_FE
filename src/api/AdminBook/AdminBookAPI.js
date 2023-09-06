@@ -58,3 +58,22 @@ export async function fetchGETBookListOfMonth(year, month, page) {
     throw new Error(`Error fetching BookList Of Month: ${error.message}`);
   }
 }
+
+
+export async function fetchGETCollectionNotChecked() {
+  try {
+    const { data } = await axiosInstance.get(`/admin/book/collection/notchecked`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching BookList Of Month: ${error.message}`);
+  }
+}
+
+export async function fetchGETCollectionReturned() {
+  try {
+    const { data } = await axiosInstance.get(`/admin/book/collection/returned`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching BookList Of Month: ${error.message}`);
+  }
+}

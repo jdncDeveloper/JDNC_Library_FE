@@ -34,7 +34,6 @@ const LoginForm = () => {
         if(!isValidateLogin(loginForm.username, loginForm.password)) return;
 
         const response = await fetchPOSTLogin(loginForm);
-
         if(response.status !== 200) {
             alert('아이디 비밀번호를 확인해주세요.');
             return;
