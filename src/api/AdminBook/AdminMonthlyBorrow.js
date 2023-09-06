@@ -5,7 +5,7 @@ export const fetchGetOverdueBorrowList = async (page) => {
     const response = await axiosInstance.get('/admin/book/overdue', {
       params: {
         page: page,
-        size: 100,
+        size: 10,
       }
     });
     return response.data.data;
