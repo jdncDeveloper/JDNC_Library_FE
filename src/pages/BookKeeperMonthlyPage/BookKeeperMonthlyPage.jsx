@@ -3,6 +3,7 @@ import Style from './BookKeeperMonthlyPage.style';
 import { fetchGETBookListOfMonth } from '../../api/AdminBook/AdminBookAPI';
 import { useEffect } from 'react';
 import BookListItem from '../../components/BookListItem/BookListItem';
+import BackBtnWithTitle from '../../components/ui/BackBtnWithTitle/BackBtnWithTitle';
 
 const date = new Date();
 const year = date.getFullYear();
@@ -54,6 +55,7 @@ const BookKeeperMonthlyPage = () => {
 
   return (
     <Style.Container>
+      <BackBtnWithTitle title="월별 대출 현황" />
       <Style.DatePickerContainer>
         <select
           value={yearPicker}

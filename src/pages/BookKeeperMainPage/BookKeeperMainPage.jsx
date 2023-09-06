@@ -13,7 +13,7 @@ const BookKeeperMainPage = () => {
 
     const getTotolbooks = async () => {
         try {
-            const { data } = await fetchGETAllBookCount();;
+            const { data } = await fetchGETAllBookCount();
             setTotalCount(data.count);
         } catch (error) {
             console.error(error);
@@ -22,7 +22,7 @@ const BookKeeperMainPage = () => {
     const getNotChecked = async () => {
         try {
             const response = await fetchGETCollectionNotChecked();
-            setNotCheckedCount(response);
+            setReturnCount(response.count);
         }
         catch (error) {
             console.error(error);
@@ -31,7 +31,7 @@ const BookKeeperMainPage = () => {
     const getReturnCount = async () => {
         try {
             const response = await fetchGETCollectionReturned();
-            setReturnCount(response);
+            setNotCheckedCount(response.count);
         } catch (error) {
             console.error(error);
         }
