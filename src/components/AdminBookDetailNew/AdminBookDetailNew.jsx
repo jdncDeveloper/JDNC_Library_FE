@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
-const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImageChange }) => {
+const AdminBookDetailNew = ({
+  newBook,
+  setNewBook,
+  labelData,
+  groupData,
+  onImageChange,
+  openModal,
+}) => {
+  const [fileValue, setFileValue] = useState(null);
+  const [previousUrl, setPreviousUrl] = useState(newBook?.image);
+
   const handleInputChange = ({ name, value }) => {
-    console.log(name, value);
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      onImageChange(e);
+      setPreviousUrl(newBook?.image);
+      setFileValue(e.target.files[0]);
+    }
+  };
+
+  const clearFileSelection = () => {
+    handleInputChange({ name: 'image', value: previousUrl });
+    setFileValue(null);
   };
 
   return (
@@ -23,7 +45,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
-                <button>검색</button>
+                <button onClick={openModal}>검색</button>
               </div>
             </label>
           );
@@ -57,6 +79,29 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
             </label>
           );
         }
+        if (labelValue === 'image') {
+          return (
+            <label key={labelValue}>
+              {label} :{''}
+              <Style.ImageInputWrapper>
+                <input
+                  type="text"
+                  value={newBook[labelValue]}
+                  placeholder={placeholder}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
+                />
+                <div>
+                  <input type="file" onChange={handleFileChange} accept="image/*" />
+                  {fileValue && (
+                    <button type="button" onClick={clearFileSelection}>
+                      선택취소
+                    </button>
+                  )}
+                </div>
+              </Style.ImageInputWrapper>
+            </label>
+          );
+        }
         return (
           <label key={labelValue}>
             {label} :{''}
@@ -71,8 +116,6 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
           </label>
         );
       })}
-      <span>책 이미지 :</span>
-      <input type="file" onChange={onImageChange} accept="image/*" />
     </Style.BookDetailInfo>
   );
 };

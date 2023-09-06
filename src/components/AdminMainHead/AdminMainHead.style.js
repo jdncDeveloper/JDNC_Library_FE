@@ -5,7 +5,7 @@ const HeadSection = styled.section`
   align-items: end;
   justify-content: space-between;
   width: 100%;
-  height: 100px;
+  height: 80px;
 `;
 const ComponentsWrapper = styled.div`
   display: flex;

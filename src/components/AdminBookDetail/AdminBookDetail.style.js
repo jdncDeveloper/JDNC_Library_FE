@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import defaultImage from '../../assets/images/book_image.jpg';
 
 const Container = styled.section`
+  position: relative;
   width: 84%;
-  min-width: 1144px;
-  height: 680px;
+  min-width: 1240px;
+  height: 720px;
   margin-top: 10px;
   padding: 20px;
   display: flex;
@@ -23,7 +24,7 @@ const BookDetailContainer = styled.form`
 `;
 const BookDetailWrapper = styled.div`
   width: 100%;
-  height: 50%;
+  height: 55%;
   display: flex;
   gap: 20px;
 `;
@@ -46,7 +47,7 @@ const BookDetailImage = styled.div`
 
 const BookDetailContent = styled.div`
   width: 100%;
-  height: 40%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -58,6 +59,7 @@ const BookDetailContent = styled.div`
     font-weight: bold;
   }
   & textarea {
+    height: 100%;
     font-size: 14px;
     padding: 10px;
     border: none;
