@@ -23,7 +23,6 @@ const AdminBorrowedBookList = () => {
     showBorrowedList(0);
   }, [reload]);
 
-  console.log(bookList);
   if (!bookList)
     return (
       <>

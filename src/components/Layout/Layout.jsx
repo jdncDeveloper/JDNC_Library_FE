@@ -16,18 +16,18 @@ const Layout = ({ children }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const userRole =  useSelector(state => state.userInfo);
+  const userRole = useSelector((state) => state.userInfo);
   const $search = useRef(null);
+  const searchParam = new URLSearchParams(location.search);
 
   useEffect(() => {
     async function getUserInfo() {
       try {
         const response = await fetchGETUserInfo();
-        
+
         dispatch(updateUserInfo(response.data));
-        
       } catch (error) {
-        navigate('/login',  { state: { returnPath: location.pathname } });
+        navigate('/login', { state: { returnPath: location.pathname } });
       }
     }
     getUserInfo();
@@ -42,10 +42,21 @@ const Layout = ({ children }) => {
     navigate(navigateUrl.main);
   };
 
-  function searchHandler() {
+  function searchHandler(event) {
+    event.preventDefault();
     const searchValue = $search.current.value;
-    navigate(`/search?${searchValue}`);
+    if (searchValue === '') {
+      navigate(navigateUrl.bookList.base);
+      return;
+    }
+    navigate(`/booklist?search=${searchValue}`);
   }
+
+  useEffect(() => {
+    if (searchParam.get('search')) {
+      $search.current.value = searchParam.get('search');
+    }
+  }, []);
 
   return (
     <Style.Container>
@@ -66,7 +77,7 @@ const Layout = ({ children }) => {
       </Style.Header>
       <Style.SearchContainer>
         <Style.SearchInput ref={$search} />
-        <button onClick={searchHandler}>
+        <button type="submit" onClick={searchHandler}>
           <img src={searchIcon} alt="검색하기" />
         </button>
       </Style.SearchContainer>
