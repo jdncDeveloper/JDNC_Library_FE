@@ -8,8 +8,8 @@ import { navigateUrl } from '../../constant/navigateUrl';
 import Style from './BtnNav.style';
 
 const BtnNav = () => {
-  const [currentNumberOfBook, setCurrentNumberOfBook] = useState([]);
-  const [allBook, setAllBook] = useState([]);
+  const [allBookNum, setAllBookNum] = useState();
+  const [availableBookNum, setAvailableBookNum] = useState();
   const [myBorrowedBook, setMyBorrowedBook] = useState([]);
   const navigate = useNavigate();
   function moveBookList() {
@@ -19,41 +19,40 @@ const BtnNav = () => {
     navigate(navigateUrl.borrowedList);
   }
 
-  //전체 도서 개수를 불러옵니다.
-  useEffect(() => {
-    const allBookData = async () => {
-      try {
-        const allBookList = await fetchGETBookList();
-        setAllBook(allBookList.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    allBookData();
-  }, []);
+  const allBookCount = async () => {
+    try {
+      const allBookCountData = await fetchGETAllBookCount();
+      setAllBookNum(allBookCountData.data.count);
+    } catch (error) {
+      alert('데이터를 불러오지 못했습니다.');
+    }
+  };
 
-  //전체 도서 개수를 불러온 후 대여 가능한 도서 개수를 정렬합니다.
-  useEffect(() => {
-    const updateAvailableBookList = () => {
-      const availableBookList = allBook.filter((book) => book.available);
-      setCurrentNumberOfBook(availableBookList);
-    };
-    updateAvailableBookList();
-  }, [allBook]);
+  const availableBookCount = async () => {
+    try {
+      const availableBookCountData = await fetchGETAvailableBookCount();
+      setAvailableBookNum(availableBookCountData.data.count);
+    } catch (error) {
+      alert('데이터를 불러오지 못했습니다.');
+    }
+  };
 
-  //내 대출중인 도서 개수를 불러옵니다.
+  const myBorrowListData = async () => {
+    try {
+      const myBookData = await fetchGETReturnList();
+      setMyBorrowedBook(myBookData.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const myBorrowListData = async () => {
-      try {
-        const myBookData = await fetchGETReturnList();
-        setMyBorrowedBook(myBookData.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    //전체 도서 개수를 불러옵니다.
+    allBookCount();
+    //대출 가능한 도서 개수를 불러옵니다.
+    availableBookCount();
+    //내 대출중인 도서 개수를 불러옵니다.
     myBorrowListData();
   }, []);
-
   return (
     <>
       <Style.BtnNav>
@@ -63,8 +62,8 @@ const BtnNav = () => {
             <Style.ArrowIcon icon="fa-solid fa-arrow-right" />
           </Style.BtnNavTitle>
           <Style.BtnNavContents>
-            <Style.CurrentNumberOfBook>{currentNumberOfBook.length}</Style.CurrentNumberOfBook>
-            <h2>/{allBook.length}</h2>
+            <Style.CurrentNumberOfBook>{availableBookNum}</Style.CurrentNumberOfBook>
+            <h2>/{allBookNum}</h2>
           </Style.BtnNavContents>
         </Style.BtnNavContainer>
         <Style.BtnNavContainer onClick={moveBorrowedPage}>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Style from './GroupTap.style';
 
 const GroupTap = ({ bookGroup, setBookGroup }) => {
-  const [selectedTap, setSelectedTap] = useState('tab1');
+  const [selectedTap, setSelectedTap] = useState();
 
   const handleTapChange = (event) => {
     const newSelectedTap = event.target.id;

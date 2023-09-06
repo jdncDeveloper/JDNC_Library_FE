@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { ThemeContext } from 'styled-components';
 
 const Tbody = styled.tbody`
   font-weight: 500;
@@ -17,17 +18,29 @@ const Tbody = styled.tbody`
 `;
 
 const BookStatus = styled.span`
-  display: flex;
-  width: 64px;
-  height: 34px;
-  border-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.red3};
+  background-color: ${({ $isReturn, theme }) =>
+    $isReturn ? theme.colors.blue1 : theme.colors.red2};
   color: ${({ theme }) => theme.colors.white};
-  font-size: 20px;
-  font-weight: 400;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
+  box-shadow: 0 1px 5px ${({ theme }) => theme.colors.gray2};
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 14px;
 `;
 
-export default { Tbody, BookStatus };
+const MailButton = styled.input`
+  padding: 5px 10px;
+  border-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.gray2};
+  color: ${({ theme }) => theme.colors.white};
+  border: 1px solid;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 1px 5px ${({ theme }) => theme.colors.gray2};
+  transition: all 0.3s ease-out;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray3};
+    transition: all 0.3s ease-out;
+  }
+`;
+
+export default { Tbody, BookStatus, MailButton };
