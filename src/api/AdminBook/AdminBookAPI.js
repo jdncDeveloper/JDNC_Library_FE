@@ -2,7 +2,6 @@ import axiosInstance from '../axiosConfig';
 
 /**
  * 반납 처리 페이지 / 대출중인 모든 책 리스트를 불러옵니다.
- *        (현재 미반납된 도서 목록을 불러옵니다. 추후에 변경해야 합니다.)
  *
  * @param {Number} id 책 고유 아이디
  * @returns {Promise<array>} 대출 중인 모든 리스트를 담은 배열
@@ -37,7 +36,7 @@ export async function fetchPUTAdminReturnBookRequest(IdArray) {
 }
 
 /**
- * 월간 도서 대출 리스트를 불러옵니다. (추후 월별 대출 기록으로 받아와야함)
+ * 월별 도서 대출 기록을 불러옵니다.
  *
  * @param {Number} year 선택한 년도
  * @param {Number} month 선택한 월
@@ -59,7 +58,6 @@ export async function fetchGETBookListOfMonth(year, month, page) {
   }
 }
 
-
 export async function fetchGETCollectionNotChecked() {
   try {
     const { data } = await axiosInstance.get(`/admin/book/collection/notchecked`);
@@ -75,5 +73,25 @@ export async function fetchGETCollectionReturned() {
     return data;
   } catch (error) {
     throw new Error(`Error fetching BookList Of Month: ${error.message}`);
+  }
+}
+
+/**
+ * 월별 도서 대출 기록 엑셀 다운로드
+ *
+ * @param {Number} year 선택한 년도
+ * @param {Number} month 선택한 월
+ */
+
+export async function fetchGETExcelDownload(year, month) {
+  try {
+    return await axiosInstance.get(`/excel`, {
+      params: {
+        year,
+        month,
+      },
+    });
+  } catch (error) {
+    console.log(`Error fetching Excel Download: ${error.message}`);
   }
 }

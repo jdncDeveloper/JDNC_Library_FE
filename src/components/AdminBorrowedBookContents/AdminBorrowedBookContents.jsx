@@ -11,8 +11,8 @@ const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }
   };
 
   const sendMail = async (id, isReturn) => {
-    if (isReturn) {
-      alert('아직 반납되지 않은 도서입니다.');
+    if (!isReturn) {
+      alert('이미 반납된 도서입니다.');
     } else {
       const MailQuestion = confirm('메일을 보내시겠습니까?');
       if (MailQuestion) {
