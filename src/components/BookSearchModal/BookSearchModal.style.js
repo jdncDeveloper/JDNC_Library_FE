@@ -19,6 +19,7 @@ const ModalContent = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
+  overflow: hidden;
 `;
 
 const ModalHeader = styled.div`
@@ -66,6 +67,7 @@ const ModalCloseButton = styled.button`
 
 const ModalSearchResult = styled.div`
   width: 100%;
+  height: 620px;
   overflow: auto;
   & ul {
     width: 100%;

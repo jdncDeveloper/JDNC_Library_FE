@@ -17,9 +17,11 @@ const AdminBookDetailNew = ({
   };
 
   const handleFileChange = (e) => {
-    onImageChange(e);
-    setPreviousUrl(newBook?.image);
-    setFileValue(e.target.value[0]);
+    if (e.target.files.length > 0) {
+      onImageChange(e);
+      setPreviousUrl(newBook?.image);
+      setFileValue(e.target.files[0]);
+    }
   };
 
   const clearFileSelection = () => {
