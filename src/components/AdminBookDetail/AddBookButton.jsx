@@ -20,7 +20,6 @@ const AddBookButton = ({ id, selectedBook, setSelectedBook }) => {
       } else {
         alert('책 추가에 실패했습니다.');
       }
-      console.log(response);
     } catch (error) {
       console.log(error);
     }
