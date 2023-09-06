@@ -32,22 +32,6 @@ const AdminBookDetailInfo = ({
   return (
     <Style.BookDetailInfo>
       {labelData.map(({ labelValue, label, placeholder }) => {
-        if (labelValue === 'title') {
-          return (
-            <label key={labelValue}>
-              {label} :{''}
-              <div>
-                <input
-                  type="text"
-                  value={selectedBook?.title ?? ''}
-                  placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
-                />
-                <button>검색</button>
-              </div>
-            </label>
-          );
-        }
         if (labelValue === 'bookNumber') {
           return (
             <label key={labelValue}>

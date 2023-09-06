@@ -63,26 +63,24 @@ const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
             </tr>
           </thead>
           <tbody>
-            {selectedBook && selectedBook.bookNumbers ? (
-              selectedBook.bookNumbers.map((number) => {
+            {selectedBook && selectedBook.availableList ? (
+              selectedBook.availableList.map(({ bookNumber, available }) => {
                 const displayGroup = selectedBook.bookGroup
                   ? selectedBook.bookGroup.replace('GROUP_', '')
                   : '';
                 return (
-                  <Style.TableRow key={number} isLost={lostBook[number]}>
+                  <Style.TableRow key={bookNumber} isLost={lostBook[bookNumber]}>
                     <td>{selectedBook.id}</td>
                     <td>
                       {displayGroup}
-                      {number}
+                      {bookNumber}
                     </td>
-                    <td>
-                      {lostBook[number] ? '소실' : selectedBook.available ? '보유중' : '대여중'}
-                    </td>
+                    <td>{lostBook[bookNumber] ? '소실' : available ? '보유중' : '대여중'}</td>
                     <td>
                       {disappear && (
                         <div>
-                          <button type="button" onClick={() => handleLostBook(number)}>
-                            {lostBook[number] ? '복구' : '소실'}
+                          <button type="button" onClick={() => handleLostBook(bookNumber)}>
+                            {lostBook[bookNumber] ? '복구' : '소실'}
                           </button>
                           <button>삭제</button>
                         </div>

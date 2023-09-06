@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
-const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImageChange }) => {
+const AdminBookDetailNew = ({
+  newBook,
+  setNewBook,
+  labelData,
+  groupData,
+  onImageChange,
+  openModal,
+}) => {
   const [fileValue, setFileValue] = useState(null);
   const [previousUrl, setPreviousUrl] = useState(newBook?.image);
 
@@ -36,7 +43,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
-                <button>검색</button>
+                <button onClick={openModal}>검색</button>
               </div>
             </label>
           );

@@ -5,6 +5,7 @@ import { navigateUrl } from '../../constant/navigateUrl';
 import AdminAddBookList from '../AdminAddBookList/AdminAddBookList';
 import AdminBookDetailInfo from '../AdminBookDetailInfo/AdminBookDetailInfo';
 import AdminBookDetailNew from '../AdminBookDetailNew/AdminBookDetailNew';
+import BookSearchModal from '../BookSearchModal/BookSearchModal';
 import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
 import EditOrSaveButton from './EditOrSaveButton';
 import AddBookButton from './AddBookButton';
@@ -25,6 +26,8 @@ const AdminBookDetail = () => {
   const [selectedBook, setSelectedBook] = useState(INITIAL_BOOK);
   const [newBook, setNewBook] = useState(INITIAL_BOOK);
   const [isEditing, setIsEditing] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const labelData = [
     { labelValue: 'title', label: '도서명', placeholder: '도서명을 입력하세요.' },
     { labelValue: 'author', label: '저자', placeholder: '저자를 입력하세요.' },
@@ -66,6 +69,11 @@ const AdminBookDetail = () => {
     setNewBook(newBook);
   }, [newBook]);
 
+  const toggleModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen((isModalOpen) => !isModalOpen);
+  };
+
   const handleImageChange = (event) => {
     const [selectedImage] = event.target.files;
     const image = URL.createObjectURL(selectedImage);
@@ -98,6 +106,7 @@ const AdminBookDetail = () => {
 
   return (
     <Style.Container>
+      {isModalOpen && <BookSearchModal toggleModal={toggleModal} />}
       <Style.BookDetailContainer>
         <Style.BookDetailWrapper>
           <Style.BookDetailImage>
@@ -119,6 +128,7 @@ const AdminBookDetail = () => {
               labelData={labelData}
               groupData={groupData}
               onImageChange={handleImageChange}
+              openModal={toggleModal}
             />
           )}
         </Style.BookDetailWrapper>

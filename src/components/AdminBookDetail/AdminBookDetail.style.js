@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import defaultImage from '../../assets/images/book_image.jpg';
 
 const Container = styled.section`
+  position: relative;
   width: 84%;
   min-width: 1240px;
   height: 720px;
