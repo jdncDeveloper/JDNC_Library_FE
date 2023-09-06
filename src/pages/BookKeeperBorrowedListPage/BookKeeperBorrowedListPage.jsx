@@ -4,11 +4,12 @@ import BookListItem from "../../components/BookListItem/BookListItem";
 import BackBtnWithTitle from "../../components/ui/BackBtnWithTitle/BackBtnWithTitle";
 import { useState } from "react";
 
+
 const BookKeeperBorrowedListPage = () => {
   const [monthlyBorrowList, setMonthlyBorrowList] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
-  const getMonthlyBorrowList = async (page) => {
+  const getOverdueBorrowList = async (page) => {
     try {
       const respnse = await fetchGetOverdueBorrowList(page);
       setMonthlyBorrowList(respnse);
@@ -18,7 +19,8 @@ const BookKeeperBorrowedListPage = () => {
   }
   
   useEffect(() => {
-    getMonthlyBorrowList(0);
+    getOverdueBorrowList(0);
+    
   }, [refresh]);
 
   return (
