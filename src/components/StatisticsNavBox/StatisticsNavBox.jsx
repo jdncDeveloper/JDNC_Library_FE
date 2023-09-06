@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import Style from './StatisticsNavBox.style';
-const StatisticsNavBox = ({ title, fontColor, navTo }) => {
+import { useEffect } from 'react';
+import { useState } from 'react';
 
+const StatisticsNavBox = ({ title, fontColor, navTo, totalCount, currentCount }) => {
   return (
     <Style.Container>
       <Link to={navTo}>
@@ -10,7 +12,7 @@ const StatisticsNavBox = ({ title, fontColor, navTo }) => {
           <Style.ArrowIcon icon="fa-solid fa-arrow-right" />
         </Style.NavTitle>
         <Style.StatisticsContainer $fontColor={fontColor}>
-          <span>{'234'}</span><span>{' /424'}</span>
+          <span>{currentCount}</span><span>{` /${totalCount}`}</span>
         </Style.StatisticsContainer>
       </Link>
     </Style.Container>

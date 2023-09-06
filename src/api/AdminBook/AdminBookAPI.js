@@ -58,6 +58,24 @@ export async function fetchGETBookListOfMonth(year, month, page) {
   }
 }
 
+export async function fetchGETCollectionNotChecked() {
+  try {
+    const { data } = await axiosInstance.get(`/admin/book/collection/notchecked`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching BookList Of Month: ${error.message}`);
+  }
+}
+
+export async function fetchGETCollectionReturned() {
+  try {
+    const { data } = await axiosInstance.get(`/admin/book/collection/returned`);
+    return data;
+  } catch (error) {
+    throw new Error(`Error fetching BookList Of Month: ${error.message}`);
+  }
+}
+
 /**
  * 월별 도서 대출 기록 엑셀 다운로드
  *
