@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import defaultImage from '../../assets/images/book_image.jpg';
 
 const Container = styled.section`
   width: 84%;
@@ -31,6 +32,10 @@ const BookDetailImage = styled.div`
   height: 100%;
   border-radius: 10px;
   box-shadow: 0 1px 5px ${({ theme }) => theme.colors.gray2};
+  background-image: url(${defaultImage});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   & img {
     width: 100%;
     height: 100%;

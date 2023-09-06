@@ -7,9 +7,14 @@ import axiosInstance from '../axiosConfig';
  * @param {Number} id 책 고유 아이디
  * @returns {Promise<array>} 대출 중인 모든 리스트를 담은 배열
  */
-export async function fetchGETAllBorrowedBookList() {
+export async function fetchGETAllBorrowedBookList(page) {
   try {
-    const { data } = await axiosInstance.get(`/admin/book/overdue`);
+    const { data } = await axiosInstance.get(`/admin/book/overdue`, {
+      params: {
+        page: page,
+        size: 100,
+      },
+    });
     return data;
   } catch (error) {
     throw new Error(`Error fetching AllBorrowedBookList: ${error.message}`);
@@ -25,7 +30,7 @@ export async function fetchGETAllBorrowedBookList() {
 
 export async function fetchPUTAdminReturnBookRequest(IdArray) {
   try {
-    return await axiosInstance.put(`/admin/book/collection/return`, IdArray);
+    return await axiosInstance.put(`/admin/book/collection/return`, { ids: IdArray });
   } catch (error) {
     throw new Error(`Error fetching book ReturnRequest: ${error.message}`);
   }
@@ -38,9 +43,16 @@ export async function fetchPUTAdminReturnBookRequest(IdArray) {
  * @param {Number} month 선택한 월
  */
 
-export async function fetchGETBookListOfMonth(year, month) {
+export async function fetchGETBookListOfMonth(year, month, page) {
   try {
-    const { data } = await axiosInstance.get(`/admin/book/monthly?year=${year}?month=${month}`);
+    const { data } = await axiosInstance.get(`/admin/book/monthly`, {
+      params: {
+        year,
+        month,
+        page,
+        size: 100,
+      },
+    });
     return data;
   } catch (error) {
     throw new Error(`Error fetching BookList Of Month: ${error.message}`);

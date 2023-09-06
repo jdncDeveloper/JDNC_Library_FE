@@ -15,7 +15,7 @@ import BorrowBook from '../pages/BorrowBook/BorrowBook';
 import AdminBookListPage from '../pages/AdminPage/AdminBookListPage';
 import AdminAddBookPage from '../pages/AdminPage/AdminAddBookPage';
 import AdminBorrowedListPage from '../pages/AdminPage/AdminBorrowedListPage';
-import AdminReturnListPage from '../pages/AdminPage/AdminReturnListPage';
+import AdminBorrowedRecordPage from '../pages/AdminPage/AdminBorrowedRecordPage';
 import AdminUserListPage from '../pages/AdminPage/AdminUserListPage';
 import { navigateUrl } from '../constant/navigateUrl';
 import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
@@ -39,8 +39,14 @@ const App = () => {
           <Route path={navigateUrl.returnPage} element={<Layout children={<ReturnBookPage />} />} />
           <Route path={navigateUrl.borrowBook} element={<Layout children={<BorrowBook />} />} />
           <Route path={navigateUrl.bookDetail} element={<Layout children={<BookDetailPage />} />} />
-          <Route path={navigateUrl.bookKeeperMain} element={<Layout children={<BookKeeperMainPage />} />} />
-          <Route path={navigateUrl.bookKeeperBorrowedList} element={<Layout children={<BookKeeperBorrowedListPage />} />} />
+          <Route
+            path={navigateUrl.bookKeeperMain}
+            element={<Layout children={<BookKeeperMainPage />} />}
+          />
+          <Route
+            path={navigateUrl.bookKeeperBorrowedList}
+            element={<Layout children={<BookKeeperBorrowedListPage />} />}
+          />
           <Route
             path={navigateUrl.adminBookList}
             element={<AdminLayout children={<AdminBookListPage />} />}
@@ -58,17 +64,17 @@ const App = () => {
             element={<AdminLayout children={<AdminBorrowedListPage />} />}
           />
           <Route
-            path={navigateUrl.adminReturnList}
-            element={<AdminLayout children={<AdminReturnListPage />} />}
+            path={navigateUrl.adminBorrowedRecord}
+            element={<AdminLayout children={<AdminBorrowedRecordPage />} />}
           />
           <Route
             path={navigateUrl.adminUserList.search}
             element={<AdminLayout children={<AdminUserListPage />} />}
           />
-          <Route
+          {/* <Route
             path={navigateUrl.adminBorrowedList}
             element={<AdminLayout children={<AdminBorrowedListPage />} />}
-          />
+          /> */}
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

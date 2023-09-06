@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { fetchGETBookDetailPage } from '../../api/Book/bookDetailAPI';
+import { fetchPUTLostBook } from '../../api/AdminBook/AdminBookDetailAPI';
 import Style from './AdminAddBookList.style';
 import CreateQR from '../CreateQR/CreateQR';
 
@@ -9,11 +11,36 @@ const theadWidthData = [
   { width: '35%', label: '' },
 ];
 
-const AdminAddBookList = ({ selectedBook }) => {
+const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
   const [disappear, setDisappear] = useState(false);
+  const [lostBook, setLostBook] = useState({});
 
   const toggleEditButton = () => {
     setDisappear((disappear) => !disappear);
+  };
+
+  const handleLostBook = async (number) => {
+    try {
+      if (!lostBook[number]) {
+        const response = await fetchPUTLostBook(number);
+        if (window.confirm('소실 처리 하시겠습니까?') && response.status === 204) {
+          const newBookList = await fetchGETBookDetailPage(id);
+          setSelectedBook(newBookList.data);
+          console.log(response);
+
+          setLostBook((lostBook) => ({ ...lostBook, [number]: true }));
+          alert('책이 소실되었습니다.');
+        } else {
+          alert('책 소실에 실패했습니다.');
+          return false;
+        }
+      } else if (window.confirm('복구 처리 하시겠습니까?')) {
+        alert('책이 복구되었습니다.');
+        setLostBook((lostBook) => ({ ...lostBook, [number]: false }));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -36,26 +63,37 @@ const AdminAddBookList = ({ selectedBook }) => {
             </tr>
           </thead>
           <tbody>
-            {selectedBook &&
-              selectedBook.bookNumbers &&
-              selectedBook.bookNumbers.map((number) => (
-                <tr key={number}>
-                  <td>{selectedBook.id}</td>
-                  <td>
-                    {selectedBook.bookGroup}
-                    {number}
-                  </td>
-                  <td>{selectedBook.available ? '보유중' : '대여중'}</td>
-                  <td>
-                    {disappear && (
-                      <div>
-                        <button>소실</button>
-                        <button>삭제</button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
+            {selectedBook && selectedBook.bookNumbers ? (
+              selectedBook.bookNumbers.map((number) => {
+                const displayGroup = selectedBook.bookGroup
+                  ? selectedBook.bookGroup.replace('GROUP_', '')
+                  : '';
+                return (
+                  <Style.TableRow key={number} isLost={lostBook[number]}>
+                    <td>{selectedBook.id}</td>
+                    <td>
+                      {displayGroup}
+                      {number}
+                    </td>
+                    <td>
+                      {lostBook[number] ? '소실' : selectedBook.available ? '보유중' : '대여중'}
+                    </td>
+                    <td>
+                      {disappear && (
+                        <div>
+                          <button type="button" onClick={() => handleLostBook(number)}>
+                            {lostBook[number] ? '복구' : '소실'}
+                          </button>
+                          <button>삭제</button>
+                        </div>
+                      )}
+                    </td>
+                  </Style.TableRow>
+                );
+              })
+            ) : (
+              <></>
+            )}
           </tbody>
         </Style.AddedBookList>
       </Style.CreatedBookList>

@@ -7,20 +7,21 @@ import AdminBorrowedBookContents from '../AdminBorrowedBookContents/AdminBorrowe
 import Style from './AdminBorrowedBookList.style';
 
 const AdminBorrowedBookList = () => {
-  const [bookList, setBookList] = useState({});
+  const [bookList, setBookList] = useState(null);
   const [selectedBooks, setSelectedBooks] = useState([]);
+  const [reload, setReload] = useState(false);
+
+  const showBorrowedList = async (page) => {
+    try {
+      const borrowedData = await fetchGETAllBorrowedBookList(page);
+      setBookList(borrowedData.data);
+    } catch (error) {
+      alert('오류발생!');
+    }
+  };
   useEffect(() => {
-    const allBorrowedBookData = async () => {
-      try {
-        const allBorrowedBookList = await fetchGETAllBorrowedBookList();
-        setBookList(allBorrowedBookList.data);
-      } catch (error) {
-        alert('오류발생');
-      }
-      allBorrowedBookData();
-    };
-  }, []);
-  console.log(bookList);
+    showBorrowedList(0);
+  }, [reload]);
 
   console.log(bookList);
   if (!bookList)
@@ -58,7 +59,7 @@ const AdminBorrowedBookList = () => {
           setSelectedBooks={setSelectedBooks}
         />
       </Style.Table>
-      <AdminBookListButtons selectedBooks={selectedBooks} />
+      <AdminBookListButtons selectedBooks={selectedBooks} reload={setReload} />
     </>
   );
 };

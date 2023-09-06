@@ -27,13 +27,14 @@ const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }
       }
     }
   };
+
   return (
     <>
       <Style.Tbody>
         {bookList.map((item) => {
           const isReturn = item.returnDate == null;
           return (
-            <tr key={id}>
+            <tr key={item.borrowId}>
               <td>
                 <input
                   type="checkbox"

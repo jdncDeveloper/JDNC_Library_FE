@@ -1,54 +1,54 @@
+import { useEffect } from "react";
+import { fetchGetOverdueBorrowList } from "../../api/AdminBook/AdminMonthlyBorrow";
 import BookListItem from "../../components/BookListItem/BookListItem";
 import BackBtnWithTitle from "../../components/ui/BackBtnWithTitle/BackBtnWithTitle";
+import { useState } from "react";
 
-const TEST = [
-  {
-    title: '책제목1',
-    imageUrl: 'https://via.placeholder.com/150',
-    bookNumber: '1',
-    username: '홍길동',
-    mbNumber: '123456',
-    borrowDate: '2021-09-01',
-  },
-  {
-    title: '책제목2',
-    imageUrl: 'https://via.placeholder.com/150',
-    bookNumber: '2',
-    username: '아무개',
-    mbNumber: '124124',
-    borrowDate: '2021-09-01',
-  },
-  {
-    title: '책제목3',
-    imageUrl: 'https://via.placeholder.com/150',
-    bookNumber: '3',
-    username: '누굴까',
-    mbNumber: '321312',
-    borrowDate: '2021-09-01',
-  },
-]
 const BookKeeperBorrowedListPage = () => {
+  const [monthlyBorrowList, setMonthlyBorrowList] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const getMonthlyBorrowList = async (page) => {
+    try {
+      const respnse = await fetchGetOverdueBorrowList(page);
+      setMonthlyBorrowList(respnse);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  useEffect(() => {
+    getMonthlyBorrowList(0);
+  }, [refresh]);
+
   return (
     <>
       <BackBtnWithTitle title="대출 목록" />
       {
-        TEST.map(({
-          title, 
-          imageUrl, 
-          bookNumber, 
-          username, 
-          mbNumber, 
-          borrowDate 
+        monthlyBorrowList.map(({
+          author,
+          bookNumber,
+          borrowDate,
+          borrowId,
+          borrowerName,
+          image,
+          publisher,
+          returnDate,
+          title,
         }) => {
           return (
             <BookListItem
-              key={bookNumber}
+              key={borrowId}
+              borrowId={borrowId}
               title={title}
-              imageUrl={imageUrl}
+              image={image}
               bookNumber={bookNumber}
-              username={username}
-              mbNumber={mbNumber}
+              borrowerName={borrowerName}
               borrowDate={borrowDate}
+              author={author}
+              publisher={publisher}
+              returnDate={returnDate}
+              setRefresh={setRefresh}
             />
           )
         })

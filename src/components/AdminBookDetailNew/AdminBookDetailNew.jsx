@@ -3,6 +3,7 @@ import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
 const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImageChange }) => {
   const handleInputChange = ({ name, value }) => {
+    console.log(name, value);
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
   };
 
@@ -32,10 +33,13 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, onImage
             <label key={labelValue}>
               {label} :{''}
               <div>
-                <select name="group">
+                <select
+                  name="group"
+                  onChange={(e) => handleInputChange({ name: 'bookGroup', value: e.target.value })}
+                >
                   {groupData.map(({ groupValue, bookGroup }) => {
                     return (
-                      <option key={groupValue} value={groupValue}>
+                      <option key={groupValue} value={bookGroup}>
                         {bookGroup}
                       </option>
                     );

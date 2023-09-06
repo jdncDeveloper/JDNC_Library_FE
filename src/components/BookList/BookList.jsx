@@ -23,11 +23,12 @@ const BookList = ({ book, isReturnPage, isMainPage, onBookReturn }) => {
 
   const handleBookClick = () => {
     if (window.location.pathname !== '/borrowedlist' && !isButtonEnabled) {
-      navigate(`/borrowBook/qr/${book.bookNumber}`);
+      navigate(`/bookdetail/${book.id}`);
     }
   };
 
-  const handleReturnButtonClick = () => {
+  const handleReturnButtonClick = (event) => {
+    event.stopPropagation();
     if (window.confirm('반납하시겠습니까?')) {
       onBookReturn(book.bookNumber);
     } else {

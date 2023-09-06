@@ -2,7 +2,11 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { fetchGETBookList } from '../../api/Book/bookListAPI';
+import {
+  fetchGETAllBookCount,
+  fetchGETAvailableBookCount,
+  fetchGETBookList,
+} from '../../api/Book/bookListAPI';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import { navigateUrl } from '../../constant/navigateUrl';
 import Style from './BtnNav.style';

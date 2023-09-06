@@ -32,8 +32,10 @@ const BookDetailInfo = styled.div`
         }
       }
       & select {
-        width: 80px;
+        width: 100px;
         height: 30px;
+        margin-top: 5px;
+        font-size: 14px;
         border: 2px solid ${({ theme }) => theme.colors.gray2};
         border-radius: 6px;
         text-align: center;

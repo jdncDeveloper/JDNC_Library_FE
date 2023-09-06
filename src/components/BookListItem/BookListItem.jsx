@@ -1,21 +1,44 @@
+import { fetchPutAdminCheck } from '../../api/AdminBook/AdminCheck';
 import Style from './BookListItem.style';
-const BookListItem = ({title, imageUrl, bookNumber, username, mbNumber, borrowDate }) => {
-
-  const handleReturnBook = (bookNumber) => {
-    // TODO: 반납확인 버튼 클릭시 동작
-    console.log(bookNumber);
+const BookListItem = ({
+    author,
+    bookNumber,
+    borrowDate,
+    borrowId,
+    borrowerName,
+    image,
+    publisher,
+    returnDate,
+    title,
+    setRefresh,
+  }) => {
+  const handleReturnBook = async (borrowId) => {
+    try {
+      const response = await fetchPutAdminCheck(borrowId);
+      if(response.status == 204) {
+        alert('반납확인 완료');
+        setRefresh((refresh) => !refresh);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <Style.Container>
-      <img src={imageUrl} alt={`${title} 책표지`} />
+      <img src={image} alt={`${title} 책표지`} />
       <h3>{title}</h3>
       <div>
         <p>{`책번호: ${bookNumber}`}</p>
-        <p>{`인재번호: ${mbNumber}`}</p>
+        <p>{`대출자: ${borrowerName}`}</p>
         <p>{`대출일: ${borrowDate}`}</p>
       </div>
       <Style.ButtonContainer>
-        <button onClick={() => handleReturnBook(bookNumber)}>반납확인</button>
+        {
+          returnDate ? 
+          <Style.ReturnButton onClick={() => handleReturnBook(borrowId)}>반납확인</Style.ReturnButton> 
+          : <button disabled>미반납</button>
+        }
+        
       </Style.ButtonContainer>
     </Style.Container>
   )
