@@ -10,15 +10,25 @@ const AdminBorrowedBookList = () => {
   const [bookList, setBookList] = useState(null);
   const [selectedBooks, setSelectedBooks] = useState([]);
   const [reload, setReload] = useState(false);
+  const searchParams = new URLSearchParams(location.search);
+  const searchValue = searchParams.get('search');
 
   const showBorrowedList = async (page) => {
     try {
       const borrowedData = await fetchGETAllBorrowedBookList(page);
+      if (searchValue) {
+        const searchList = borrowedData.data.filter((book) => {
+          return book.title.includes(searchValue);
+        });
+        setBookList(searchList);
+        return;
+      }
       setBookList(borrowedData.data);
     } catch (error) {
       alert('오류발생!');
     }
   };
+
   useEffect(() => {
     showBorrowedList(0);
   }, [reload]);

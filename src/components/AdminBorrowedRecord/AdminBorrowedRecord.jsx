@@ -38,6 +38,7 @@ const AdminBorrowedRecord = () => {
           {record.map((item, recordItem) => {
             const isReturn = item.returnDate == null;
             const isAdminCheck = item.adminCheck;
+            const status = isReturn ? '대여중' : isAdminCheck ? '반납완료' : '반납처리 대기중';
             return (
               <tr key={recordItem}>
                 <td>{item.borrowId}</td>
@@ -47,7 +48,11 @@ const AdminBorrowedRecord = () => {
                 <td>{item.borrowDate.slice(0, -6)}</td>
                 <td>{isReturn ? '' : item.returnDate.slice(0, -6)}</td>
                 <td>{isReturn ? ' ' : `${item.floor}층`}</td>
-                <td>{item.status}</td>
+                <td>
+                  <Style.BookStatus $isReturn={isReturn} $isAdminCheck={isAdminCheck}>
+                    {status}
+                  </Style.BookStatus>
+                </td>
               </tr>
             );
           })}
