@@ -19,6 +19,7 @@ const Layout = ({ children }) => {
   const userRole = useSelector((state) => state.userInfo);
   const $search = useRef(null);
   const searchParam = new URLSearchParams(location.search);
+  const searchValue = searchParam.get('search');
 
   useEffect(() => {
     async function getUserInfo() {
@@ -39,6 +40,7 @@ const Layout = ({ children }) => {
   };
 
   const navigateToMainPage = () => {
+    $search.current.value = '';
     navigate(navigateUrl.main);
   };
 
@@ -46,7 +48,7 @@ const Layout = ({ children }) => {
     event.preventDefault();
     const searchValue = $search.current.value;
     if (searchValue === '') {
-      navigate(navigateUrl.bookList.base);
+      navigate(navigateUrl.bookList);
       return;
     }
     navigate(`/booklist?search=${searchValue}`);
@@ -55,8 +57,10 @@ const Layout = ({ children }) => {
   useEffect(() => {
     if (searchParam.get('search')) {
       $search.current.value = searchParam.get('search');
+    } else {
+      $search.current.value = '';
     }
-  }, []);
+  }, [location.search]);
 
   return (
     <Style.Container>
@@ -76,7 +80,7 @@ const Layout = ({ children }) => {
         )}
       </Style.Header>
       <Style.SearchContainer>
-        <Style.SearchInput ref={$search} />
+        <Style.SearchInput ref={$search} defaultValue={searchValue} />
         <button type="submit" onClick={searchHandler}>
           <img src={searchIcon} alt="검색하기" />
         </button>

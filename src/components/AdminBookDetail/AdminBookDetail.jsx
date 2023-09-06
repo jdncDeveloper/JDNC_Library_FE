@@ -106,7 +106,13 @@ const AdminBookDetail = () => {
 
   return (
     <Style.Container>
-      {isModalOpen && <BookSearchModal toggleModal={toggleModal} setNewBook={setNewBook} />}
+      {isModalOpen && (
+        <BookSearchModal
+          toggleModal={toggleModal}
+          setNewBook={setNewBook}
+          isModalOpen={isModalOpen}
+        />
+      )}
       <Style.BookDetailContainer>
         <Style.BookDetailWrapper>
           <Style.BookDetailImage>

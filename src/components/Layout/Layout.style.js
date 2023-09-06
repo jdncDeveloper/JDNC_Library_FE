@@ -32,7 +32,7 @@ const MenuBars = styled(FontAwesomeIcon)`
   font-size: 24px;
   cursor: pointer;
 `;
-const SearchContainer = styled.div`
+const SearchContainer = styled.form`
   display: flex;
   align-items: center;
   width: calc(100% - 40px);
