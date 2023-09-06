@@ -11,6 +11,7 @@ const BookListItem = ({
     returnDate,
     title,
     setRefresh,
+    disabled,
   }) => {
   const handleReturnBook = async (borrowId) => {
     try {
@@ -32,7 +33,7 @@ const BookListItem = ({
         <p>{`대출자: ${borrowerName}`}</p>
         <p>{`대출일: ${borrowDate}`}</p>
       </div>
-      <Style.ButtonContainer>
+      <Style.ButtonContainer $disabled={disabled}>
         {
           returnDate ? 
           <Style.ReturnButton onClick={() => handleReturnBook(borrowId)}>반납확인</Style.ReturnButton> 
