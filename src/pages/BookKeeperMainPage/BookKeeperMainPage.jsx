@@ -22,7 +22,7 @@ const BookKeeperMainPage = () => {
     const getNotChecked = async () => {
         try {
             const response = await fetchGETCollectionNotChecked();
-            setNotCheckedCount(response.count);
+            setReturnCount(response.count);
         }
         catch (error) {
             console.error(error);
@@ -31,7 +31,7 @@ const BookKeeperMainPage = () => {
     const getReturnCount = async () => {
         try {
             const response = await fetchGETCollectionReturned();
-            setReturnCount(response.count);
+            setNotCheckedCount(response.count);
         } catch (error) {
             console.error(error);
         }
