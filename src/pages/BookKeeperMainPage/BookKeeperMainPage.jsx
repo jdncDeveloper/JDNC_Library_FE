@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { fetchGETAllBookCount } from '../../api/Book/bookListAPI';
 import { fetchGETBookListOfMonth } from '../../api/AdminBook/AdminBookAPI';
 import { fetchGetOverdueBorrowList } from '../../api/AdminBook/AdminMonthlyBorrow';
+
 const data = new Date();
 const year = data.getFullYear();
 const month = data.getMonth() + 1;
@@ -23,6 +24,7 @@ const BookKeeperMainPage = () => {
             console.error(error);
         }
     }
+
     const getMonthlyBorrowBooks = async () => {
         try {
             const { data } = await fetchGETBookListOfMonth(year, month, 0);
@@ -46,7 +48,8 @@ const BookKeeperMainPage = () => {
         getReturnCount();
         getMonthlyBorrowBooks();
         getTotalbooks();
-    }, [])
+    }, []);
+
     return (
         <Style.Container>
             <StatisticsNavBox 

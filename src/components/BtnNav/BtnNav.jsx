@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import {
   fetchGETAllBookCount,
   fetchGETAvailableBookCount,
-  fetchGETBookList,
 } from '../../api/Book/bookListAPI';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import { navigateUrl } from '../../constant/navigateUrl';
