@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { fetchPOSTImageUpload } from '../../api/AdminBook/AdminBookDetailAPI';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
 const AdminBookDetailNew = ({
@@ -16,11 +17,21 @@ const AdminBookDetailNew = ({
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
   };
 
-  const handleFileChange = (e) => {
+  const handleFileChange = async (e) => {
     if (e.target.files.length > 0) {
-      onImageChange(e);
-      setPreviousUrl(newBook?.image);
-      setFileValue(e.target.files[0]);
+      try {
+        const file = e.target.files[0];
+        const response = await fetchPOSTImageUpload(file);
+        if (response.status === 201) {
+          handleInputChange({ name: 'image', value: response.data });
+          setPreviousUrl(newBook?.image);
+          setFileValue(file);
+        } else {
+          alert('이미지 업로드에 실패했습니다.');
+        }
+      } catch (error) {
+        console.log(error.response || error);
+      }
     }
   };
 

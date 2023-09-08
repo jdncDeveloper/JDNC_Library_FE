@@ -25,6 +25,22 @@ const EditOrSaveButton = ({ id, isEditing, selectedBook, newBook, setNewBook }) 
     } else {
       // 저장 createBook.api
       try {
+        const requiredKeys = ['title', 'author', 'publisher', 'bookGroup', 'image', 'content'];
+        const fieldLabels = {
+          title: '도서명',
+          author: '저자',
+          publisher: '출판사',
+          bookGroup: '그룹',
+          image: '이미지',
+          content: '책소개',
+        };
+        const missingFields = requiredKeys.filter((key) => !newBook[key]);
+        const missingFieldLabels = missingFields.map((field) => fieldLabels[field] || field);
+        if (missingFields.length > 0) {
+          alert(`${missingFieldLabels.join(', ')} 필드를 입력해주세요.`);
+          return;
+        }
+
         const response = await fetchPOSTCreateBook(newBook);
         if (response.status === 201) {
           alert('책 정보가 등록 되었습니다.');

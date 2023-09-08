@@ -49,3 +49,19 @@ export async function fetchPUTLostBook(bookNumber) {
     throw new Error(`Error fetching book list: ${error.message}`);
   }
 }
+
+export async function fetchPOSTImageUpload(file) {
+  try {
+    const formData = new FormData();
+    formData.append('image', file);
+    const response = await axiosInstance.post('admin/image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    return response;
+  } catch (error) {
+    throw new Error(`Error fetching book list: ${error.message}`);
+  }
+}
