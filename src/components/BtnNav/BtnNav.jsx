@@ -2,10 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  fetchGETAllBookCount,
-  fetchGETAvailableBookCount,
-} from '../../api/Book/bookListAPI';
+import { fetchGETAllBookCount, fetchGETAvailableBookCount } from '../../api/Book/bookListAPI';
 import { fetchGETReturnList } from '../../api/Borrow/borrowAPI';
 import { navigateUrl } from '../../constant/navigateUrl';
 import Style from './BtnNav.style';
@@ -27,7 +24,7 @@ const BtnNav = () => {
       const allBookCountData = await fetchGETAllBookCount();
       setAllBookNum(allBookCountData.data.count);
     } catch (error) {
-      alert('데이터를 불러오지 못했습니다.');
+      console.log('데이터를 불러오지 못했습니다.');
     }
   };
 
@@ -36,7 +33,7 @@ const BtnNav = () => {
       const availableBookCountData = await fetchGETAvailableBookCount();
       setAvailableBookNum(availableBookCountData.data.count);
     } catch (error) {
-      alert('데이터를 불러오지 못했습니다.');
+      console.log('데이터를 불러오지 못했습니다.');
     }
   };
 

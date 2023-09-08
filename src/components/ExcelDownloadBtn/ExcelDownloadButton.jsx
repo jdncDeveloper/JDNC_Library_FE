@@ -13,14 +13,21 @@ const ExcelDownloadButton = ({ excelFileUrl, filename, hide }) => {
   const handleExcelDownload = async () => {
     try {
       const excelDownloadUrl = await fetchGETExcelDownload(year, month);
-      console.log(excelDownloadUrl);
+      const blob = await excelDownloadUrl.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${year}_${month}.xslx`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.log(error);
     }
   };
   return (
     !hide && (
-      <Style.ButtonWrapper href={excelFileUrl} download={filename + '.xlsx'}>
+      <Style.ButtonWrapper>
         <button onClick={() => handleExcelDownload()}>Excel Download</button>
       </Style.ButtonWrapper>
     )
