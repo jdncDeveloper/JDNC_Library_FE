@@ -30,7 +30,7 @@ export async function fetchPOSTCreateBook(book) {
 
 export async function fetchPUTUpdateBook(id, book) {
   const bookToSend = { ...book };
-  delete bookToSend.bookNumbers;
+  delete bookToSend.availableList;
   try {
     const response = await axiosInstance.put(`admin/book/${id}`, bookToSend);
 

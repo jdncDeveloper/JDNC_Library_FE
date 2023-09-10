@@ -71,10 +71,7 @@ const AdminAddBookList = ({ selectedBook, setSelectedBook, id }) => {
                 return (
                   <Style.TableRow key={bookNumber} isLost={lostBook[bookNumber]}>
                     <td>{selectedBook.id}</td>
-                    <td>
-                      {displayGroup}
-                      {bookNumber}
-                    </td>
+                    <td>{`${displayGroup}-${bookNumber}`}</td>
                     <td>{lostBook[bookNumber] ? '소실' : available ? '보유중' : '대여중'}</td>
                     <td>
                       {disappear && (
