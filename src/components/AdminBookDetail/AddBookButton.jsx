@@ -27,7 +27,7 @@ const AddBookButton = ({ id, selectedBook, setSelectedBook }) => {
 
   return (
     <button type="submit" onClick={handleAddBook}>
-      책 추가
+      생성번호 추가
     </button>
   );
 };

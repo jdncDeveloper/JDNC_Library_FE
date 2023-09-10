@@ -33,7 +33,8 @@ const BookStatus = styled.span`
   border-style: double;
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.red2};
+  background-color: ${({ theme, available }) =>
+    available ? theme.colors.blue1 : theme.colors.red1};
   font-weight: bold;
   font-size: 14px;
 `;
@@ -41,14 +42,14 @@ const EditButton = styled.button`
   padding: 6px 12px;
   border-radius: 10px;
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.blue2};
+  background-color: ${({ theme }) => theme.colors.gray2};
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
   box-shadow: 0 1px 5px ${({ theme }) => theme.colors.gray2};
   transition: all 0.3s ease-out;
   &:hover {
-    background-color: ${({ theme }) => theme.colors.blue3};
+    background-color: ${({ theme }) => theme.colors.gray3};
     transition: all 0.3s ease-out;
   }
 `;
