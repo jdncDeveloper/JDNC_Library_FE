@@ -37,6 +37,11 @@ const AdminBookList = () => {
         return book.title.includes(searchValue);
       });
 
+      if (searchBookList.length === 0 && response.data.length > 0) {
+        setPage((page) => page + 1);
+        return;
+      }
+
       setHasMoreData(searchBookList.length > 0);
 
       if (page === 0) {
