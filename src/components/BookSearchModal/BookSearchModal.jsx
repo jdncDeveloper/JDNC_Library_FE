@@ -4,7 +4,13 @@ import { fetchGETBookSearch } from '../../api/AdminBook/GetBookSearch';
 import Style from './BookSearchModal.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const BookSearchModal = ({ toggleModal, setNewBook, isModalOpen }) => {
+const BookSearchModal = ({
+  toggleModal,
+  setNewBook,
+  selectedBook,
+  setSelectedBook,
+  isModalOpen,
+}) => {
   const [title, setTitle] = useState('');
   const [bookList, setBookList] = useState([]);
   const [page, setPage] = useState(1);
@@ -82,6 +88,8 @@ const BookSearchModal = ({ toggleModal, setNewBook, isModalOpen }) => {
                 key={book.title}
                 book={book}
                 setNewBook={setNewBook}
+                selectedBook={selectedBook}
+                setSelectedBook={setSelectedBook}
                 ref={index === bookList.length - 1 ? lastBookElementRef : null}
               />
             );

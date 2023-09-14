@@ -110,6 +110,8 @@ const AdminBookDetail = () => {
         <BookSearchModal
           toggleModal={toggleModal}
           setNewBook={setNewBook}
+          selectedBook={selectedBook}
+          setSelectedBook={setSelectedBook}
           isModalOpen={isModalOpen}
         />
       )}
@@ -126,6 +128,7 @@ const AdminBookDetail = () => {
               labelData={labelData}
               groupData={groupData}
               onImageChange={handleImageChange}
+              openModal={toggleModal}
             />
           ) : (
             <AdminBookDetailNew
@@ -133,7 +136,6 @@ const AdminBookDetail = () => {
               setNewBook={setNewBook}
               labelData={labelData}
               groupData={groupData}
-              onImageChange={handleImageChange}
               openModal={toggleModal}
             />
           )}
@@ -157,6 +159,7 @@ const AdminBookDetail = () => {
               id={id}
               isEditing={isEditing}
               selectedBook={selectedBook}
+              setSelectedBook={setSelectedBook}
               newBook={newBook}
               setNewBook={setNewBook}
             />

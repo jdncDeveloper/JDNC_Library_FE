@@ -1,7 +1,10 @@
 import React, { forwardRef } from 'react';
 import Style from './ModalSearchList.style';
+import { useLocation } from 'react-router-dom';
 
-const ModalSearchList = forwardRef(({ book, setNewBook }, ref) => {
+const ModalSearchList = forwardRef(({ book, setNewBook, selectedBook, setSelectedBook }, ref) => {
+  const location = useLocation();
+
   const handleSelect = () => {
     const mappedData = {
       title: book.title,
@@ -9,9 +12,14 @@ const ModalSearchList = forwardRef(({ book, setNewBook }, ref) => {
       publisher: book.publisher,
       image: book.image,
       content: book.description,
+      bookGroup: location.pathname === '/new' ? '' : selectedBook.bookGroup,
     };
 
-    setNewBook(mappedData);
+    if (location.pathname === '/new') {
+      setNewBook(mappedData);
+    } else {
+      setSelectedBook(mappedData);
+    }
   };
 
   return (
