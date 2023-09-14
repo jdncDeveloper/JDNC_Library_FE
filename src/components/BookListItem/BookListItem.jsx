@@ -14,6 +14,7 @@ const BookListItem = ({
     disabled,
   }) => {
   const handleReturnBook = async (borrowId) => {
+    if(!confirm('반납확인 하시겠습니까?')) return;
     try {
       const response = await fetchPutAdminCheck(borrowId);
       if(response.status == 204) {
@@ -26,7 +27,9 @@ const BookListItem = ({
   }
   return (
     <Style.Container>
-      <img src={image} alt={`${title} 책표지`} />
+      {
+        image ? <img src={image} alt={`${title} 책표지`} /> : <img src="https://via.placeholder.com/150" alt="책표지 없음" />
+      }
       <h3>{title}</h3>
       <div>
         <p>{`책번호: ${bookNumber}`}</p>
