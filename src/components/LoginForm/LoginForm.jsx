@@ -34,7 +34,7 @@ const LoginForm = () => {
         if(!isValidateLogin(loginForm.username, loginForm.password)) return;
 
         const response = await fetchPOSTLogin(loginForm);
-        if(response.status !== 200) {
+        if(!response) {
             alert('아이디 비밀번호를 확인해주세요.');
             return;
         };
@@ -62,7 +62,7 @@ const LoginForm = () => {
         <Style.LoginContainer>
             <h1>더큰내일도서관</h1>
             <form action="/">
-                <input type="text" name='username' placeholder='아이디' value={loginForm.username} onChange={loginFormHandler}/>
+                <input type="text" name='username' placeholder='인재번호' value={loginForm.username} onChange={loginFormHandler}/>
                 <input type="password" name='password' placeholder='비밀번호' value={loginForm.password} onChange={loginFormHandler}/>
                 <button onClick={submitLogin}>Login</button>
             </form>
