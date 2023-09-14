@@ -2,14 +2,7 @@ import React, { useState } from 'react';
 import { fetchPOSTImageUpload } from '../../api/AdminBook/AdminBookDetailAPI';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
-const AdminBookDetailNew = ({
-  newBook,
-  setNewBook,
-  labelData,
-  groupData,
-  onImageChange,
-  openModal,
-}) => {
+const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openModal }) => {
   const [fileValue, setFileValue] = useState(null);
   const [previousUrl, setPreviousUrl] = useState(newBook?.image);
 

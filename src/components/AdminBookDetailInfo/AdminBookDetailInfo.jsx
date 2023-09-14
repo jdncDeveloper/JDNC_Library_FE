@@ -7,6 +7,7 @@ const AdminBookDetailInfo = ({
   labelData,
   groupData,
   onImageChange,
+  openModal,
 }) => {
   const [fileValue, setFileValue] = useState(null);
   const [previousUrl, setPreviousUrl] = useState(selectedBook?.image);
@@ -32,6 +33,24 @@ const AdminBookDetailInfo = ({
   return (
     <Style.BookDetailInfo>
       {labelData.map(({ labelValue, label, placeholder }) => {
+        if (labelValue === 'title') {
+          return (
+            <label key={labelValue}>
+              {label} :{''}
+              <div>
+                <input
+                  type="text"
+                  name={labelValue}
+                  id={labelValue}
+                  value={selectedBook[labelValue]}
+                  placeholder={placeholder}
+                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
+                />
+                <button onClick={openModal}>검색</button>
+              </div>
+            </label>
+          );
+        }
         if (labelValue === 'bookNumber') {
           return (
             <label key={labelValue}>
