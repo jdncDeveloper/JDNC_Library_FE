@@ -13,6 +13,7 @@ import { updateUserInfo } from '../../store/userInfoSlice';
 const Layout = ({ children }) => {
   const [username, setUsername] = useState('탐나는 인재');
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -25,7 +26,7 @@ const Layout = ({ children }) => {
     async function getUserInfo() {
       try {
         const response = await fetchGETUserInfo();
-
+        setIsLogin(true);
         dispatch(updateUserInfo(response.data));
       } catch (error) {
         navigate('/login', { state: { returnPath: location.pathname } });
@@ -55,6 +56,7 @@ const Layout = ({ children }) => {
   }
 
   useEffect(() => {
+    if(!isLogin) return;
     if (searchParam.get('search')) {
       $search.current.value = searchParam.get('search');
     } else {
@@ -63,6 +65,10 @@ const Layout = ({ children }) => {
   }, [location.search]);
 
   return (
+    !isLogin?
+    <Style.LoadingContainer>
+      <img src={logo} alt="더큰내일도서관 로고" />
+    </Style.LoadingContainer> :
     <Style.Container>
       <Style.Header>
         <img src={logo} alt="더큰내일도서관 로고" onClick={navigateToMainPage} />
