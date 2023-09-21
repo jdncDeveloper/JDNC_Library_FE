@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Style from './PageNationButton.style';
 
 const PageNationButton = ({ totalPage, currentPage, setCurrentPage }) => {
-  const [currentButtonPage, setCurrentButtonPage] = useState(1);
+  const [ currentButtonPage, setCurrentButtonPage ] = useState(1);
 
   const changePage = (page) => {
     setCurrentPage(page);

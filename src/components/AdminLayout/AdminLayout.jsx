@@ -30,7 +30,6 @@ const AdminLayout = ({ children }) => {
     async function getUserInfo() {
       try {
         const response = await fetchGETUserInfo();
-
         dispatch(updateUserInfo(response.data));
         setUsername(response.data.name);
         if(response.data.role === 'ROLE_USER') {

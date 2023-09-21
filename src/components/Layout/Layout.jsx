@@ -26,6 +26,7 @@ const Layout = ({ children }) => {
     async function getUserInfo() {
       try {
         const response = await fetchGETUserInfo();
+        console.log(response.data);
         setIsLogin(true);
         dispatch(updateUserInfo(response.data));
       } catch (error) {
