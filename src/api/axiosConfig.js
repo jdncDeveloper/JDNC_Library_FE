@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { createBrowserHistory } from 'history';
 
-const history = createBrowserHistory();
-// axios.defaults.withCredentials = true;
 const axiosInstance = axios.create({
   baseURL: 'https://api.jdnclib.com',
   headers: { Authorization: '' },
@@ -41,7 +38,6 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
-    // handleHTTPError(object);
     if (error.response.status === 500) {
     }
     if (error.response.status === 403) {

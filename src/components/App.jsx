@@ -22,6 +22,7 @@ import BookDetailPage from '../pages/BookDetailPage/BookDetailPage';
 import BookKeeperMainPage from '../pages/BookKeeperMainPage/BookKeeperMainPage';
 import BookKeeperBorrowedListPage from '../pages/BookKeeperBorrowedListPage/BookKeeperBorrowedListPage';
 import BookKeeperMonthlyPage from '../pages/BookKeeperMonthlyPage/BookKeeperMonthlyPage';
+import NotFound from '../pages/NotFound/NotFound';
 
 const App = () => {
   return (
@@ -80,6 +81,7 @@ const App = () => {
             path={navigateUrl.adminBorrowedList}
             element={<AdminLayout children={<AdminBorrowedListPage />} />}
           /> */}
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </ThemeProvider>
     </BrowserRouter>

@@ -27,6 +27,7 @@ const CreateQR = () => {
       setBookNumberCanvasImage(bookNumberCanvas.current.toDataURL('image/jpg'));
     }
   }
+  
   const handleFileName = (event) => {
     const value = event.target.value;
     setFileName(value);
