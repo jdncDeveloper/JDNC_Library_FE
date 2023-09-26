@@ -1,36 +1,10 @@
-import React, { useState } from 'react';
-import { fetchPOSTImageUpload } from '../../api/AdminBook/AdminBookDetailAPI';
+import React from 'react';
 import Style from '../AdminBookDetailInfo/AdminBookDetailForm.style';
 
 const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openModal }) => {
-  const [fileValue, setFileValue] = useState(null);
-  const [previousUrl, setPreviousUrl] = useState(newBook?.image);
-
   const handleInputChange = ({ name, value }) => {
     setNewBook((newBook) => ({ ...newBook, [name]: value }));
-  };
-
-  const handleFileChange = async (e) => {
-    if (e.target.files.length > 0) {
-      try {
-        const file = e.target.files[0];
-        const response = await fetchPOSTImageUpload(file);
-        if (response.status === 201) {
-          handleInputChange({ name: 'image', value: response.data });
-          setPreviousUrl(newBook?.image);
-          setFileValue(file);
-        } else {
-          alert('이미지 업로드에 실패했습니다.');
-        }
-      } catch (error) {
-        console.log(error.response || error);
-      }
-    }
-  };
-
-  const clearFileSelection = () => {
-    handleInputChange({ name: 'image', value: previousUrl });
-    setFileValue(null);
+    console.log(newBook);
   };
 
   return (
@@ -45,7 +19,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openMod
                   type="text"
                   name={labelValue}
                   id={labelValue}
-                  value={newBook[labelValue]}
+                  value={newBook?.[labelValue]}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
@@ -75,7 +49,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openMod
                   type="text"
                   name={labelValue}
                   id={labelValue}
-                  value={newBook[labelValue]}
+                  value={newBook?.[labelValue]}
                   placeholder={placeholder}
                   onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
                 />
@@ -87,22 +61,12 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openMod
           return (
             <label key={labelValue}>
               {label} :{''}
-              <Style.ImageInputWrapper>
-                <input
-                  type="text"
-                  value={newBook[labelValue]}
-                  placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
-                />
-                <div>
-                  <input type="file" onChange={handleFileChange} accept="image/*" />
-                  {fileValue && (
-                    <button type="button" onClick={clearFileSelection}>
-                      선택취소
-                    </button>
-                  )}
-                </div>
-              </Style.ImageInputWrapper>
+              <input
+                type="text"
+                value={newBook?.[labelValue]}
+                placeholder={placeholder}
+                onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
+              />
             </label>
           );
         }
@@ -113,7 +77,7 @@ const AdminBookDetailNew = ({ newBook, setNewBook, labelData, groupData, openMod
               type="text"
               name={labelValue}
               id={labelValue}
-              value={newBook[labelValue]}
+              value={newBook?.[labelValue]}
               placeholder={placeholder}
               onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
             />

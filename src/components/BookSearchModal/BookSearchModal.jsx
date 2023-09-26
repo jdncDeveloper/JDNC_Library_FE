@@ -3,6 +3,7 @@ import ModalSearchList from './ModalSearchList';
 import { fetchGETBookSearch } from '../../api/AdminBook/GetBookSearch';
 import Style from './BookSearchModal.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useLocation } from 'react-router-dom';
 
 const BookSearchModal = ({
   toggleModal,
@@ -16,6 +17,7 @@ const BookSearchModal = ({
   const [page, setPage] = useState(1);
   const [hasMoreData, setHasMoreData] = useState(true);
   const observer = useRef();
+  const location = useLocation();
 
   const lastBookElementRef = useCallback(
     (node) => {
@@ -91,6 +93,7 @@ const BookSearchModal = ({
                 selectedBook={selectedBook}
                 setSelectedBook={setSelectedBook}
                 ref={index === bookList.length - 1 ? lastBookElementRef : null}
+                pathName={location.pathname}
               />
             );
           })}

@@ -36,7 +36,7 @@ const AdminBookDetail = () => {
     {
       labelValue: 'image',
       label: '책이미지',
-      placeholder: '이미지URL 또는 파일선택 한가지만 가능합니다.',
+      placeholder: '이미지URL을 입력하세요.',
     },
   ];
 
@@ -72,20 +72,6 @@ const AdminBookDetail = () => {
   const toggleModal = (e) => {
     e.preventDefault();
     setIsModalOpen((isModalOpen) => !isModalOpen);
-  };
-
-  const handleImageChange = (event) => {
-    const [selectedImage] = event.target.files;
-    const image = URL.createObjectURL(selectedImage);
-
-    if (isEditing) {
-      if (selectedBook.image) {
-        URL.revokeObjectURL(selectedBook.image);
-      }
-      setSelectedBook((book) => ({ ...book, image }));
-    } else {
-      setNewBook((book) => ({ ...book, image }));
-    }
   };
 
   const handleTextareaChange = (event) => {
@@ -127,7 +113,6 @@ const AdminBookDetail = () => {
               setSelectedBook={setSelectedBook}
               labelData={labelData}
               groupData={groupData}
-              onImageChange={handleImageChange}
               openModal={toggleModal}
             />
           ) : (
