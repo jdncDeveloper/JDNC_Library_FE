@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Style from './AdminBookDetailForm.style';
 
 const AdminBookDetailInfo = ({
@@ -6,28 +6,10 @@ const AdminBookDetailInfo = ({
   setSelectedBook,
   labelData,
   groupData,
-  onImageChange,
   openModal,
 }) => {
-  const [fileValue, setFileValue] = useState(null);
-  const [previousUrl, setPreviousUrl] = useState(selectedBook?.image);
-
-  const handleFileChange = (e) => {
-    onImageChange(e);
-    setPreviousUrl(selectedBook?.image);
-    setFileValue(e.target.files[0]);
-  };
-
   const handleInputChange = ({ name, value }) => {
-    setPreviousUrl(value);
-    if (selectedBook) {
-      setSelectedBook((selectedBook) => ({ ...selectedBook, [name]: value }));
-    }
-  };
-
-  const clearFileSelection = () => {
-    handleInputChange({ name: 'image', value: previousUrl });
-    setFileValue(null);
+    setSelectedBook((selectedBook) => ({ ...selectedBook, [name]: value }));
   };
 
   return (
@@ -83,22 +65,12 @@ const AdminBookDetailInfo = ({
           return (
             <label key={labelValue}>
               {label} :{''}
-              <Style.ImageInputWrapper>
-                <input
-                  type="text"
-                  value={selectedBook?.[labelValue] ?? ''}
-                  placeholder={placeholder}
-                  onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
-                />
-                <div>
-                  <input type="file" onChange={handleFileChange} accept="image/*" />
-                  {fileValue && (
-                    <button type="button" onClick={clearFileSelection}>
-                      선택취소
-                    </button>
-                  )}
-                </div>
-              </Style.ImageInputWrapper>
+              <input
+                type="text"
+                value={selectedBook?.[labelValue] ?? ''}
+                placeholder={placeholder}
+                onChange={(e) => handleInputChange({ name: labelValue, value: e.target.value })}
+              />
             </label>
           );
         }
