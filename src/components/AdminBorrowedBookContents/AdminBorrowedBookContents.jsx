@@ -1,5 +1,6 @@
 import React from 'react';
 import Style from './AdminBorrowedBookContents.style';
+import { fetchPOSTsendMail } from '../../api/AdminBook/AdminMail';
 
 const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }) => {
   const handleCheckboxChange = (id) => {
@@ -23,6 +24,7 @@ const AdminBorrowedBookContents = ({ bookList, setSelectedBooks, selectedBooks }
           }
         } catch (error) {
           alert('메일을 보내지 못했습니다.');
+          console.log(error);
         }
       }
     }
